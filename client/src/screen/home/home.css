@@ -1,0 +1,26 @@
+.left-side-nav::-webkit-scrollbar,
+.middle-post-nav::-webkit-scrollbar,
+.right-active-nav::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.left-side-nav {
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    left: 0;
+}
+
+.right-active-nav {
+    width: 330px;
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    right: 5px;
+}
+
+.middle-post-nav {
+    width: 620px;
+}

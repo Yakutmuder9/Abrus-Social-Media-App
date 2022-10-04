@@ -1,0 +1,42 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', sans-serif;
+   /* font-family: 'Helvetica 25 UltraLight', sans-serif; */
+ /* font-family: 'Helvetica 35 Thin', sans-serif; */
+  /* font-family: 'Helvetica 45 Light', sans-serif; */
+  /* font-family: 'Helvetica 55 Roman', sans-serif; */
+  /* font-family: 'Helvetica 65 Medium', sans-serif;  */
+
+}
+:root{
+  --white: #ffffff;
+  --green: #7B8F22;
+  --light-blue: #f0f2f5;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #010101;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbcaca;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(7, 17, 78);
+}
+.html{
+  overflow-y: scroll;
+  background: var(--light-blue);
+}
+.App{
+  background: var(--light-blue);
+}
+p{
+  font-family: 'Helvetica 25 UltraLight', sans-serif;
+}
