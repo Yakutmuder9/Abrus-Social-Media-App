@@ -1,5 +1,6 @@
 import '../navbar.css';
 import {FaFacebookMessenger, FaBell, FaUserCircle} from "react-icons/fa";
+import Avatar from '@mui/material/Avatar';
 
 const Navbar = () => {
   return (
@@ -10,15 +11,15 @@ const Navbar = () => {
       </div>
 
       <div className='d-flex'>
-        <div className='rounded-circle text-center px-2 py-1 bg-secondary'>
-        <FaFacebookMessenger />
-        </div>
-        <div className='rounded-circle text-center px-2 py-1 bg-secondary mx-2' >
-        <FaBell />
-        </div>
-        <div className='rounded-circle text-center px-2 py-1 bg-secondary' >
-        <FaUserCircle />
-        </div>
+       
+        <Avatar src="/broken-image.jpg" className='text-dark'>
+          <FaFacebookMessenger />
+        </Avatar>
+        <Avatar src="/broken-image.jpg" className='mx-2 text-dark'>
+          <FaBell />
+        </Avatar>
+        <Avatar src="/broken-image.jpg" className='text-dark'/>
+        
         </div>
     </div>
   )

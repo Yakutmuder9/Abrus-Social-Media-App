@@ -34,6 +34,9 @@
   overflow-y: scroll;
   background: var(--light-blue);
 }
+body{
+  background: var(--light-blue);
+}
 .App{
   background: var(--light-blue);
 }

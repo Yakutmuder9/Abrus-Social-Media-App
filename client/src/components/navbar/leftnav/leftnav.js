@@ -1,4 +1,4 @@
-import { AiFillHome, AiTwotoneShop } from 'react-icons/ai'
+import { AiFillHome, AiTwotoneShop,AiTwotoneFlag } from 'react-icons/ai'
 import { MdGroups } from 'react-icons/md'
 import { FaUserAlt, FaVideo } from 'react-icons/fa'
 import { CgMenuGridO } from 'react-icons/cg'
@@ -8,19 +8,18 @@ import "react-pro-sidebar/dist/css/styles.css";
 import {  NavLink } from "react-router-dom";
 
 const Leftnav = () => {
-    const [menuCollapse, setMenuCollapse] = useState(false);
 
 
     return (
-        <div className="left-nav-bar bg-light">
-            <div className='d-none d-md-block d-xl-none'>
-                <aside className="navbar-aside" id='nav-collaps-con'>
+        <div className="left-nav-bar">
+            <div className='d-none d-md-block pt-5 d-xl-none' style={{background:"#ffffff", marginTop:"-50px"}}>
+                <aside className="navbar-aside " id='nav-collaps-con'>
                 <nav>
                     <ul className="menu-aside p-0 w-100" id="sideNavBtn">
                         <li className="menu-item 0">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="#"
+                                to="/user"
                             >
                                 <AiFillHome />
                             </NavLink>
@@ -28,7 +27,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/profile"
+                                to="/profile/yakut"
                             >
                                 <FaUserAlt />
                             </NavLink>
@@ -37,7 +36,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="#"
+                                to="/menu"
                             >
                                 <CgMenuGridO />
                             </NavLink>
@@ -47,7 +46,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/event"
+                                to="/watch"
                             >
                                 <FaVideo />
                             </NavLink>
@@ -55,7 +54,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/assessment"
+                                to="/marketplace"
                             >
                                 <AiTwotoneShop />
                             </NavLink>
@@ -63,7 +62,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/resources"
+                                to="/group"
                             >
                                 <MdGroups />
                             </NavLink>
@@ -71,25 +70,25 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/inbox"
+                                to="/group/1"
                             >
-                                <AiFillHome />
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
                             </NavLink>
                         </li>
                         <li className="menu-item">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/profile"
+                                to="/group/2"
                             >
-                                <AiFillHome />
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
                             </NavLink>
                         </li>
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/support"
+                                to="/group/3"
                             >
-                                <AiFillHome />
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
                             </NavLink>
                         </li>
                         <li className="menu-item ">
@@ -103,9 +102,9 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/page"
+                                to="/pages"
                             >
-                                <AiFillHome />
+                                <AiTwotoneFlag />
                             </NavLink>
                         </li>
                        
@@ -123,7 +122,7 @@ const Leftnav = () => {
                         <li className="menu-item">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="#"
+                                to="user"
                             >
                               <AiFillHome /> Home
                             </NavLink>
@@ -131,7 +130,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/profile"
+                                to="profile/yakut"
                             >
                                 <FaUserAlt /> Yakut Muder
                             </NavLink>
@@ -140,7 +139,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/course"
+                                to="/menu"
                             >
                                 <CgMenuGridO /> Menu
                             </NavLink>
@@ -150,7 +149,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/event"
+                                to="/watch"
                             >
                                 <FaVideo /> Watch
                             </NavLink>
@@ -158,7 +157,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/assessment"
+                                to="/marketplace"
                             >
                                 <AiTwotoneShop /> Marketplace
                             </NavLink>
@@ -166,7 +165,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/resources"
+                                to="/group"
                             >
                                 <MdGroups /> Group
                             </NavLink>
@@ -174,25 +173,25 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/inbox"
+                                to="/group/:id"
                             >
-                                <AiFillHome /> Billal Media
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Billal Media
                             </NavLink>
                         </li>
                         <li className="menu-item">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/profile"
+                                to="/group/:id"
                             >
-                                <AiFillHome /> Js group
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Js group
                             </NavLink>
                         </li>
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/support"
+                                to="/group/:id"
                             >
-                                <AiFillHome /> Gurange Mhaber
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Gurange Mhaber
                             </NavLink>
                         </li>
                         <li className="menu-item ">
@@ -206,9 +205,9 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/page"
+                                to="/pages"
                             >
-                                <AiFillHome /> Pages
+                                <AiTwotoneFlag /> Pages
                             </NavLink>
                         </li>
                        

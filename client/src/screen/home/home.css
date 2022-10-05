@@ -19,8 +19,31 @@
     overflow-y: scroll;
     position: fixed;
     right: 5px;
+    background: var(--light-blue)!important;
 }
 
 .middle-post-nav {
     width: 620px;
+    min-height: calc(100vh - 60px);
+}
+.post-button-con button{
+    border: none;
+    background: transparent;
+    color: rgb(127, 127, 128);
+}
+.post-button-con button:hover, .story-tab-hove:hover{
+    background: silver;
+    border-radius: 7px;
+    color:rgb(77, 77, 77);
+}
+
+#Itemcarosel{
+    background: red;
+    cursor: pointer;
+}
+#Itemcarosel:hover{
+    padding: 0px;
+    margin: 0px;
+    background: red;
+    cursor: pointer;
 }

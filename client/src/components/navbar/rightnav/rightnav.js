@@ -1,10 +1,11 @@
 import { FaBell, FaBullhorn, FaUsersCog, FaSearch } from 'react-icons/fa'
 import { FcVideoCall } from 'react-icons/fc'
 import { FiMoreHorizontal } from 'react-icons/fi'
+import Badge from '@mui/material/Badge';
 
 const Rightnav = () => {
     return (
-        <div className='d-none d-xl-block'>
+        <div className='d-none d-xl-block' >
             <h4>Sponsored</h4>
             <div className="card right-item mb-3 shadow bg-none" >
                 <div className="row g-0">
@@ -71,35 +72,66 @@ const Rightnav = () => {
 
 
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+                <div className=''>
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px" ,background:"#7cbf59"}}></span>
+                </div>
+                
                 <p className=''>Ehlas Menur</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR-TKjpL_AABZnd84lYNjVJ6Nb5NHPC4qYixgL6B_LgedjdFYoadGK6Moc1DfyXJug-hM&usqp=CAU" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR-TKjpL_AABZnd84lYNjVJ6Nb5NHPC4qYixgL6B_LgedjdFYoadGK6Moc1DfyXJug-hM&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
+               
                 <p className=''>Hidaya Habib</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
+                
                 <p className=''>Ahmed Shafo</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
+                
                 <p className=''>Gremew Fekadu</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://www.archiefoundationhome.org.uk/wp-content/uploads/2020/05/profile-photo-social-media.jpg" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://www.archiefoundationhome.org.uk/wp-content/uploads/2020/05/profile-photo-social-media.jpg" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
+                
                 <p className=''>Yasmi Ynatwa lij</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
+                
                 <p className=''>Jone Doe</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBQLMBeInALQAH6MapZcrrcSjgWcrcmgz5Pw&usqp=CAU" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBQLMBeInALQAH6MapZcrrcSjgWcrcmgz5Pw&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
+                
                 <p className=''>Kik Patic</p>
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxUadoslVZZhjj2zjGW8h8HK9DtHV3lETfHYh2ieOCAAgml0qrulXtBHb5-vegnObWXgo&usqp=CAU" style={{ height: "30px", width: "30px" }} className=" me-3 rounded-circle" />
+            <div className=''>
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxUadoslVZZhjj2zjGW8h8HK9DtHV3lETfHYh2ieOCAAgml0qrulXtBHb5-vegnObWXgo&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                </div>
                 <p className=''>Aman Blay</p>
             </div>
             <h5 className='mt-4'>Group conversations</h5>
