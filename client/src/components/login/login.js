@@ -56,7 +56,7 @@ const Login = () => {
                                             placeholder="Enter email here"
                                             className="w-100 py-2 px-3 mb-3"
                                         />
-                                        <Field 
+                                        <Field
                                             // id="lastName"
                                             name="password"
                                             placeholder="Password"
@@ -67,7 +67,7 @@ const Login = () => {
                                         <a type="submit"
                                             className="w-100 py-2 px-3 mb-3 btn text-dark">Forget password?<hr></hr></a>
 
-                                        <button 
+                                        <button
                                             className="w-100 py-2 px-3 mb-3 btn btn-success" onClick={handleRoller}>Create new account</button>
                                     </Form>
                                 </Formik>
@@ -89,7 +89,7 @@ const Login = () => {
                             ...transitionStyles[state]
                         }}
                     >
-                        <div className={!roller? "mb-5 d-none": "mb-5"} id='signup-max-width'>
+                        <div className={!roller ? "mb-5 d-none" : "mb-5"} id='signup-max-width'>
                             <div className="row gy-5">
                                 <div className="login-form col-12 col-md-6 bg-light p-4">
                                     <div className=''>
@@ -98,7 +98,7 @@ const Login = () => {
                                                 firstName: '',
                                                 lastName: '',
                                                 email: '',
-                                                newPassword: ''
+                                                password: ''
                                             }}
                                             onSubmit={async (values) => {
                                                 await new Promise((r) => setTimeout(r, 500));
@@ -114,9 +114,9 @@ const Login = () => {
                                                             className="w-100 py-2 px-3 mb-3" />
                                                     </div>
                                                     <div>
-                                                        <Field 
-                                                        id="lastName" name="lastName" placeholder="lastName"
-                                                        className="w-100 py-2 px-3 mb-3" />
+                                                        <Field
+                                                            id="lastName" name="lastName" placeholder="lastName"
+                                                            className="w-100 py-2 px-3 mb-3" />
 
                                                     </div>
 
@@ -133,7 +133,7 @@ const Login = () => {
                                                     className="w-100 py-2 px-3 mb-3"
                                                 />
                                                 <Field id="password"
-                                                    name="newPassword"
+                                                    name="password"
                                                     placeholder="Password"
                                                     type="password"
                                                     className="w-100 py-2 px-3 mb-3" />
@@ -142,7 +142,7 @@ const Login = () => {
                                                 <a type="submit"
                                                     className="w-100 py-2 px-3 mb-3 btn text-primary"><hr></hr></a>
 
-                                                <div 
+                                                <div
                                                     className="w-100 py-2 px-3 mb-3 btn btn-dark " onClick={handleRoller}>Already user Login</div>
                                             </Form>
                                         </Formik>

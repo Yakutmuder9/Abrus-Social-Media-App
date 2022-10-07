@@ -47,3 +47,31 @@
     background: red;
     cursor: pointer;
 }
+
+.post-input {
+    cursor: pointer;
+}
+
+#shadow{
+    background: #ffffffb6;
+}
+
+[type="file"] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+  
+[type="file"] + label {
+    border: none;
+    border-radius: 5px;
+    color: rgb(152, 152, 152);
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    position: relative;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    transition: all 0.3s;
+    vertical-align: middle;
+}
