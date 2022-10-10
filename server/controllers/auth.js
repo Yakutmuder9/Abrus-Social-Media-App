@@ -3,7 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../modals/User");
 const sendEmail = require("../utils/sendEmail");
 
-// @desc    Login user
+// Login user
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 

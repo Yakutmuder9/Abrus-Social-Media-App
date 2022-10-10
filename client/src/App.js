@@ -27,7 +27,7 @@ const App = () => {
 
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<HomeScreen />}>
-            <Route path="user" element={<MainPost />} />
+            <Route path="" element={<MainPost />} />
             <Route path="profile/:id" element={<ProfileScreen />} />
             <Route path="menu" element={<ProfileScreen />} />
             <Route path="watch" element={<Watch />} />

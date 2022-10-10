@@ -12,13 +12,13 @@ const Navbar = () => {
 
       <div className='d-flex'>
        
-        <Avatar src="/broken-image.jpg" className='text-dark'>
+        <Avatar className='text-dark'>
           <FaFacebookMessenger />
         </Avatar>
-        <Avatar src="/broken-image.jpg" className='mx-2 text-dark'>
+        <Avatar className='mx-2 text-dark'>
           <FaBell />
         </Avatar>
-        <Avatar src="/broken-image.jpg" className='text-dark'/>
+        <Avatar src="https://i0.wp.com/www.howtomob.com/wp-content/uploads/2022/07/whatsapp-dp-for-boys-.jpg?ssl=1&resize=512%2C512" className='text-dark'/>
         
         </div>
     </div>

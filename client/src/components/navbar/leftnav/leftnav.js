@@ -3,9 +3,8 @@ import { MdGroups } from 'react-icons/md'
 import { FaUserAlt, FaVideo } from 'react-icons/fa'
 import { CgMenuGridO } from 'react-icons/cg'
 import '../navbar.css';
-import { useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
-import {  NavLink } from "react-router-dom";
+import {  NavLink,Link } from "react-router-dom";
 
 const Leftnav = () => {
 
@@ -17,12 +16,12 @@ const Leftnav = () => {
                 <nav>
                     <ul className="menu-aside p-0 w-100" id="sideNavBtn">
                         <li className="menu-item 0">
-                            <NavLink
+                            <Link
                                 className="menu-link d-flex align-items-center"
-                                to="/user"
+                                to="/"
                             >
                                 <AiFillHome />
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="menu-item ">
                             <NavLink
@@ -120,12 +119,12 @@ const Leftnav = () => {
                 <nav>
                     <ul className="menu-aside  w-100" id="sideNavBtn">
                         <li className="menu-item">
-                            <NavLink
+                            <Link
                                 className="menu-link d-flex align-items-center"
-                                to="user"
+                                to="/"
                             >
                               <AiFillHome /> Home
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="menu-item ">
                             <NavLink

@@ -1,95 +1,97 @@
 {
-    "users": [
-      {
-        "name": "Tomas More",
-        "password": "1234",
-        "email": "tomasmore@gmail.com",
-        "image": "images/profile.png",
-        "hobbies": "",
-        "relationShip": "Single",
-        "featured": false,
-        "status": "isActive",
-        "gender": "Male",
-        "noFriend": 760,
-        "education": "Masseno University",
-        "location": "Baltimore, MD",
-        "friends": [
-          {
-            "name": "Ab Kerim",
-            "email": "abkerim@gmail.com",
-            "image": "images/profile.png",
-            "education": "Wolo University",
-            "noFriend": 4309
-          }
-        ],
-        "post": [
-          {
-            "description": "hello, how are you doin",
-            "fileData": "post fileData",
-            "fileName": "post fileName",
-            "fileType": "post fileType",
-            "like": [
-              {
-                "name": "Mane Fram"
+  "users": [
+    {
+      "created_at": "Thu Jun 22 21:00:00 +0000 2017",
+      "username": "Tomas",
+      "email": "tomasmore@gmail.com",
+      "password": "123456",
+      "profile_pic": "images/profile.png",
+      "hobbies": "",
+      "relationShip": "Single",
+      "featured": false,
+      "status": "isActive",
+      "gender": "Male",
+      "followers_count": 2145,
+      "friends_count": 18,
+      "education": "Masseno University",
+      "location": "Baltimore, MD",
+      "friends": [
+        {
+          "name": "Ab Kerim",
+          "email": "abkerim@gmail.com",
+          "image": "images/profile.png",
+          "education": "Wolo University",
+          "noFriend": 4309
+        }
+      ],
+      "post": [
+        {
+          "description": "hello, how are you doin",
+          "fileData": "post fileData",
+          "fileName": "post fileName",
+          "fileType": "post fileType",
+          "like": [
+            {
+              "name": "Mane Fram"
+            },
+            {
+              "name": "Blay Nwam"
+            }
+          ],
+          "share": [
+            {
+              "name": "Fate Girma"
+            },
+            {
+              "name": "Hikma Abdljelil"
+            }
+          ],
+          "comments": [
+            {
+              "id": "X999_Y999",
+              "from": {
+                "name": "Tom Brady",
+                "id": "X12"
               },
-              {
-                "name": "Blay Nwam"
-              }
-            ],
-            "share": [
-              {
-                "name": "Fate Girma"
-              },
-              {
-                "name": "Hikma Abdljelil"
-              }
-            ],
-            "comments": [
-              {
-                "id": "X999_Y999",
-                "from": {
-                  "name": "Tom Brady",
-                  "id": "X12"
+              "message": "Looking forward to 2010!",
+              "actions": [
+                {
+                  "name": "Comment",
+                  "link": "http://www.facebook.com/X999/posts/Y999"
                 },
-                "message": "Looking forward to 2010!",
-                "actions": [
-                  {
-                    "name": "Comment",
-                    "link": "http://www.facebook.com/X999/posts/Y999"
-                  },
-                  {
-                    "name": "Like",
-                    "link": "http://www.facebook.com/X999/posts/Y999"
-                  }
-                ],
-                "type": "status",
-                "created_time": "2010-08-02T21:27:44+0000",
-                "updated_time": "2010-08-02T21:27:44+0000"
+                {
+                  "name": "Like",
+                  "link": "http://www.facebook.com/X999/posts/Y999"
+                }
+              ],
+              "type": "status",
+              "created_time": "2010-08-02T21:27:44+0000",
+              "updated_time": "2010-08-02T21:27:44+0000"
+            },
+            {
+              "id": "X998_Y998",
+              "from": {
+                "name": "Peyton Manning",
+                "id": "X18"
               },
-              {
-                "id": "X998_Y998",
-                "from": {
-                  "name": "Peyton Manning",
-                  "id": "X18"
+              "message": "Where's my contract?",
+              "actions": [
+                {
+                  "name": "Comment",
+                  "link": "http://www.facebook.com/X998/posts/Y998"
                 },
-                "message": "Where's my contract?",
-                "actions": [
-                  {
-                    "name": "Comment",
-                    "link": "http://www.facebook.com/X998/posts/Y998"
-                  },
-                  {
-                    "name": "Like",
-                    "link": "http://www.facebook.com/X998/posts/Y998"
-                  }
-                ],
-                "type": "status",
-                "created_time": "2010-08-02T21:27:44+0000",
-                "updated_time": "2010-08-02T21:27:44+0000"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+                {
+                  "name": "Like",
+                  "link": "http://www.facebook.com/X998/posts/Y998"
+                }
+              ],
+              "type": "status",
+              "created_time": "2010-08-02T21:27:44+0000",
+              "updated_time": "2010-08-02T21:27:44+0000"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

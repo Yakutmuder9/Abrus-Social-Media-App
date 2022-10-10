@@ -1,3 +1,4 @@
+
 .login-screen {
     width: 100%;
     height: auto;
@@ -14,7 +15,7 @@
 }
 .login-form{
     border-radius: 10px;
-    box-shadow: 2px 6px 10px  rgba(0, 0, 0, 0.393);
+    overflow: visible;
 }
 .login-form input{
     outline: none;

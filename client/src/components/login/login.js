@@ -89,7 +89,7 @@ const Login = () => {
                             ...transitionStyles[state]
                         }}
                     >
-                        <div className={!roller ? "mb-5 d-none" : "mb-5"} id='signup-max-width'>
+                        <div className="mb-5" id='signup-max-width'>
                             <div className="row gy-5">
                                 <div className="login-form col-12 col-md-6 bg-light p-4">
                                     <div className=''>

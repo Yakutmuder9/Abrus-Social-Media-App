@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
+  created_at: Date,
   username: {
     type: String,
     required: [true, "Please provide username"],
@@ -23,6 +24,46 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
+  profile_pic: String,
+  hobbies: String,
+  relationShip: String,
+  featured: Boolean,
+  status: Boolean,
+  gender: String,
+  friends_count: Number,
+  education: String,
+  location: String,
+  friends: {
+    username: String,
+    email: String,
+    image: String,
+    education: String,
+    noFriend: String
+  },
+  post: {
+    description: String,
+    fileData: String,
+    fileName: String,
+    fileType: String,
+    like:  [
+      {
+        username : String
+      }
+    ],
+    share:  [
+      {
+        username : String
+      }
+    ],
+    comments :  [
+      {
+        username : String,
+        message : String
+
+      }
+    ]
+  },
+
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });

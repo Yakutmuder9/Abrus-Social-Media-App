@@ -120,7 +120,7 @@ const MainPost = (prop) => {
         <Card className='mt-3 p-3'>
           <div className=''>
             <div className='d-flex'>
-              <Avatar src="/broken-image.jpg" className='me-4' />
+              <Avatar src="https://i0.wp.com/www.howtomob.com/wp-content/uploads/2022/07/whatsapp-dp-for-boys-.jpg?ssl=1&resize=512%2C512" className='me-4' />
               <input placeholder="What's on your mind, Yakut?" className='post-input py-2 ps-3 pe-5 w-100 ' style={{ borderRadius: "25px", border: "1px solid", background: "#ededed", borderColor: "#ededed" }} onClick={() => setModalShow(true)} />
 
               <PostModal
@@ -150,7 +150,7 @@ const MainPost = (prop) => {
       </RightLazyshow>
 
       <LeftLazyshow>
-        <Card className='mt-3'>
+        <Card className='mt-3 py-2'>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -169,11 +169,11 @@ const MainPost = (prop) => {
             component="img"
             height="auto"
             style={{ maxHeight: "350px" }}
-            image="https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/308189323_647611976727688_263081752195362157_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=h3PDJFBKuGQAX9mj5ry&_nc_ht=scontent-iad3-2.xx&oh=00_AT-afGyu1UJUKEOubQ9QgNbQxmX1NZi04iODLM-y1alC5A&oe=6340BBE8"
+            image="https://cdn5.vectorstock.com/i/1000x1000/39/29/beautiful-written-islamic-arabic-calligraphy-vector-25523929.jpg"
             alt="Paella dish"
           />
           <div>
-            <div className='d-flex mt-2 justify-content-between'>
+            <div className='d-flex mt-2 justify-content-between px-2'>
               <div className='d-flex'>
                 <ThumbUpAltIcon className='bg-primary text-light rounded-circle p-1' />
                 <FavoriteIcon className='bg-danger text-light rounded-circle p-1 ms-1' />
@@ -185,7 +185,7 @@ const MainPost = (prop) => {
                 <p className='ms-2'>323 share</p>
               </div>
             </div><hr></hr>
-            <div className='d-flex w-100 justify-content-between post-button-con'>
+            <div className='d-flex w-100 justify-content-between post-button-con px-2'>
               <button className='w-100 py-2'><AiFillLike className='' /> Like</button>
               <button className='w-100 py-2  mx-2' ><FaRegCommentAlt className='' /> Comment</button>
               <button className='w-100 py-2 ' ><FaShare className='' /> Share</button>
