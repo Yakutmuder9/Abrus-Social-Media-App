@@ -18,7 +18,7 @@ const Navbar = () => {
         <Avatar className='mx-2 text-dark'>
           <FaBell />
         </Avatar>
-        <a href='/profile/yakut'><Avatar src="https://i0.wp.com/www.howtomob.com/wp-content/uploads/2022/07/whatsapp-dp-for-boys-.jpg?ssl=1&resize=512%2C512" className='text-dark' /></a>
+        <Avatar src="https://i0.wp.com/www.howtomob.com/wp-content/uploads/2022/07/whatsapp-dp-for-boys-.jpg?ssl=1&resize=512%2C512" className='text-dark'/>
         
         </div>
     </div>

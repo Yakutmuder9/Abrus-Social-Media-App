@@ -1,0 +1,77 @@
+.left-side-nav::-webkit-scrollbar,
+.middle-post-nav::-webkit-scrollbar,
+.right-active-nav::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.left-side-nav {
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    left: 0;
+}
+
+.right-active-nav {
+    width: 330px;
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    right: 5px;
+    background: var(--light-blue)!important;
+}
+
+.middle-post-nav {
+    width: 620px;
+    min-height: calc(100vh - 60px);
+}
+.post-button-con button{
+    border: none;
+    background: transparent;
+    color: rgb(127, 127, 128);
+}
+.post-button-con button:hover, .story-tab-hove:hover{
+    background: silver;
+    border-radius: 7px;
+    color:rgb(77, 77, 77);
+}
+
+#Itemcarosel{
+    background: red;
+    cursor: pointer;
+}
+#Itemcarosel:hover{
+    padding: 0px;
+    margin: 0px;
+    background: red;
+    cursor: pointer;
+}
+
+.post-input {
+    cursor: pointer;
+}
+
+#shadow{
+    background: #ffffffb6;
+}
+
+[type="file"] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+  
+[type="file"] + label {
+    border: none;
+    border-radius: 5px;
+    color: rgb(152, 152, 152);
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    position: relative;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    transition: all 0.3s;
+    vertical-align: middle;
+}

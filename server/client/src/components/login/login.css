@@ -1,0 +1,30 @@
+
+.login-screen {
+    width: 100%;
+    height: auto;
+    background: var(--light-blue);
+    padding: 15% 20%;
+    margin-top: -8%;
+}
+#login-max-width, #signup-max-width{
+    max-width: 1200px;
+}
+.login-txt h1{
+    margin-top: 12px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.login-form{
+    border-radius: 10px;
+    overflow: visible;
+}
+.login-form input{
+    outline: none;
+}
+.login-screen button, .login-form h2{
+  font-family: 'Helvetica Neue', sans-serif;
+}
+@media(max-width: 720px){
+    .login-screen {
+        padding: 15% 8%;
+    }
+}

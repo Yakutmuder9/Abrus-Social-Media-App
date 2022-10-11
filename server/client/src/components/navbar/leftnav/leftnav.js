@@ -4,16 +4,10 @@ import { FaUserAlt, FaVideo } from 'react-icons/fa'
 import { CgMenuGridO } from 'react-icons/cg'
 import '../navbar.css';
 import "react-pro-sidebar/dist/css/styles.css";
-import {  NavLink,Link } from "react-router-dom";import LogoutIcon from '@mui/icons-material/Logout';
-import {useDispatch} from "react-redux";
-import{ useCallback } from "react";
-import { logout } from "../../../redux/features/auth";
+import {  NavLink,Link } from "react-router-dom";
 
 const Leftnav = () => {
-    const dispatch = useDispatch();
-    const logOut = useCallback(() => {
-        dispatch(logout());
-      }, [dispatch]);
+
 
     return (
         <div className="left-nav-bar">
@@ -108,14 +102,6 @@ const Leftnav = () => {
                             <NavLink
                                 className="menu-link d-flex align-items-center"
                                 to="/pages"
-                            >
-                                <LogoutIcon />
-                            </NavLink>
-                        </li>
-                        <li className="menu-item ">
-                            <NavLink
-                                className="menu-link d-flex align-items-center"
-                                to="/login" onClick={logOut}
                             >
                                 <AiTwotoneFlag />
                             </NavLink>
@@ -221,14 +207,6 @@ const Leftnav = () => {
                                 to="/pages"
                             >
                                 <AiTwotoneFlag /> Pages
-                            </NavLink>
-                        </li>
-                        <li className="menu-item ">
-                            <NavLink
-                                className="menu-link d-flex align-items-center"
-                                to="/login" onClick={logOut}
-                            >
-                                <LogoutIcon /> Log Out
                             </NavLink>
                         </li>
                        
