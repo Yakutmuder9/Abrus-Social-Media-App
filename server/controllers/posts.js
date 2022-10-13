@@ -1,89 +1,155 @@
-const { Post } = require('../modals/Post');
+const asyncHandler = require("express-async-handler");
+const Post = require("../modals/Post");
+const { fileSizeFormatter } = require("../utils/fileUpload");
+const cloudinary = require("cloudinary").v2;
+
+
 
 //Create post
-const createPost = async (req, res) => {
-    const { bookId } = req.body;
-
-    const user = await User.findById(req.user._id, 'isGithubConnected githubAccessToken');
-   
-    if (!user.isGithubConnected || !user.githubAccessToken) {
-     res.json({ error: 'Github not connected' });
-     return;
+const createPost = asyncHandler(async (req, res) => {
+    const { description, like, share, comments } = req.body;
+  
+    //   Validation
+    if (!description ) {
+      res.status(400);
+      throw new Error("Please fill in all fields");
     }
-   
-    try {
-     await Book.syncContent({ id: bookId, githubAccessToken: user.githubAccessToken });
-     res.json({ done: 1 });
-    } catch (err) {
-     logger.error(err);
-     res.json({ error: err.message || err.toString() });
+  
+    // Handle Image upload
+    let fileData = {};
+    if (req.file) {
+      // Save image to cloudinary
+      let uploadedFile;
+      try {
+        uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+          folder: "Pinvent App",
+          resource_type: "image",
+        });
+      } catch (error) {
+        res.status(500);
+        throw new Error("Image could not be uploaded");
+      }
+  
+      fileData = {
+        fileName: req.file.originalname,
+        filePath: uploadedFile.secure_url,
+        fileType: req.file.mimetype,
+        fileSize: fileSizeFormatter(req.file.size, 2),
+      };
     }
-};
-router.get('/github/repos', async (req, res) => {
-    const user = await User.findById(req.user._id, 'isGithubConnected githubAccessToken');
-
-    if (!user.isGithubConnected || !user.githubAccessToken) {
-        res.json({ error: 'Github not connected' });
-        return;
-    }
-
-    try {
-        const response = await getRepos({ user, request: req });
-        res.json({ repos: response.data });
-    } catch (err) {
-        logger.error(err);
-        res.json({ error: err.message || err.toString() });
-    }
+  
+    // Create post
+    const post = await Post.create({
+      user: req.user.id,
+      description,
+      like,
+      share,
+      comments,
+      image: fileData,
+    });
+  
+    res.status(201).json(post);
 });
 
-//Fetch posts
-const fetchPosts = async (req, res) => {
-    try {
-        const posts = await Post.find();
-        res.json(posts);
-    } catch (error) {
-        res.json(error);
-    }
-};
 
-//Fetch post
-const fetchPost = async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        res.json(post);
-    } catch (error) {
-        res.json(error);
+//get posts
+const getPosts = asyncHandler(async (req, res) => {
+    const posts = await Post.find({ user: req.user.id }).sort("-createdAt");
+    res.status(200).json(posts);
+  });
+
+//get post
+const getPost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    // if post doesnt exist
+    if (!post) {
+      res.status(404);
+      throw new Error("post not found");
     }
-};
+    // Match post to its user
+    if (post.user.toString() !== req.user.id) {
+      res.status(401);
+      throw new Error("User not authorized");
+    }
+    res.status(200).json(post);
+  });
 
 //update post
-const updatePost = async (req, res) => {
-    try {
-        const post = await Post.findByIdAndUpdate(
-            req.params.id,
-            {
-                title: req.body.title,
-                description: req.body.description,
-            },
-            {
-                new: true,
-                runValidators: true,
-            }
-        );
-        res.json(post);
-    } catch (error) {
-        res.json(Error);
+const updatePost = asyncHandler(async (req, res) => {
+    const { name, category, quantity, price, description } = req.body;
+    const { id } = req.params;
+  
+    const post = await Post.findById(id);
+  
+    // if post doesnt exist
+    if (!post) {
+      res.status(404);
+      throw new Error("post not found");
     }
-};
+    // Match post to its user
+    if (post.user.toString() !== req.user.id) {
+      res.status(401);
+      throw new Error("User not authorized");
+    }
+  
+    // Handle Image upload
+    let fileData = {};
+    if (req.file) {
+      // Save image to cloudinary
+      let uploadedFile;
+      try {
+        uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+          folder: "Pinvent App",
+          resource_type: "image",
+        });
+      } catch (error) {
+        res.status(500);
+        throw new Error("Image could not be uploaded");
+      }
+  
+      fileData = {
+        fileName: req.file.originalname,
+        filePath: uploadedFile.secure_url,
+        fileType: req.file.mimetype,
+        fileSize: fileSizeFormatter(req.file.size, 2),
+      };
+    }
+  
+    // Update post
+    const updatedPost = await Post.findByIdAndUpdate(
+      { _id: id },
+      {
+        name,
+        category,
+        quantity,
+        price,
+        description,
+        image: Object.keys(fileData).length === 0 ? post?.image : fileData,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+  
+    res.status(200).json(updatedPost);
+  });
 
 //Delete post
-const deletePost = async (req, res) => {
-    try {
-        await post.findByIdAndDelete(req.params.id);
-        res.send('post has succeffully deleted');
-    } catch (error) {
-        res.json(error);
+const deletePost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    // if post doesnt exist
+    if (!post) {
+      res.status(404);
+      throw new Error("post not found");
     }
-};
+    // Match post to its user
+    if (post.user.toString() !== req.user.id) {
+      res.status(401);
+      throw new Error("User not authorized");
+    }
+    await post.remove();
+    res.status(200).json({ message: "post deleted." });
+  });
 
-module.exports = { createPost, fetchPosts, fetchPost, updatePost, deletePost };
+module.exports = { createPost, getPosts, getPost, updatePost, deletePost };

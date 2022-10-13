@@ -1,4 +1,0 @@
-node_modules
-bin/server.cert
-bin/server.key
-config.env

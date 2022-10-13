@@ -4,15 +4,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
-  created_at: Date,
-  username: {
+  firstName: {
+    type: String,
+    required: [true, "Please provide First name"],
+    minLength: [3, "First name must be atleast 3 letter"],
+  },
+  lastName: {
     type: String,
     required: [true, "Please provide username"],
+    minLength: [3, "Last name must be atleast 3 letter"],
   },
   email: {
     type: String,
     required: [true, "Please provide email address"],
-    unique: true,
+    unique: [true, "Email has already been registered"],
     match: [
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       "Please provide a valid email",
@@ -21,66 +26,63 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please add a password"],
-    minlength: 6,
+    minLength: [6, "Password must be up to 6 characters"],
     select: false,
   },
-  profile_pic: String,
-  hobbies: String,
+  profile_pic: {
+    type: String,
+    required: [true, "Please add a photo"],
+    default: "https://i.ibb.co/4pDNDk1/avatar.png",
+  },
+  dateOfBirth: {
+    type: Date,
+    require: true
+  },
+  hobbies: {
+    type: String,
+    maxLength: [250, "Bio must not be more than 250 characters"],
+    default: "bio",
+  },
   relationShip: String,
   featured: Boolean,
   status: Boolean,
-  gender: String,
+  gender: {
+    type: String,
+    enum: ["Male", "Femme"]
+  },
   friends_count: Number,
   education: String,
   location: String,
   friends: {
-    username: String,
+    firstName: String,
+    lastName: String,
     email: String,
-    image: String,
+    image: {
+      type: String,
+      default: "https://i.ibb.co/4pDNDk1/avatar.png"
+    },
     education: String,
     noFriend: String
   },
-  post: {
-    description: String,
-    fileData: String,
-    fileName: String,
-    fileType: String,
-    like:  [
-      {
-        username : String
-      }
-    ],
-    share:  [
-      {
-        username : String
-      }
-    ],
-    comments :  [
-      {
-        username : String,
-        message : String
-
-      }
-    ]
-  },
-
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
 
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return next();
   }
-
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  const hashedPassword = await bcrypt.hash(this.password, salt);
+  this.password = hashedPassword;
   next();
 });
+
 
 UserSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
+
 
 UserSchema.methods.getSignedJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {

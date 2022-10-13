@@ -5,7 +5,9 @@ var path = require('path');
 var logger = require('morgan');
 const config = require('./config');
 var cors = require('cors')
+const bodyParser = require("body-parser");
 
+const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose');
 
 const url = config.mongoUrl
@@ -31,6 +33,8 @@ app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 

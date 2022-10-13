@@ -1,20 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const { getPrivateRoute } = require("../controllers/private");
-const { protect } = require("../middleware/auth");
+const  protect  = require("../middleware/auth");
+const { upload } = require("../utils/fileUpload");
+const {
+    getUserData, 
+    updateUserData,
+    deleteUser
+} = require('../controllers/private');
 const {
     createPost,
-    fetchPosts,
-    fetchPost,
+    getPosts,
+    getPost,
     updatePost,
     deletePost,
-  } = require('../controllers/posts');
+} = require('../controllers/posts');
 
-router.route("/").get(protect, getPrivateRoute);
-router.route("/post").post(protect, createPost);
-router.route("/post").get(protect, fetchPost);
-router.route("/post/:id").get(protect, fetchPosts);
-router.route("/post/:id").put(protect, updatePost);
+router.route("/getuserdata").get(protect, getUserData);
+router.route("/updateuserdata").patch(protect, upload.single("image"), updateUserData);
+router.route("/deleteuser").delete(protect, deleteUser);
+
+
+router.route("/post").post(protect, upload.single("image"), createPost);
+router.route("/post/:id").patch(protect, upload.single("image"), updatePost);
+router.route("/post").get(protect, getPosts);
+router.route("/post/:id").get(protect, getPost);
 router.route("/post/:id").delete(protect, deletePost);
 
 module.exports = router;
