@@ -109,7 +109,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/pages"
                             >
-                                <LogoutIcon />
+                                <AiTwotoneFlag />
                             </NavLink>
                         </li>
                         <li className="menu-item ">
@@ -117,7 +117,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/login" onClick={logOut}
                             >
-                                <AiTwotoneFlag />
+                                <LogoutIcon />
                             </NavLink>
                         </li>
                        

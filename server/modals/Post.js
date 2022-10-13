@@ -2,18 +2,18 @@ const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema(
     {
-        // user: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     required: true,
-        //     ref: "User",
-        // },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "User",
+        },
         description: {
             type: String,
             required: [true, "Please add a description"]
         },
         image: {
             type: Object,
-            default: {},
+            default: "https://i.ibb.co/4pDNDk1/avatar.png",
         },
         like: [
             {
@@ -31,7 +31,8 @@ const postSchema = mongoose.Schema(
                 message: String
 
             }
-        ]
+        ],
+        created_at: Date,
     },
     {
         timestamps: true,
