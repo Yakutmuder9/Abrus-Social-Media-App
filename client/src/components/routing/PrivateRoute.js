@@ -1,35 +1,23 @@
 import { Navigate, Outlet } from "react-router-dom";
+import useRedirectLoggedOutUser from "../../components/services/useRedirectLoggedOutUser";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 
-const PrivateRoute = () => {
+
+const PrivateRoute =  () => {
+  useRedirectLoggedOutUser("/login");
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+ 
   return (
-
-    localStorage.getItem("authToken") ? (
+    
+    isLoggedIn? (
       <Outlet/>
     ) : (
       <Navigate to="/login" replace={true} />
     )
+    
   );
 };
 
 export default PrivateRoute;
 
-
-// import { Navigate, Route } from "react-router-dom";
-
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         localStorage.getItem("authToken") ? (
-//           <Component {...props} />
-//         ) : (
-//           <div>Hill</div>
-//           // <Navigate to="/login" replace={true} />
-//         )
-//       }
-//     />
-//   );
-// };
-
-// export default PrivateRoute;

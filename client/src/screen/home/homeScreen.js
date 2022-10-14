@@ -1,8 +1,6 @@
 import Leftnav from "../../components/navbar/leftnav/leftnav"
 import Navbar from "../../components/navbar/topnav/navbar"
 import Rightnav from "../../components/navbar/rightnav/rightnav"
-import MainPost from "./mainPost"
-import './home.css'
 import {  Outlet } from "react-router-dom";
 
 const HomeScreen = () => {

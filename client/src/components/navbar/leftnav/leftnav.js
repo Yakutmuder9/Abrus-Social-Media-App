@@ -7,12 +7,12 @@ import "react-pro-sidebar/dist/css/styles.css";
 import {  NavLink,Link } from "react-router-dom";import LogoutIcon from '@mui/icons-material/Logout';
 import {useDispatch} from "react-redux";
 import{ useCallback } from "react";
-import { logout } from "../../../redux/features/auth";
+import { logout } from "../../../redux/features/auth/authSlice";
 
 const Leftnav = () => {
     const dispatch = useDispatch();
     const logOut = useCallback(() => {
-        dispatch(logout());
+        // dispatch(logout());
       }, [dispatch]);
 
     return (

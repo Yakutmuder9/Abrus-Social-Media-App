@@ -4,52 +4,94 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./login.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import { login } from "../../redux/features/auth";
-import { clearMessage } from "../../redux/features/message";
+import { login } from "../../redux/features/auth/authSlice";
+import { toast } from "react-toastify";
+import { loginUser, validateEmail } from "../../services/authService";
+import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 
-const LoginScreen = () => {
-  let navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
+const initialState = {
+  email: "",
+  password: ""
+}
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  const { message } = useSelector((state) => state.message);
 
-  const dispatch = useDispatch();
+const Login = (e) => {
+  
+  const { name, value } = e.target;
+  setformData({ ...formData, [name]: value });
+};
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
+const loginHandler = async (e) => {
+  e.preventDefault();
 
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required("This field is required!"),
-    password: Yup.string().required("This field is required!"),
-  });
-
-  const handleLogin = (formValue) => {
-    const { email, password } = formValue;
-    setLoading(true);
-
-    dispatch(login({ email, password }))
-      .unwrap()
-      .then(() => {
-        
-        navigate("/");
-        // window.location.reload();
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
-
-  if (isLoggedIn) {
-    return <Navigate to="/" />;
+  if (!email || !password) {
+    return toast.error("All fields are required");
   }
+
+  if (!validateEmail(email)) {
+    return toast.error("Please enter a valid email");
+  }
+
+  const userData = {
+    email,
+    password,
+  };
+  setIsLoading(true);
+  try {
+    const data = await loginUser(userData);
+    console.log(data);
+    await dispatch(SET_LOGIN(true));
+    await dispatch(SET_NAME(data.name));
+    navigate("/dashboard");
+    setIsLoading(false);
+  } catch (error) {
+    setIsLoading(false);
+  }
+};
+
+
+
+
+  // let navigate = useNavigate();
+  // const [loading, setLoading] = useState(false);
+  // const { isLoggedIn } = useSelector((state) => state.auth);
+  // const { message } = useSelector((state) => state.message);
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   // dispatch(clearMessage());
+  // }, [dispatch]);
+
+  // const initialValues = {
+  //   email: "",
+  //   password: "",
+  // };
+
+  // const validationSchema = Yup.object().shape({
+  //   email: Yup.string().required("This field is required!"),
+  //   password: Yup.string().required("This field is required!"),
+  // });
+
+  // const handleLogin = (formValue) => {
+  //   const { email, password } = formValue;
+  //   setLoading(true);
+
+  //   // dispatch(login({ email, password }))
+  //   //   .unwrap()
+  //   //   .then(() => {
+        
+  //   //     navigate("/");
+  //   //   })
+  //   //   .catch(() => {
+  //   //     setLoading(false);
+  //   //   });
+  // };
+
+  // if (isLoggedIn) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="login-screen">
@@ -107,7 +149,7 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default Login;
 
 
 

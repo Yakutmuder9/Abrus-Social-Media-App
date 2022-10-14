@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./PrivateScreen.css";
+import "./Private.css";
 
 const PrivateScreen = () => {
   const [error, setError] = useState("");

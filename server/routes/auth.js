@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   register,
   login,
+  loginStatus,
   forgotPassword,
   resetPassword,
   logout,
@@ -13,6 +14,7 @@ const  protect  = require("../middleware/auth");
 
 router.post("/register", register);
 router.post("/login", login);
+router.get("/loggedin", loginStatus);
 router.get("/logout", logout);
 
 router.patch("/changepassword", protect, changePassword);

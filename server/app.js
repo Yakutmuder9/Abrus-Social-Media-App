@@ -1,10 +1,10 @@
 require("dotenv").config({ path: "./config.env" });
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors')
 var path = require('path');
 var logger = require('morgan');
 const config = require('./config');
-var cors = require('cors')
 const bodyParser = require("body-parser");
 
 const cookieParser = require("cookie-parser");
@@ -29,7 +29,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors())
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:5000"],
+    credentials: true,
+  })
+); 
 
 app.use(logger('dev'));
 app.use(express.json());

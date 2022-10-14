@@ -61,12 +61,15 @@ const UserSchema = new mongoose.Schema({
       type: String,
       default: "https://i.ibb.co/4pDNDk1/avatar.png"
     },
-    education: String,
-    noFriend: String
+    
   },
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
-});
+  education: String,
+  noFriend: String,
+},
+  {
+    timestamps: true,
+  }
+);
 
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
