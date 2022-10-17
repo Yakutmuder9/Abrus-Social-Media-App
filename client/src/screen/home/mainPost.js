@@ -3,7 +3,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Card from '@mui/material/Card';
 import Avatar from '@mui/material/Avatar';
 import './home.css'
@@ -23,14 +23,40 @@ import LeftLazyshow from '../../components/LazyShow/LeftLazyshow';
 import RightLazyshow from '../../components/LazyShow/RightLazyshow';
 import PostModal from "../../components/postModal/PostModal"
 
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_USER, SET_NAME } from "../../redux/features/auth/authSlice";
+import { getUser } from "../../redux/features/auth/authService";
+import Loader from '../../components/loading/Loading';
+import { NavLink } from 'react-router-dom';
+import { getPost, getPosts, selectPost, updatePost } from '../../redux/features/post/postSlice';
+import Moment from 'react-moment';
+
 const MainPost = (prop) => {
   const [modalShow, setModalShow] = useState(false);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [chevronWidth, setChevronWidth] = useState(5);
   const [Screenwidth, ScreenHeight] = useWindowSize();
-  
- 
-  
+  const { post, posts, isError, isSuccess, message } = useSelector(state => state.post)
+
+  const dispatch = useDispatch();
+  const [profile, setProfile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    async function getUserData() {
+      const data = await getUser();
+      // console.log(data);
+
+      setProfile(data);
+      setIsLoading(false);
+      await dispatch(SET_USER(data));
+      await dispatch(SET_NAME(data.firstName));
+      dispatch(getPosts());
+    }
+    getUserData();
+  }, [dispatch]);
+
 
   const images = [
     "/assets/FbCreateStory.png",
@@ -53,6 +79,7 @@ const MainPost = (prop) => {
   };
 
 
+console.log(posts)
 
   return (
     <>
@@ -77,7 +104,7 @@ const MainPost = (prop) => {
                     <ItemsCarousel
                       requestToChangeActive={setActiveItemIndex}
                       activeItemIndex={activeItemIndex}
-                      numberOfCards={Screenwidth < 520 ? 4 : 5 }
+                      numberOfCards={Screenwidth < 520 ? 4 : 5}
                       gutter={20}
                       leftChevron={
                         <Avatar className='bg-light text-dark card'>
@@ -120,8 +147,9 @@ const MainPost = (prop) => {
         <Card className='mt-3 p-3'>
           <div className=''>
             <div className='d-flex'>
-              <Avatar src="https://i0.wp.com/www.howtomob.com/wp-content/uploads/2022/07/whatsapp-dp-for-boys-.jpg?ssl=1&resize=512%2C512" className='me-4' />
-              <input placeholder="What's on your mind, Yakut?" className='post-input py-2 ps-3 pe-5 w-100 ' style={{ borderRadius: "25px", border: "1px solid", background: "#ededed", borderColor: "#ededed" }} onClick={() => setModalShow(true)} />
+
+              <NavLink to={'/profile/' + profile?.firstName + '.' + profile?.lastName} className='menu-link '><Avatar src={profile?.profile_pic} className='me-4' /></NavLink>
+              <input placeholder={`What's on your mind, ${profile?.firstName}?`} className='post-input py-2 ps-3 pe-5 w-100 ' style={{ borderRadius: "25px", border: "1px solid", background: "#ededed", borderColor: "#ededed" }} onClick={() => setModalShow(true)} />
 
               <PostModal
                 show={modalShow}
@@ -148,52 +176,57 @@ const MainPost = (prop) => {
           <div></div>
         </Card>
       </RightLazyshow>
-
+      {/* --------------psots---------------------- */}
       <LeftLazyshow>
-        <Card className='mt-3 py-2'>
-          <CardHeader
-            avatar={
-              <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-                R
-              </Avatar>
-            }
-            action={
-              <IconButton aria-label="settings">
-                <MoreHorizIcon />
-              </IconButton>
-            }
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
-          />
-          <CardMedia
-            component="img"
-            height="auto"
-            style={{ maxHeight: "350px" }}
-            image="https://cdn5.vectorstock.com/i/1000x1000/39/29/beautiful-written-islamic-arabic-calligraphy-vector-25523929.jpg"
-            alt="Paella dish"
-          />
-          <div>
-            <div className='d-flex mt-2 justify-content-between px-2'>
-              <div className='d-flex'>
-                <ThumbUpAltIcon className='bg-primary text-light rounded-circle p-1' />
-                <FavoriteIcon className='bg-danger text-light rounded-circle p-1 ms-1' />
-                <p className='ps-1'>Nova, Kean and other 3170 other</p>
-              </div>
+        {posts && posts.map((item, key) => {
+          return <Card className='mt-3 py-2' key={item._id}>
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
+                  R
+                </Avatar>
+              }
+              action={
+                <IconButton aria-label="settings">
+                  <MoreHorizIcon />
+                </IconButton>
+              }
+              title="Shrimp and Chorizo Paella"
+              subheader={item?.createdAt.slice(0, 16)}
+            />
+            <p className={item.description == 'null' ? 'd-none':'px-4'}>{item.description}</p>
+            <CardMedia
+              component="img"
+              height="auto"
+              style={{ maxHeight: "350px" }}
+              image={item.image}
+              className={item.image === 'null' ? 'd-none':'d-block'}
+              alt={item.image === 'null' ? 'Paella dish':''}
+            />
+            <div>
+              <div className='d-flex mt-2 justify-content-between px-2'>
+                <div className='d-flex'>
+                  <ThumbUpAltIcon className='bg-primary text-light rounded-circle p-1' />
+                  <FavoriteIcon className='bg-danger text-light rounded-circle p-1 ms-1' />
+                  <p className='ps-1'>Nova, Kean and other 3170 other</p>
+                </div>
 
-              <div className='d-flex'>
-                <p >65 comment</p>
-                <p className='ms-2'>323 share</p>
+                <div className='d-flex'>
+                  <p >65 comment</p>
+                  <p className='ms-2'>323 share</p>
+                </div>
+              </div><hr></hr>
+              <div className='d-flex w-100 justify-content-between post-button-con px-2'>
+                <button className='w-100 py-2'><AiFillLike className='' /> Like</button>
+                <button className='w-100 py-2  mx-2' ><FaRegCommentAlt className='' /> Comment</button>
+                <button className='w-100 py-2 ' ><FaShare className='' /> Share</button>
               </div>
-            </div><hr></hr>
-            <div className='d-flex w-100 justify-content-between post-button-con px-2'>
-              <button className='w-100 py-2'><AiFillLike className='' /> Like</button>
-              <button className='w-100 py-2  mx-2' ><FaRegCommentAlt className='' /> Comment</button>
-              <button className='w-100 py-2 ' ><FaShare className='' /> Share</button>
             </div>
-          </div>
-        </Card>
+          </Card>
+        })}
+
       </LeftLazyshow>
-      
+
     </>
   );
 }

@@ -1,4 +1,5 @@
 import './App.css';
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Route, Routes } from 'react-router-dom'
 import ProfileScreen from './screen/profile/profileScreen';
@@ -19,9 +20,8 @@ import ResetPasswordScreen from "./components/login/ResetPassword";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-import { getLoginStatus } from "./components/services/authService";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
+import { getLoginStatus } from "./redux/features/auth/authService";
 
 axios.defaults.withCredentials = true;
 
@@ -35,6 +35,7 @@ const App = () => {
     }
     loginStatus();
   }, [dispatch]);
+  
 
   return (
     <div className='App'>
@@ -43,19 +44,21 @@ const App = () => {
         <Route path="login" element={<LoginScreen />} />
         <Route path="register" element={<RegisterScreen />} />
         <Route path="forgotpassword" element={<ForgotPasswordScreen />} />
-        <Route path="passwordreset/:resetToken" element={<ResetPasswordScreen />} />
+        <Route path="resetpassword/:resetToken" element={<ResetPasswordScreen />} />
 
         <Route element={<PrivateRoute />}>
-          
+
           <Route path="/" element={<HomeScreen />}>
             <Route path="" element={<MainPost />} />
+            <Route path="/home" element={<MainPost />} />
             <Route path="profile/:id" element={<ProfileScreen />} />
             <Route path="menu" element={<ProfileScreen />} />
             <Route path="watch" element={<Watch />} />
             <Route path="marketplace" element={<Marketplace />} />
-            <Route path="group" element={<Group />} />
+            <Route path="groups" element={<Group />} />
             <Route path="group/:id" element={<Group />} />
             <Route path="shortcuts" element={<ProfileScreen />} />
+            <Route path="notification" element={<ProfileScreen />} />
             <Route path="pages" element={<Pages />} />
           </Route>
         </Route>

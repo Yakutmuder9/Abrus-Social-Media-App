@@ -1,60 +1,201 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Avator from "@mui/material/Avatar";
-import { Formik, Field, Form } from 'formik';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import '../../screen/home/home.css'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_USER, SET_NAME } from "../../redux/features/auth/authSlice";
+import { getUser } from "../../redux/features/auth/authService";
+import Loader from '../loading/Loading';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { createPost, getPost, getPosts, selectPost, updatePost } from '../../redux/features/post/postSlice';
 
 const PostModal = (props) => {
-    return (
-        <Modal
-            {...props}
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            
-            style={{background:"ffffffb6"}}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title className='text-center w-100'>
-                    Create Post
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div className='d-flex align-items-center'><Avator className='me-1' /> Yakut Muder</div>
-                <Formik
-                    initialValues={{
-                        post: '',
-                        additional: ''
-                    }}
-                    onSubmit={async (values) => {
-                        await new Promise((r) => setTimeout(r, 500));
-                        alert(JSON.stringify(values, null, 2));
-                    }}
-                >
-                    <Form>
-                        <Field id="firstName" name="post" placeholder="What's on your mind, Yakut?"  className="w-100 p-2 my-3" style={{height:"100px", border:"none", outline:"none", fontSize:"22px"}}/>
-                        
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const postEdit = useSelector(selectPost);
+    const [post, setPost] = useState(postEdit);
+
+    const [postImage, setPostImage] = useState("");
+    const [description, setDescription] = useState("");
+    const [highlight, setHighlight] = useState(false);
+    const [preview, setPreview] = useState("");
+    const [drop, setDrop] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        async function getUserData() {
+            const data = await getUser();
+            //   console.log(data);
+
+            setProfile(data);
+            setIsLoading(false);
+            await dispatch(SET_USER(data));
+        }
+        getUserData();
+    }, [dispatch]);
+    // console.log(profile)
+
+    useEffect(() => {
+        dispatch(getPost(id));
+    }, [dispatch, id]);
+
+    const handleInputDiscription = (e) => {
+        setPost( e );
+        // console.log(e)
+
+    };
+
+    const handleImageChange = (e) => {
+        setPostImage(e.target.files[0]);
+    };
+
+    const savePost = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("description", post);
+        formData.append("image", postImage);
+
+        console.log(...formData);
+
+        await dispatch(createPost(formData));
+        window.location.reload(false);
+        navigate("/");
+    };
+
+
+
+
+    const handleEnter = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("enter!");
+
+        preview === "" && setHighlight(true);
+    };
+
+    const handleOver = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("over!");
+
+        preview === "" && setHighlight(true);
+    };
+
+    const handleLeave = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("leave!");
+        setHighlight(false);
+    };
+
+    const handleUpload = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("drop!");
+        setHighlight(false);
+        setDrop(true);
+
+        const [file] = e.target.files || e.dataTransfer.files;
+
+        uploadFile(file);
+    };
+
+    function uploadFile(file) {
+        const reader = new FileReader();
+        reader.readAsBinaryString(file);
+
+        reader.onload = () => {
+            // this is the base64 data
+            const fileRes = btoa(reader.result);
+            console.log(`data:image/jpg;base64,${fileRes}`);
+            setPreview(`data:image/jpg;base64,${fileRes}`);
+        };
+
+        reader.onerror = () => {
+            console.log("There is a problem while uploading...");
+        };
+    }
+
+
+
+
+    return (<>
+        {!profile ? <Loader /> :
+            <Modal
+                {...props}
+                size="md"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+
+                style={{ background: "ffffffb6" }}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title className='text-center w-100'>
+                        Create Post
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className='d-flex align-items-center profile-name'><Avator className='me-2' src={profile.profile_pic} /> {profile.firstName + ' ' + profile.lastName}</div>
+
+
+                    <form onSubmit={savePost}>
+
+                        <input id="firstName" placeholder={`What's on your mind, ${profile.firstName}?`} className="w-100 p-2 my-3 form-control" style={{ height: "100px", border: "none", outline: "none", fontSize: "22px" }}
+                         type='text'   name="description" 
+                            onChange={(e)=>handleInputDiscription(e.target.value)} />
+
 
                         <p>
                             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
                             dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
                             consectetur ac, vestibulum at eros.
                         </p>
-                        <Field
-                            id="email"
-                            name="additional"
-                            placeholder="Add to your post"
-                            className="w-100 p-2"
-                        />
+                        <div className='w-100 d-flex align-items-center bg-light'>
+
+                            <div className='file-upload-field w-100 d-flex align-items-center '>
+
+
+                                <div
+                                    onDragEnter={(e) => handleEnter(e)}
+                                    onDragLeave={(e) => handleLeave(e)}
+                                    onDragOver={(e) => handleOver(e)}
+                                    onDrop={(e) => handleUpload(e)}
+                                    className={`upload${highlight ? " is-highlight" : drop ? " is-drop" : ""
+                                        }`}
+                                    style={{ backgroundImage: `url(${preview})` }}
+                                >
+                                    <div className="my-form">
+                                        <p>Drop image here</p>
+                                        <div className="upload-button">
+                                            <input
+                                                type="file"
+                                                className="upload-file" name='image'
+                                                accept="image/*"
+                                                onChange={(e) => { handleUpload(e); handleImageChange(e) }}
+                                            />
+                                            <button className="button">Upload Here</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                         <hr></hr>
-                        <Button type="submit" className='w-100 ' 
-                         onClick={props.onHide}>Post</Button>
-                    </Form>
-                </Formik>
-            </Modal.Body>
-        </Modal>
-    );
+                        <button type="submit" className='btn btn-primary w-100 '
+                            onClick={props.onHide}>Post</button>
+                    </form>
+                </Modal.Body>
+            </Modal>
+        }
+
+    </>);
 }
 
 export default PostModal;

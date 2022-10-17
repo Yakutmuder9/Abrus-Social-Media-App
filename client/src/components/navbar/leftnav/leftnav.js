@@ -1,20 +1,48 @@
+import { useState, useEffect } from 'react'; 
 import { AiFillHome, AiTwotoneShop,AiTwotoneFlag } from 'react-icons/ai'
+import { useNavigate } from "react-router-dom";
 import { MdGroups } from 'react-icons/md'
 import { FaUserAlt, FaVideo } from 'react-icons/fa'
 import { CgMenuGridO } from 'react-icons/cg'
 import '../navbar.css';
 import "react-pro-sidebar/dist/css/styles.css";
-import {  NavLink,Link } from "react-router-dom";import LogoutIcon from '@mui/icons-material/Logout';
+import {  NavLink,Link } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
 import {useDispatch} from "react-redux";
-import{ useCallback } from "react";
-import { logout } from "../../../redux/features/auth/authSlice";
+import { SET_LOGIN } from '../../../redux/features/auth/authSlice';
+import { logoutUser } from '../../../redux/features/auth/authService';
+import { SET_USER, SET_NAME } from "../../../redux/features/auth/authSlice";
+import { getUser } from "../../../redux/features/auth/authService";
+import Loader from '../../loading/Loading';
+
 
 const Leftnav = () => {
     const dispatch = useDispatch();
-    const logOut = useCallback(() => {
-        // dispatch(logout());
-      }, [dispatch]);
-
+    const navigate = useNavigate();
+  
+    const logOut = async () => {
+      await logoutUser()
+      dispatch(SET_LOGIN(false));
+      localStorage.removeItem("name")
+      navigate("/login");
+    };
+    const [profile, setProfile] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+  
+    useEffect(() => {
+      setIsLoading(true);
+      async function getUserData() {
+        const data = await getUser();
+        // console.log(data);
+  
+        setProfile(data);
+        setIsLoading(false);
+        await dispatch(SET_USER(data));
+        await dispatch(SET_NAME(data.name));
+      }
+      getUserData();
+    }, [dispatch]);
+  
     return (
         <div className="left-nav-bar">
             <div className='d-none d-md-block pt-5 d-xl-none' style={{background:"#ffffff", marginTop:"-50px"}}>
@@ -31,8 +59,8 @@ const Leftnav = () => {
                         </li>
                         <li className="menu-item ">
                             <NavLink
-                                className="menu-link d-flex align-items-center"
-                                to="/profile/yakut"
+                                className="menu-link d-flex align-items-center" id='profile-name'
+                                to={'profile/' + profile?.firstName + '.' + profile?.lastName}
                             >
                                 <FaUserAlt />
                             </NavLink>
@@ -67,7 +95,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/group"
+                                to="/groups"
                             >
                                 <MdGroups />
                             </NavLink>
@@ -142,10 +170,14 @@ const Leftnav = () => {
                         </li>
                         <li className="menu-item ">
                             <NavLink
-                                className="menu-link d-flex align-items-center"
-                                to="profile/yakut"
+                                className="menu-link d-flex align-items-center profile-name" 
+                                to={'profile/' + profile?.firstName + '.' + profile?.lastName}
                             >
-                                <FaUserAlt /> Yakut Muder
+                                <FaUserAlt /> 
+                                <div className='d-flex'>
+                                    <span className='profile-name pe-1'>{profile?.firstName} </span>
+                                    <span className='profile-name'>{profile?.lastName}</span>
+                                </div>
                             </NavLink>
                         </li>
 
@@ -178,7 +210,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/group"
+                                to="/groups"
                             >
                                 <MdGroups /> Group
                             </NavLink>
@@ -186,7 +218,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/group/:id"
+                                to="/group/1"
                             >
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Billal Media
                             </NavLink>
@@ -194,7 +226,7 @@ const Leftnav = () => {
                         <li className="menu-item">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/group/:id"
+                                to="/group/2"
                             >
                                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Js group
                             </NavLink>
@@ -202,7 +234,7 @@ const Leftnav = () => {
                         <li className="menu-item ">
                             <NavLink
                                 className="menu-link d-flex align-items-center"
-                                to="/group/:id"
+                                to="/group/3"
                             >
                                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Gurange Mhaber
                             </NavLink>

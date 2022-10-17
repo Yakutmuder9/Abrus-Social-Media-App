@@ -74,3 +74,11 @@ body{
 p{
   font-family: 'Helvetica 25 UltraLight', sans-serif;
 }
+
+/* React-Laoding */
+#loading-transition{
+  background: rgba(255, 255, 255, 0.728);
+}
+#react-loading{
+  padding-top: 45vh;
+}

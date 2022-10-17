@@ -1,6 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const BACKEND_URL ='http://localhost:5000'
+
 
 export const validateEmail = (email) => {
   return email.match(
@@ -8,14 +10,14 @@ export const validateEmail = (email) => {
   );
 };
 
+
 // Register User
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(
-      `/api/auth/register`,
-      userData,
-      { withCredentials: true }
-    );
+      `${BACKEND_URL}/api/auth/register`, userData,
+      { withCredentials: true });
+
     if (response.statusText === "OK") {
       toast.success("User Registered successfully");
     }
@@ -25,7 +27,7 @@ export const registerUser = async (userData) => {
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    toast.error(message);
+    toast.error('message');
   }
 };
 
@@ -33,7 +35,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/auth/login`,
+      `${BACKEND_URL}/api/auth/login`,
       userData
     );
     if (response.statusText === "OK") {
@@ -52,7 +54,7 @@ export const loginUser = async (userData) => {
 // Logout User
 export const logoutUser = async () => {
   try {
-    await axios.get(`/api/auth/logout`);
+    await axios.get(`${BACKEND_URL}/api/auth/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||

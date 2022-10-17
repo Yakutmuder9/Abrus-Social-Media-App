@@ -9,9 +9,6 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
-  totalStoreValue: 0,
-  outOfStock: 0,
-  category: [],
 };
 
 // Create New Post
@@ -19,6 +16,7 @@ export const createPost = createAsyncThunk(
   "posts/create",
   async (formData, thunkAPI) => {
     try {
+      console.log(await postService.createPost(formData))
       return await postService.createPost(formData);
     } catch (error) {
       const message =
@@ -27,7 +25,7 @@ export const createPost = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      console.log(message);
+      console.log("mess:", message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -112,48 +110,7 @@ export const updatePost = createAsyncThunk(
 const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {
-    CALC_STORE_VALUE(state, action) {
-      const posts = action.payload;
-      const array = [];
-      posts.map((item) => {
-        const { price, quantity } = item;
-        const postValue = price * quantity;
-        return array.push(postValue);
-      });
-      const totalValue = array.reduce((a, b) => {
-        return a + b;
-      }, 0);
-      state.totalStoreValue = totalValue;
-    },
-    CALC_OUTOFSTOCK(state, action) {
-      const posts = action.payload;
-      const array = [];
-      posts.map((item) => {
-        const { quantity } = item;
-
-        return array.push(quantity);
-      });
-      let count = 0;
-      array.forEach((number) => {
-        if (number === 0 || number === "0") {
-          count += 1;
-        }
-      });
-      state.outOfStock = count;
-    },
-    CALC_CATEGORY(state, action) {
-      const posts = action.payload;
-      const array = [];
-      posts.map((item) => {
-        const { category } = item;
-
-        return array.push(category);
-      });
-      const uniqueCategory = [...new Set(array)];
-      state.category = uniqueCategory;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createPost.pending, (state) => {
@@ -242,7 +199,7 @@ export const { CALC_STORE_VALUE, CALC_OUTOFSTOCK, CALC_CATEGORY } =
 
 export const selectIsLoading = (state) => state.post.isLoading;
 export const selectPost = (state) => state.post.post;
-export const selectTotalStoreValue = (state) => state.post.totalStoreValue;
+export const selectTotalPost = (state) => state.post.totalPost;
 export const selectOutOfStock = (state) => state.post.outOfStock;
 export const selectCategory = (state) => state.post.category;
 

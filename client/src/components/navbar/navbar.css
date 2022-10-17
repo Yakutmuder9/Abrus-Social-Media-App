@@ -33,9 +33,23 @@
     width: 100% !important;
 
 }
-
-
-
+.profile-name::first-letter {
+    text-transform:capitalize;
+}
+.mobile-size-nav span svg{
+    color: #7c7d7d!important;
+    font-size: x-large;
+}
+.mobile-size-nav .mobile_ava .active .moblie-avator{
+    border:2px solid #0f92e3!important;
+}
+.mobile-size-nav .active svg{
+    color: #0f92e3!important;
+}
+.moblie-avator{
+    width: 32px!important;
+    height: 32px!important;
+}
 
 .menu-aside a {
     display: block;

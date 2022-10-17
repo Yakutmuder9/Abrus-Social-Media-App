@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { loginUser, validateEmail } from "../services/authService";
-import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
+import { userLogin } from '../../redux/features/auth/authSlice'
+import { SET_LOGIN, SET_NAME, SET_USER } from "../../redux/features/auth/authSlice";
 import Loader from "../loading/Loading"
-
-const initialState = {
-    email: "",
-    password: ""
-}
+import {validateEmail, loginUser} from '../../redux/features/auth/authService' 
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [formData, setformData] = useState(initialState);
+    const [formData, setformData] = useState({
+        email: "",
+        password: ""
+    });
+
     const { email, password } = formData;
 
     const handleInputChange = (e) => {
@@ -24,29 +24,35 @@ const Login = () => {
         setformData({ ...formData, [name]: value });
     };
 
-    const login = async (e) => {
+    const onSubmmitHandler = async (e) => {
         e.preventDefault();
-
+    
         if (!email || !password) {
-            return toast.error("All fields are required");
+          return toast.error("All fields are required");
         }
-
+    
         if (!validateEmail(email)) {
-            return toast.error("Please enter a valid email");
+          return toast.error("Please enter a valid email");
         }
-
+    
         const userData = {
-            email,
-            password,
+          email,
+          password,
         };
         setIsLoading(true);
         try {
             const data = await loginUser(userData);
-            console.log(data);
-            await dispatch(SET_LOGIN(true));
-            await dispatch(SET_NAME(data.name));
-            navigate("/");
-            setIsLoading(false);
+            if (data) {
+                dispatch(SET_LOGIN(true));
+                dispatch(SET_NAME(data.firstName));
+                dispatch(SET_USER(data));
+                setIsLoading(false);
+                navigate("/");
+            } else {
+                setIsLoading(false);
+                navigate("/login");
+            }
+
         } catch (error) {
             setIsLoading(false);
         }
@@ -56,8 +62,8 @@ const Login = () => {
     return (
         <div className="login-screen">
             {isLoading && <Loader />}
-            <div className=" mb-5 " id='login-max-width'>
-                <div className="row gy-5">
+            
+                <div className="row ">
                     <div className="login-txt col-12 col-md-6">
                         <div className='' >
                             <h1 className='text-success'>Wina-Social-app</h1>
@@ -67,7 +73,7 @@ const Login = () => {
                     <div className="login-form col-12 col-md-6 bg-light rounded p-4 shadow-lg ">
                         <div className='
                         className="login-form-formik"'>
-                            <form onSubmit={login}
+                            <form onSubmit={onSubmmitHandler}
                                 className="login-form-formik">
                                 <input
                                     type="email"
@@ -103,7 +109,7 @@ const Login = () => {
                         </div>
                     </div>
 
-                </div>
+               
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ForgotPassword.css";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { validateEmail, forgotPassword } from "../services/authService";
+import { validateEmail, forgotPassword } from "../../redux/features/auth/authService";
 
 
 const ForgotPasswordScreen = () => {
@@ -55,10 +55,10 @@ const ForgotPasswordScreen = () => {
           Send Email
         </button>
         <div className='btn btn-dark w-100 py-3'>
-              <p>
-                <Link to="/login">- Login</Link>
-              </p>
-            </div>
+          <p>
+            <Link to="/login">- Login</Link>
+          </p>
+        </div>
       </form>
     </div>
   );

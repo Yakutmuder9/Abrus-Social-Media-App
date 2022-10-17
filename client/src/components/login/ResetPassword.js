@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { resetPassword } from "../services/authService";
+import { resetPassword } from "../../redux/features/auth/authService";
 import "./ResetPassword.css";
 
 const initialState = {
   password: "",
-  newPassword: "",
+  password2: "",
 };
 
-const ResetPasswordScreen = ({ match }) => {
 
+const ResetPasswordScreen = () => {
+  const navigate = useNavigate()
   const [formData, setformData] = useState(initialState);
-  const { password, confirmPassword } = formData;
+  const { password, password2 } = formData;
 
   const { resetToken } = useParams();
 
@@ -21,95 +22,50 @@ const ResetPasswordScreen = ({ match }) => {
     setformData({ ...formData, [name]: value });
   };
 
-  const resetPasswordHandler = async (e) => {
+  const reset = async (e) => {
+    
     e.preventDefault();
-
-    if (password.length < 6) {
-      return toast.error("Passwords must be up to 6 characters");
-    }
-    if (password !== confirmPassword) {
+  
+    // if (password.length > 5) {
+    //   return toast.error("Passwords must be up to 6 characters");
+    // }
+    if (password !== password2) {
       return toast.error("Passwords do not match");
     }
 
     const userData = {
       password,
-      confirmPassword,
+      password2,
     };
 
     try {
       const data = await resetPassword(userData, resetToken);
+      if(data) {
+        navigate('/login')
       toast.success(data.message);
+      }
     } catch (error) {
       console.log(error.message);
     }
   };
 
 
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [error, setError] = useState("");
-  // const [success, setSuccess] = useState("");
-  // const resetPasswordHandler = async (e) => {
-  //   e.preventDefault();
-
-  //   const config = {
-  //     header: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-
-  //   if (password !== confirmPassword) {
-  //     setPassword("");
-  //     setConfirmPassword("");
-  //     setTimeout(() => {
-  //       setError("");
-  //     }, 5000);
-  //     return setError("Passwords don't match");
-  //   }
-
-  //   try {
-  //     const { data } = await axios.put(
-  //       `/api/auth/passwordreset/${match.params.resetToken}`,
-  //       {
-  //         password,
-  //       },
-  //       config
-  //     );
-
-  //     console.log(data);
-  //     setSuccess(data.data);
-  //   } catch (error) {
-  //     setError(error.response.data.error);
-  //     setTimeout(() => {
-  //       setError("");
-  //     }, 5000);
-  //   }
-  // };
-
   return (
     <div className="resetpassword-screen">
       <form
-        onSubmit={resetPasswordHandler}
+        onSubmit={reset}
         className="resetpassword-screen__form"
       >
-        <h3 className="resetpassword-screen__title">Forgot Password</h3>
-        {/* {error && <span className="error-message">{error} </span>}
-        {success && (
-          <span className="success-message">
-            {success} <Link to="/login">Login</Link>
-          </span>
-        )} */}
-        <span className="success-message">
-           <Link to="/login">Login</Link>
-        </span>
+        <h3 className="resetpassword-screen__title">Reset Password</h3>
+
+       
         <div className="form-group">
           <label htmlFor="password">New Password:</label>
           <input
             type="password"
             required
+            name="password"
             id="password"
-            placeholder="Enter new password"
-            autoComplete="true"
             value={password}
             onChange={handleInputChange}
           />
@@ -119,10 +75,9 @@ const ResetPasswordScreen = ({ match }) => {
           <input
             type="password"
             required
+            name="password2"
             id="confirmpassword"
-            placeholder="Confirm new password"
-            autoComplete="true"
-            value={confirmPassword}
+            value={password2}
             onChange={handleInputChange}
           />
         </div>
@@ -131,7 +86,7 @@ const ResetPasswordScreen = ({ match }) => {
         </button>
         <hr></hr>
         <button type="submit" className="btn btn-dark">
-          <Link to="/login"> Login</Link>
+          <Link to="/login"  className="btn btn-dark py-1"> Login</Link>
         </button>
       </form>
     </div>
