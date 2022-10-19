@@ -29,6 +29,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// app.use(
+//   cors({
+//     origin: ["https://wina-app.netlify.app", "https://glittery-griffin-873486.netlify.app"],
+//     credentials: true,
+//   })
+// ); 
 app.use(
   cors({
     origin: ["http://localhost:3000", "http://localhost:5000"],

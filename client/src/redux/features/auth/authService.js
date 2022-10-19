@@ -1,8 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const BACKEND_URL ='https://git.heroku.com/wina-social-app.git'
-
+const BACKEND_URL ='http://localhost:5000'
+// const BACKEND_URL ='https://git.heroku.com/wina-social-app.git'
 
 export const validateEmail = (email) => {
   return email.match(

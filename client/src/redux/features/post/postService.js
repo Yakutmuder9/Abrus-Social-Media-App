@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BACKEND_URL = 'https://git.heroku.com/wina-social-app.git'
-
+const BACKEND_URL = 'http://localhost:5000'
+// const BACKEND_URL = 'https://git.heroku.com/wina-social-app.git'
 const API_URL = `${BACKEND_URL}/api/private/post`;
 
 // Create New Post
