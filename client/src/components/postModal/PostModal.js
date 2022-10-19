@@ -40,14 +40,12 @@ const PostModal = (props) => {
     }, [dispatch]);
     // console.log(profile)
 
-    useEffect(() => {
-        dispatch(getPost(id));
-    }, [dispatch, id]);
+    // useEffect(() => {
+    //     dispatch(getPost(id));
+    // }, [dispatch, id]);
 
     const handleInputDiscription = (e) => {
         setPost( e );
-        // console.log(e)
-
     };
 
     const handleImageChange = (e) => {

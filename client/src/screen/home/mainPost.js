@@ -119,8 +119,8 @@ console.log(posts)
                       style={{ margin: "20px" }}
                     >
                       {images.map((item, index) => {
-                        return (
-
+                        return (<div key={index}>
+                          <img src='https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png' alt='' className='position-absolute rounded-circle border bg-primary m-2' style={{width: "37px", padding:"3px", cursor:"pointer"}}/>
                           <img
                             alt="test product"
                             src={item}
@@ -129,6 +129,7 @@ console.log(posts)
                             id="Itemcarosel"
                             className="rounded"
                           />
+                          </div>
 
                         );
                       })}

@@ -38,7 +38,7 @@ const ProfileScreen = () => {
       setIsLoading(false);
       await dispatch(SET_USER(data));
       await dispatch(SET_NAME(data.firstName));
-      dispatch(getPosts());
+      // dispatch(getPosts());
     }
     getUserData();
   }, [dispatch]);
@@ -92,11 +92,13 @@ const ProfileScreen = () => {
                 </Box>
                 <TabPanel value="1">
                   <LeftLazyshow>
-                     {(posts.length > 0)? <></>:<Card styles={{hight:"10030vh"}} className="text-center p-5">
+                    {/* {(posts.length > 0)? <></>:<Card styles={{hight:"10030vh"}} className="text-center p-5">
                       {profile.firstName} you have no post yet! 
-                    </Card>} 
+                    </Card>} */}
                     {posts && posts.map((item, key) => {
-                      return <Card className='mt-3 py-2' key={item._id}>
+                      return 
+                      (
+                      <Card className='mt-3 py-2' key={item._id}>
                         <CardHeader
                           avatar={
                             <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -141,17 +143,20 @@ const ProfileScreen = () => {
                           </div>
                         </div>
                       </Card>
+                      )
                     })}
 
                   </LeftLazyshow>
 
                 </TabPanel>
+
                 <TabPanel value="2">
                   <LeftLazyshow>
                     <Card className='mt-3 py-2'>
                       <div className="card mb-3">
                         <div className="row g-0">
-                          <div className="col-md-4"><img src='https://i.pinimg.com/originals/57/f6/58/57f658978f5fed9e81655a2394ef8f32.jpg' className="img-fluid rounded-start" alt="..." />
+                          <div className="col-md-4">
+                            <img src='https://i.pinimg.com/originals/57/f6/58/57f658978f5fed9e81655a2394ef8f32.jpg' className="img-fluid rounded-start" alt="..." />
                           </div>
                           <div className="col-md-8">
                             <div className="card-body">
@@ -168,9 +173,10 @@ const ProfileScreen = () => {
                     </Card>
                   </LeftLazyshow>
                 </TabPanel>
+
                 <TabPanel value="3">
                   <RightLazyshow>
-                <Card className='mt-3 py-2'>
+                    <Card className='mt-3 py-2'>
                       <div className="card mb-3">
                         <div className="row g-0">
                           <div className="col-md-4">

@@ -64,7 +64,7 @@
     color: #1e86e9;
 }
 .menu-aside .active svg{
-    color: #36c7b6;
+    color: #1e86e9;
     margin-right: 5px;
 }
 .menu-aside .menu-item:hover , .right-item:hover {
@@ -73,7 +73,7 @@
 
 }
 .menu-aside .active {
-    border-left: 6px solid #36c7b6;
+    border-left: 6px solid #1e86e9;
 }
 
 .menu-aside .menu-link {
