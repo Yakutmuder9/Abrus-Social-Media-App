@@ -11,7 +11,7 @@ import Group from './screen/group/group';
 import Pages from './screen/pages/pages';
 
 import PrivateRoute from "./components/routing/PrivateRoute";
-import LoginScreen from "./components/login/Login";
+import LoginScreen from "./components/login/LoginPassword";
 import RegisterScreen from "./components/login/Register";
 import ForgotPasswordScreen from "./components/login/ForgotPassword";
 import ResetPasswordScreen from "./components/login/ResetPassword";
