@@ -3,6 +3,10 @@
     height: 55px;
     box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.24);
 }
+.logo-name h2{
+    
+    font-weight: 900;
+}
 .nav-search input{
     width: 380px;
     border: 2px solid silver;

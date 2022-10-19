@@ -1,27 +1,21 @@
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Avator from "@mui/material/Avatar";
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import '../../screen/home/home.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_USER, SET_NAME } from "../../redux/features/auth/authSlice";
+import { SET_USER } from "../../redux/features/auth/authSlice";
 import { getUser } from "../../redux/features/auth/authService";
 import Loader from '../loading/Loading';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
-import { createPost, getPost, getPosts, selectPost, updatePost } from '../../redux/features/post/postSlice';
+import { useEffect, useState } from 'react';
+import { createPost, selectPost } from '../../redux/features/post/postSlice';
 
 const PostModal = (props) => {
-    const { id } = useParams();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const postEdit = useSelector(selectPost);
     const [post, setPost] = useState(postEdit);
 
     const [postImage, setPostImage] = useState("");
-    const [description, setDescription] = useState("");
     const [highlight, setHighlight] = useState(false);
     const [preview, setPreview] = useState("");
     const [drop, setDrop] = useState(false);
@@ -30,19 +24,12 @@ const PostModal = (props) => {
         setIsLoading(true);
         async function getUserData() {
             const data = await getUser();
-            //   console.log(data);
-
             setProfile(data);
             setIsLoading(false);
-            await dispatch(SET_USER(data));
+            dispatch(SET_USER(data));
         }
         getUserData();
     }, [dispatch]);
-    // console.log(profile)
-
-    // useEffect(() => {
-    //     dispatch(getPost(id));
-    // }, [dispatch, id]);
 
     const handleInputDiscription = (e) => {
         setPost( e );
@@ -59,10 +46,8 @@ const PostModal = (props) => {
         formData.append("image", postImage);
 
         console.log(...formData);
-
-        await dispatch(createPost(formData));
-        window.location.reload(false);
-        navigate("/");
+        dispatch(createPost(formData));
+      
     };
 
 
@@ -145,7 +130,7 @@ const PostModal = (props) => {
 
                         <input id="firstName" placeholder={`What's on your mind, ${profile.firstName}?`} className="w-100 p-2 my-3 form-control" style={{ height: "100px", border: "none", outline: "none", fontSize: "22px" }}
                          type='text'   name="description" 
-                            onChange={(e)=>handleInputDiscription(e.target.value)} />
+                            onChange={(e)=>handleInputDiscription(e.target.value)} required/>
 
 
                         <p>

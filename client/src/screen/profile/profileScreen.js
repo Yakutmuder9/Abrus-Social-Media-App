@@ -49,7 +49,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <div className="profile-page">
+    <div className="profile-page bg-light">
       {!profile ? <Loading /> :
         <>
 

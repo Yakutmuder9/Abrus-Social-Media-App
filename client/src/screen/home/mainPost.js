@@ -28,7 +28,7 @@ import { SET_USER, SET_NAME } from "../../redux/features/auth/authSlice";
 import { getUser } from "../../redux/features/auth/authService";
 import Loader from '../../components/loading/Loading';
 import { NavLink } from 'react-router-dom';
-import { getPost, getPosts, selectPost, updatePost } from '../../redux/features/post/postSlice';
+import { getPosts } from '../../redux/features/post/postSlice';
 
 
 const MainPost = (prop) => {
@@ -46,12 +46,11 @@ const MainPost = (prop) => {
     setIsLoading(true);
     async function getUserData() {
       const data = await getUser();
-      // console.log(data);
 
       setProfile(data);
       setIsLoading(false);
-      await dispatch(SET_USER(data));
-      await dispatch(SET_NAME(data.firstName));
+      dispatch(SET_USER(data));
+      dispatch(SET_NAME(data.firstName));
       dispatch(getPosts());
     }
     getUserData();
@@ -79,7 +78,7 @@ const MainPost = (prop) => {
   };
 
 
-console.log(posts)
+
 
   return (
     <>
@@ -177,6 +176,8 @@ console.log(posts)
           <div></div>
         </Card>
       </RightLazyshow>
+
+      
       {/* --------------psots---------------------- */}
       <LeftLazyshow>
         {posts && posts.map((item, key) => {

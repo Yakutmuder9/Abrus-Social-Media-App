@@ -33,8 +33,8 @@ const Navbar = () => {
   return (
     <div className="top-nav-bar  d-flex justify-content-between align-items-center px-4 py-2 sticky-top">
       {isLoading ? <Loader /> : <></>}
-      <div>
-        <h4 className='text-primary d-none d-md-block'>Merabook</h4>
+      <div className='logo-name ps-2'>
+        <h2 className='text-primary d-none d-md-block' >Winabook</h2>
       </div>
       <div className='nav-search'>
         <input placeholder='Search Merabook' className='py-1 px-3  d-none d-md-block' />
