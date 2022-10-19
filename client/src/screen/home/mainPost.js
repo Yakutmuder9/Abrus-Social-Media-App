@@ -29,7 +29,7 @@ import { getUser } from "../../redux/features/auth/authService";
 import Loader from '../../components/loading/Loading';
 import { NavLink } from 'react-router-dom';
 import { getPost, getPosts, selectPost, updatePost } from '../../redux/features/post/postSlice';
-import Moment from 'react-moment';
+
 
 const MainPost = (prop) => {
   const [modalShow, setModalShow] = useState(false);
