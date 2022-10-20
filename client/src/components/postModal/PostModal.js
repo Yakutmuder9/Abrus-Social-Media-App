@@ -31,21 +31,23 @@ const PostModal = (props) => {
         getUserData();
     }, [dispatch]);
 
-    const handleInputDiscription = (e) => {
-        setPost( e );
+    const handleInputDiscription = (value) => {
+        setPost( value );
     };
 
-    const handleImageChange = (e) => {
-        setPostImage(e.target.files[0]);
-    };
+    // const handleImageChange = (e) => {
+    //     setPostImage(e.target.files[0]);
+    // };
+
 
     const savePost = async (e) => {
         e.preventDefault();
+        // console.log(e)
         const formData = new FormData();
         formData.append("description", post);
         formData.append("image", postImage);
 
-        console.log(...formData);
+        // console.log(...formData);
         dispatch(createPost(formData));
       
     };
@@ -95,7 +97,7 @@ const PostModal = (props) => {
         reader.onload = () => {
             // this is the base64 data
             const fileRes = btoa(reader.result);
-            console.log(`data:image/jpg;base64,${fileRes}`);
+            // console.log(`data:image/jpg;base64,${fileRes}`);
             setPreview(`data:image/jpg;base64,${fileRes}`);
         };
 
@@ -159,9 +161,9 @@ const PostModal = (props) => {
                                                 type="file"
                                                 className="upload-file" name='image'
                                                 accept="image/*"
-                                                onChange={(e) => { handleUpload(e); handleImageChange(e) }}
+                                                onChange={(e) =>  handleUpload(e)}
                                             />
-                                            <button className="button">Upload Here</button>
+                                            <button className='button'>Upload Here</button>
                                         </div>
                                     </div>
                                 </div>

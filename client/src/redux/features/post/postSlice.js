@@ -16,7 +16,6 @@ export const createPost = createAsyncThunk(
   "posts/create",
   async (formData, thunkAPI) => {
     try {
-      console.log(await postService.createPost(formData))
       return await postService.createPost(formData);
     } catch (error) {
       const message =

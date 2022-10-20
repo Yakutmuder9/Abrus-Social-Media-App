@@ -7,6 +7,15 @@ const postSchema = mongoose.Schema(
             required: true,
             ref: "User",
         },
+        firstName: {
+            type: String
+        },
+        lastName:{
+            type: String
+        },
+        profile_pic:{
+            type: String
+        },
         description: {
             type: String,
             required: [true, "Please add a description"]

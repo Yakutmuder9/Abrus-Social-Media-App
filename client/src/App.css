@@ -22,6 +22,10 @@
 /*-------------fb-color-pallets----------*/
     --fds-black: #000000;
     --fds-white: #FFFFFF;
+
+    --purple: #001F61;
+    --light:#fff;
+    
     --fds-blue-05: #ECF3FF;
     --fds-blue-30: #AAC9FF;
     --fds-blue-40: #77A7FF;

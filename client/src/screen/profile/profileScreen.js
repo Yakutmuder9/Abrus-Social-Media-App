@@ -20,6 +20,8 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LeftLazyshow from '../../components/LazyShow/LeftLazyshow';
 import RightLazyshow from '../../components/LazyShow/RightLazyshow';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -49,15 +51,28 @@ const ProfileScreen = () => {
   };
 
   return (
-    <div className="profile-page bg-light">
+    <div className="profile-page  bg-light">
       {!profile ? <Loading /> :
         <>
 
           <div className="">
-            <img src="https://media.istockphoto.com/vectors/abstract-cube-round-display-for-product-on-website-in-modern-with-vector-id1288200291?k=20&m=1288200291&s=612x612&w=0&h=pu0lo7-Rv41tIAdVMrYYi-B-bMm2Ss_hRWCmjp2Kp00=" alt="" className="profile-bg-img " />
+            <img src="https://media.istockphoto.com/vectors/abstract-cube-round-display-for-product-on-website-in-modern-with-vector-id1288200291?k=20&m=1288200291&s=612x612&w=0&h=pu0lo7-Rv41tIAdVMrYYi-B-bMm2Ss_hRWCmjp2Kp00=" alt="profile-picture" className="profile-bg-img "  />
+
+
             <div className="profile-text-container" >
+              <div className='position-absolute ' style={{ right: "20px", top: "5%", pointer: 'none' }}>
+               <OverlayTrigger overlay={
+              <Tooltip >Edit!</Tooltip>}>
+                <span className="d-inline-block">
+                  <button className='text-light rounded-circle' style={{ width: "45px", height: "45px", background: "#001F61" }}>
+                    <MdEdit />
+                  </button >
+                </span>
+              </OverlayTrigger>
+              </div>
+              
               <div className="">
-                <img src={profile.profile_pic} alt="" className="rounded-circle bg-light p-2" style={{ width: "180px" }} />
+                <img src={profile.profile_pic} alt="profile-picture" className="rounded-circle bg-light p-2" style={{ width: "180px", cursor:"pointer" }}  title="profile picture"/>
                 <div className="">
                   <h2>{profile.firstName + " " + profile.lastName}</h2>
                   <p>343 friends</p>
@@ -69,18 +84,22 @@ const ProfileScreen = () => {
                     <img src="https://d2kf8ptlxcina8.cloudfront.net/YH5TFCE1QY-preview.png" alt="" className="rounded-circle friend-img-pos" />
                   </div>
                 </div>
+
                 <div className='d-flex px-5 justify-contnent-between'>
-                  <button className="btn btn-primary me-2"><MdAddCircle className='me-2' />Add to story</button>
+                  <button className="btn me-2 text-light" style={{ background: "#001F61" }}><MdAddCircle className='me-2' />Add to story</button>
                   <button className="btn btn-secondary ms-2"><MdEdit className='me-2' />Edit Profile</button>
+
                 </div>
+
               </div>
             </div>
           </div>
-          <div className="tab-container">
+
+          <div className="tab-container" style={{ background: "#f0f2f5" }}>
             <Box sx={{ width: '100%', typography: 'body1' }} className='mt-1'>
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                  <TabList onChange={handleChange} aria-label="lab API tabs example" >
+                  <TabList onChange={handleChange} aria-label="lab API tabs example" className="bg-light">
 
                     <Tab label="Posts" value="1" className='story-tab-hove' style={{ width: "30%" }} />
 
@@ -90,65 +109,67 @@ const ProfileScreen = () => {
 
                   </TabList>
                 </Box>
-                <TabPanel value="1">
+                <TabPanel value="1" className='px-0'>
                   <LeftLazyshow>
-                     {(posts.length > 0)? <></>:<Card styles={{hight:"10030vh"}} className="text-center p-5">
-                      {profile.firstName} you have no post yet! 
-                    </Card>} 
+                    {(posts.length > 0) ? <></> : <Card styles={{ hight: "10030vh" }} className="text-center p-5">
+                      {profile.firstName} you have no post yet!
+                    </Card>}
                     {posts && posts.map((item, key) => {
-                      return <Card className='mt-3 py-2' key={item._id}>
-                        <CardHeader
-                          avatar={
-                            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-                              R
-                            </Avatar>
-                          }
-                          action={
-                            <IconButton aria-label="settings">
-                              <MoreHorizIcon />
-                            </IconButton>
-                          }
-                          title="Shrimp and Chorizo Paella"
-                          subheader={item?.createdAt.slice(0, 16)}
-                        />
-                        <p className={item.description == 'null' ? 'd-none' : 'px-4'}>{item.description}</p>
-                        <CardMedia
-                          component="img"
-                          height="auto"
-                          style={{ maxHeight: "350px" }}
-                          image={item.image}
-                          className={item.image === 'null' ? 'd-none' : 'd-block'}
-                          alt={item.image === 'null' ? 'Paella dish' : ''}
-                        />
-                        <div>
-                          <div className='d-flex mt-2 justify-content-between px-2'>
-                            <div className='d-flex'>
-                              <ThumbUpAltIcon className='bg-primary text-light rounded-circle p-1' />
-                              <FavoriteIcon className='bg-danger text-light rounded-circle p-1 ms-1' />
+                      return (
+                        <Card className='mt-2 py-2 mx-0' key={item._id}>
+                          <CardHeader
+                            avatar={
+                              <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
+                                R
+                              </Avatar>
+                            }
+                            action={
+                              <IconButton aria-label="settings">
+                                <MoreHorizIcon />
+                              </IconButton>
+                            }
+                            title="Shrimp and Chorizo Paella"
+                            subheader={item?.createdAt.slice(0, 16)}
+                          />
+                          <p className={item.description == 'null' ? 'd-none' : 'px-4'}>{item.description}</p>
+                          <CardMedia
+                            component="img"
+                            height="auto"
+                            style={{ maxHeight: "350px" }}
+                            image={item.image}
+                            className={item.image === 'null' ? 'd-none' : 'd-block'}
+                            alt={item.image === 'null' ? 'Paella dish' : ''}
+                          />
+                          <div>
+                            <div className='d-flex mt-2 justify-content-between px-2'>
+                              <div className='d-flex'>
+                                <ThumbUpAltIcon className='bg-primary text-light rounded-circle p-1' />
+                                <FavoriteIcon className='bg-danger text-light rounded-circle p-1 ms-1' />
 
-                              <p className='ps-1'>Nova, Kean and other 3170 other</p>
-                            </div>
+                                <p className='ps-1'>Nova, Kean and other 3170 other</p>
+                              </div>
 
-                            <div className='d-flex'>
-                              <p >65 comment</p>
-                              <p className='ms-2'>323 share</p>
+                              <div className='d-flex'>
+                                <p >65 comment</p>
+                                <p className='ms-2'>323 share</p>
+                              </div>
+                            </div><hr></hr>
+                            <div className='d-flex w-100 justify-content-between post-button-con px-2'>
+                              <button className='w-100 py-2'><AiFillLike className='' /> Like</button>
+                              <button className='w-100 py-2  mx-2' ><FaRegCommentAlt className='' /> Comment</button>
+                              <button className='w-100 py-2 ' ><FaShare className='' /> Share</button>
                             </div>
-                          </div><hr></hr>
-                          <div className='d-flex w-100 justify-content-between post-button-con px-2'>
-                            <button className='w-100 py-2'><AiFillLike className='' /> Like</button>
-                            <button className='w-100 py-2  mx-2' ><FaRegCommentAlt className='' /> Comment</button>
-                            <button className='w-100 py-2 ' ><FaShare className='' /> Share</button>
                           </div>
-                        </div>
-                      </Card>
+                        </Card>
+                      )
                     })}
 
                   </LeftLazyshow>
 
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value="2" className='px-0'>
                   <LeftLazyshow>
-                    <Card className='mt-3 py-2'>
+                    <Card className='mt-2 py-2'>
                       <div className="card mb-3">
                         <div className="row g-0">
                           <div className="col-md-4"><img src='https://i.pinimg.com/originals/57/f6/58/57f658978f5fed9e81655a2394ef8f32.jpg' className="img-fluid rounded-start" alt="..." />
@@ -168,13 +189,13 @@ const ProfileScreen = () => {
                     </Card>
                   </LeftLazyshow>
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value="3" className='px-0'>
                   <RightLazyshow>
-                <Card className='mt-3 py-2'>
+                    <Card className='mt-2 py-2'>
                       <div className="card mb-3">
                         <div className="row g-0">
                           <div className="col-md-4">
-                            <img src="https://i.pinimg.com/736x/18/02/64/18026433d81cf0bb68819bf28a358885.jpg"  className="img-fluid rounded-start" alt="..." style={{maxHeight:"200px"}}/>
+                            <img src="https://i.pinimg.com/736x/18/02/64/18026433d81cf0bb68819bf28a358885.jpg" className="img-fluid rounded-start" alt="..." style={{ maxHeight: "200px" }} />
                           </div>
                           <div className="col-md-8">
                             <div className="card-body">

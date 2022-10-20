@@ -4,7 +4,7 @@
     box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.24);
 }
 .logo-name h2{
-    
+    color: var(--purple)!important;
     font-weight: 900;
 }
 .nav-search input{
@@ -45,10 +45,10 @@
     font-size: x-large;
 }
 .mobile-size-nav .mobile_ava .active .moblie-avator{
-    border:2px solid #0f92e3!important;
+    border:2px solid var(--purple)!important;
 }
 .mobile-size-nav .active svg{
-    color: #0f92e3!important;
+    color: var(--purple)!important;
 }
 .moblie-avator{
     width: 32px!important;
@@ -65,10 +65,10 @@
 
 .menu-aside svg{
     margin-right: 5px;
-    color: #1e86e9;
+    color: var(--purple);
 }
 .menu-aside .active svg{
-    color: #1e86e9;
+    color: var(--purple);
     margin-right: 5px;
 }
 .menu-aside .menu-item:hover , .right-item:hover {
@@ -77,13 +77,13 @@
 
 }
 .menu-aside .active {
-    border-left: 6px solid #1e86e9;
+    border-left: 6px solid var(--purple);
 }
 
 .menu-aside .menu-link {
     padding: 10px;
     margin-bottom: 10px;
-    color: #29335d;
+    color: var(--purple);
     border-radius: 0.3rem;
     position: relative;
     overflow: hidden;

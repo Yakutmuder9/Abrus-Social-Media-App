@@ -1,18 +1,19 @@
 import { FaBell, FaBullhorn, FaUsersCog, FaSearch } from 'react-icons/fa'
 import { FcVideoCall } from 'react-icons/fc'
 import { FiMoreHorizontal } from 'react-icons/fi'
-import Badge from '@mui/material/Badge';
+import Card from '@mui/material/Card';
 
 const Rightnav = () => {
     return (
         <div className='d-none d-xl-block' >
             <h4>Sponsored</h4>
-            <div className="card right-item mb-3 shadow bg-none" >
-                <div className="row g-0">
+            
+            <Card >
+            <div className="row g-0">
                     <div className="col-md-4 d-flex  ">
                         <img src="https://media.istockphoto.com/photos/top-view-of-a-white-desktop-concept-job-search-picture-id1279104620?k=20&m=1279104620&s=612x612&w=0&h=Lit4OzCRPW6Z5Pq1L4b9ZjUJvx6McLJySTLnUjJsECE=" className="img-fluid rounded-start" alt="..." />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8 py-3 ps-2">
                         <div className="card-body">
                             <h6 className="card-title">Post job for free</h6>
                             <p className="card-text">This is a wider card with supporting text ....</p>
@@ -20,13 +21,13 @@ const Rightnav = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="card right-item mb-3 shadow bg-none" >
+            </Card>
+            <Card className="mt-2" >
                 <div className="row g-0">
                     <div className="col-md-4 d-flex  ">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9ztdZ0xlqZXfh8MvGQfApwUqJph-o-LmqzMjLkPKcslITxLcttR19Z54lIPl8dxeSDVQ&usqp=CAU" className="img-fluid rounded-start" alt="..." />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8  py-3 ps-2">
                         <div className="card-body">
                             <h6 className="card-title">Post job for free</h6>
                             <p className="card-text">This is a wider card with supporting text ....</p>
@@ -34,7 +35,8 @@ const Rightnav = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Card> 
+            
 
 
 

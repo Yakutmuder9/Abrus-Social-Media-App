@@ -38,13 +38,13 @@
 }
 
 #Itemcarosel{
-    background: red;
+    background: var(--purple);
     cursor: pointer;
 }
 #Itemcarosel:hover{
     padding: 0px;
     margin: 0px;
-    background: red;
+    background: var(--light);
     cursor: pointer;
 }
 
@@ -97,7 +97,7 @@
     border-width: 2px;
     border-radius: 1rem;
     border-style: dashed;
-    border-color: #000000;
+    border-color: var(--purple);
     background-color: #f8fafc;
     position: relative;
     background-repeat: no-repeat;
@@ -150,6 +150,6 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    background-color: #101010;
+    background-color: var(--purple);
     border: 0;
   }

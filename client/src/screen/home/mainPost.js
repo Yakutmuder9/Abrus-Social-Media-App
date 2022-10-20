@@ -184,16 +184,14 @@ const MainPost = (prop) => {
           return <Card className='mt-3 py-2' key={item._id}>
             <CardHeader
               avatar={
-                <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-                  R
-                </Avatar>
+                <Avatar src={item.profile_pic} aria-label="recipe"/>
               }
               action={
                 <IconButton aria-label="settings">
                   <MoreHorizIcon />
                 </IconButton>
               }
-              title="Shrimp and Chorizo Paella"
+              title={item.firstName + " " + item.lastName}
               subheader={item?.createdAt.slice(0, 16)}
             />
             <p className={item.description == 'null' ? 'd-none':'px-4'}>{item.description}</p>
