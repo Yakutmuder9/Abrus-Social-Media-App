@@ -29,7 +29,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-
+//access-control-allow-credentials
 const corsOptions ={
   origin:'https://wina-app.netlify.app', 
   credentials:true,            
