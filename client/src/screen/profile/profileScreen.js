@@ -136,7 +136,7 @@ const ProfileScreen = () => {
                             component="img"
                             height="auto"
                             style={{ maxHeight: "350px" }}
-                            image={item.image}
+                            image={item?.image.filePath}
                             className={item.image === 'null' ? 'd-none' : 'd-block'}
                             alt={item.image === 'null' ? 'Paella dish' : ''}
                           />

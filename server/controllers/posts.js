@@ -2,9 +2,14 @@ const asyncHandler = require("express-async-handler");
 const Post = require("../modals/Post");
 const User = require("../modals/User");
 const { fileSizeFormatter } = require("../utils/fileUpload");
-// const cloudinary = require("cloudinary").v2;
 const cloudinary = require("../utils/cloudinary");
 
+
+//get posts
+const fetchAllUsersPosts = asyncHandler(async (req, res) => {
+  const posts = await Post.find().sort("-createdAt");
+  res.status(200).json(posts);
+});
 
 
 //Create post
@@ -12,7 +17,7 @@ const createPost = asyncHandler(async (req, res) => {
   const { description, like, share, comments, image } = req.body;
  
   //   Validation
-  // if (!description) {
+  // if (!description || !req.file) {
   //   res.status(400);
   //   throw new Error("Please fill in all fields");
   // }
@@ -162,4 +167,4 @@ const deletePost = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "post deleted." });
 });
 
-module.exports = { createPost, getPosts, getPost, updatePost, deletePost };
+module.exports = {fetchAllUsersPosts, createPost, getPosts, getPost, updatePost, deletePost };

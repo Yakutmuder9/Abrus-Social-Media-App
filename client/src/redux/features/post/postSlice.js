@@ -32,6 +32,25 @@ export const createPost = createAsyncThunk(
 );
 
 // Get all posts
+export const fetchAllUsersPosts = createAsyncThunk(
+  "posts/fetchallposts",
+  async (_, thunkAPI) => {
+    try {
+      return await postService.fetchAllUsersPosts();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Get all posts
 export const getPosts = createAsyncThunk(
   "posts/getAll",
   async (_, thunkAPI) => {
@@ -124,6 +143,21 @@ const postSlice = createSlice({
         toast.success("Post added successfully");
       })
       .addCase(createPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(fetchAllUsersPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAllUsersPosts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchAllUsersPosts.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

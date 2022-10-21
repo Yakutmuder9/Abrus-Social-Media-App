@@ -13,12 +13,15 @@ const {
     getPost,
     updatePost,
     deletePost,
+    fetchAllUsersPosts,
 } = require('../controllers/posts');
 
 router.route("/getuserdata").get(protect, getUserData);
 router.route("/updateuserdata").patch(protect, upload.single("image"), updateUserData);
 router.route("/deleteuser").delete(protect, deleteUser);
 
+
+router.route("/fetchallposts").get(protect, fetchAllUsersPosts);
 
 router.route("/post").post(protect, upload.single("image"), createPost);
 router.route("/post/:id").patch(protect, upload.single("image"), updatePost);

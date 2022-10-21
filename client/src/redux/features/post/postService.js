@@ -11,6 +11,13 @@ const createPost = async (formData) => {
   return response.data;
 };
 
+// Featch all users posts
+const fetchAllUsersPosts = async () => {
+  const response = await axios.get(`${BACKEND_URL}/api/private/fetchallposts`);
+  console.log(response.data)
+  return response.data;
+};
+
 // Get all posts
 const getPosts = async () => {
   const response = await axios.get(API_URL);
@@ -35,6 +42,7 @@ const updatePost = async (id, formData) => {
 
 const postService = {
   createPost,
+  fetchAllUsersPosts,
   getPosts,
   getPost,
   deletePost,
