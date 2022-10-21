@@ -28,7 +28,7 @@ import { SET_USER, SET_NAME } from "../../redux/features/auth/authSlice";
 import { getUser } from "../../redux/features/auth/authService";
 import Loader from '../../components/loading/Loading';
 import { NavLink } from 'react-router-dom';
-import { getPosts } from '../../redux/features/post/postSlice';
+import { fetchAllUsersPosts } from '../../redux/features/post/postSlice';
 import Moment from 'react-moment';
 
 
@@ -45,6 +45,7 @@ const MainPost = (prop) => {
 
   useEffect(() => {
     setLoading(true);
+    dispatch(fetchAllUsersPosts());
     async function getUserData() {
       const data = await getUser();
 
@@ -52,7 +53,6 @@ const MainPost = (prop) => {
       setLoading(false);
       dispatch(SET_USER(data));
       dispatch(SET_NAME(data.firstName));
-      dispatch(getPosts());
     }
     getUserData();
   }, [dispatch]);

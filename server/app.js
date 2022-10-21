@@ -29,13 +29,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(
-  cors({
-    origin: ["https://wina-app.netlify.app", "https://wina-social-app.herokuapp.com"],
-    credentials: true,
-  })
-); 
-
 
 // app.use(
 //   cors({
@@ -49,7 +42,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(
+  cors({
+    origin: ["https://wina-app.netlify.app", "https://wina-social-app.herokuapp.com"],
+    credentials: true,
+  })
+); 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
