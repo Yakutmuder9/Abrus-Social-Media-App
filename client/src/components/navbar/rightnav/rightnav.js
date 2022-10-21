@@ -42,7 +42,7 @@ const Rightnav = () => {
 
             <h5 className='mt-2'>Your Pages and profiles</h5>
             <div className="right-item w-100 d-flex align-items-center">
-                <img src="https://hwencc.gallerycdn.vsassets.io/extensions/hwencc/html-tag-wrapper/0.2.3/1505878793186/Microsoft.VisualStudio.Services.Icons.Default" style={{ height: "40px", width: "40px" }} className="rounded-circle border border-secondary me-3" />
+                <img src="https://hwencc.gallerycdn.vsassets.io/extensions/hwencc/html-tag-wrapper/0.2.3/1505878793186/Microsoft.VisualStudio.Services.Icons.Default" alt=''  style={{ height: "40px", width: "40px" }} className="rounded-circle border border-secondary me-3" />
                 <h6>Habshi</h6>
             </div>
             <div className="w-100 ">
@@ -63,7 +63,7 @@ const Rightnav = () => {
 
             <h5 className='mt-2'>Birthdays</h5>
             <div className="right-item w-100 d-flex align-items-center">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyvc4QxRAmpo5zhfKjsus5yOkxQ_KrlLQoxg&usqp=CAU" style={{ height: "40px", width: "40px" }} className="  me-3" />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyvc4QxRAmpo5zhfKjsus5yOkxQ_KrlLQoxg&usqp=CAU"  alt=''  style={{ height: "40px", width: "40px" }} className="  me-3" />
                 <p className='d-flex align-items-center'><span>Gach Kurmah</span>'s bithday is today!</p>
             </div>
 
@@ -75,7 +75,7 @@ const Rightnav = () => {
 
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
                 <div className=''>
-                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" alt=''  style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px" ,background:"#7cbf59"}}></span>
                 </div>
                 
@@ -83,7 +83,7 @@ const Rightnav = () => {
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
-                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR-TKjpL_AABZnd84lYNjVJ6Nb5NHPC4qYixgL6B_LgedjdFYoadGK6Moc1DfyXJug-hM&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR-TKjpL_AABZnd84lYNjVJ6Nb5NHPC4qYixgL6B_LgedjdFYoadGK6Moc1DfyXJug-hM&usqp=CAU" style={{ height: "33px", width: "33px" }} alt=''  className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                
@@ -91,7 +91,7 @@ const Rightnav = () => {
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
-                   <img src="https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png" alt=''  style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                 
@@ -99,7 +99,7 @@ const Rightnav = () => {
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
-                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNkMZEAYz4lzgRN7GtlVs8rDeskLfza59Ug&usqp=CAU" style={{ height: "33px", width: "33px" }} alt=''  className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                 
@@ -107,7 +107,7 @@ const Rightnav = () => {
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
-                   <img src="https://www.archiefoundationhome.org.uk/wp-content/uploads/2020/05/profile-photo-social-media.jpg" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://www.archiefoundationhome.org.uk/wp-content/uploads/2020/05/profile-photo-social-media.jpg" alt=''  style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                 
@@ -115,7 +115,7 @@ const Rightnav = () => {
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
-                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU" alt=''  style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                 
@@ -123,7 +123,7 @@ const Rightnav = () => {
             </div>
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
-                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBQLMBeInALQAH6MapZcrrcSjgWcrcmgz5Pw&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
+                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBQLMBeInALQAH6MapZcrrcSjgWcrcmgz5Pw&usqp=CAU" alt=''  style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
                    <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                 
@@ -132,7 +132,7 @@ const Rightnav = () => {
             <div className="right-item w-100 d-flex  mt-2 " style={{ height: "30px" }}>
             <div className=''>
                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxUadoslVZZhjj2zjGW8h8HK9DtHV3lETfHYh2ieOCAAgml0qrulXtBHb5-vegnObWXgo&usqp=CAU" style={{ height: "33px", width: "33px" }} className=" me-3 rounded-circle border" /> 
-                   <span className=' position-absolute rounded-circle' style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
+                   <span className=' position-absolute rounded-circle' alt=''  style={{ height: "12px", width: "12px" , marginLeft:"-28px",background:"#7cbf59"}}></span>
                 </div>
                 <p className=''>Aman Blay</p>
             </div>

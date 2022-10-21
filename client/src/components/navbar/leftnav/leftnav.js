@@ -105,7 +105,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/group/1"
                             >
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary'  alt='' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
                             </NavLink>
                         </li>
                         <li className="menu-item">
@@ -113,7 +113,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/group/2"
                             >
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary' alt='' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
                             </NavLink>
                         </li>
                         <li className="menu-item ">
@@ -121,7 +121,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/group/3"
                             >
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary' alt=''  style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>
                             </NavLink>
                         </li>
                         <li className="menu-item ">
@@ -220,7 +220,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/group/1"
                             >
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Billal Media
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3C3qx89X6hSQZUNhi0QDhNWki6gD6B7Qg&usqp=CAU" className='rounded-circle bg-secondary me-1'  alt=''  style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Billal Media
                             </NavLink>
                         </li>
                         <li className="menu-item">
@@ -228,7 +228,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/group/2"
                             >
-                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Js group
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOSQ8yS1dmcoeApLMDdWOfoYlBxDnl1LY3rQ&usqp=CAU" className='rounded-circle bg-secondary me-1' alt=''  style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Js group
                             </NavLink>
                         </li>
                         <li className="menu-item ">
@@ -236,7 +236,7 @@ const Leftnav = () => {
                                 className="menu-link d-flex align-items-center"
                                 to="/group/3"
                             >
-                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary me-1' style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Gurange Mhaber
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrURzysGidjCA4aOFFAsZW6e5Weami4AUvg&usqp=CAU" className='rounded-circle bg-secondary me-1' alt=''  style={{height:"37px", width:"37px" , marginLeft:"-10px"}}/>  Gurange Mhaber
                             </NavLink>
                         </li>
                         <li className="menu-item ">
