@@ -35,9 +35,9 @@ const PostModal = (props) => {
         setPost( value );
     };
 
-    // const handleImageChange = (e) => {
-    //     setPostImage(e.target.files[0]);
-    // };
+    const handleImageChange = (e) => {
+        setPostImage(e.target.files[0]);
+    };
 
 
     const savePost = async (e) => {
@@ -47,7 +47,8 @@ const PostModal = (props) => {
         formData.append("description", post);
         formData.append("image", postImage);
 
-        // console.log(...formData);
+        // console.log(postImage);
+        console.log(...formData);
         dispatch(createPost(formData));
       
     };
@@ -132,7 +133,7 @@ const PostModal = (props) => {
 
                         <input id="firstName" placeholder={`What's on your mind, ${profile.firstName}?`} className="w-100 p-2 my-3 form-control" style={{ height: "100px", border: "none", outline: "none", fontSize: "22px" }}
                          type='text'   name="description" 
-                            onChange={(e)=>handleInputDiscription(e.target.value)} required/>
+                            onChange={(e)=>handleInputDiscription(e.target.value)} />
 
 
                         <p>
@@ -161,7 +162,7 @@ const PostModal = (props) => {
                                                 type="file"
                                                 className="upload-file" name='image'
                                                 accept="image/*"
-                                                onChange={(e) =>  handleUpload(e)}
+                                                onChange={(e) =>  {handleUpload(e);handleImageChange(e)}}
                                             />
                                             <button className='button'>Upload Here</button>
                                         </div>

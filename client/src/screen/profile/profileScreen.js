@@ -22,6 +22,7 @@ import LeftLazyshow from '../../components/LazyShow/LeftLazyshow';
 import RightLazyshow from '../../components/LazyShow/RightLazyshow';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Moment from 'react-moment';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const ProfileScreen = () => {
                 <div className="">
                   <h2>{profile.firstName + " " + profile.lastName}</h2>
                   <p>343 friends</p>
+                  
                   <div className='d-flex justify-content-center pb-3 friends-img-list ps-4'>
                     <img src="https://www.socialmirror.in/upload/media/posts/2021-09/19/professional-profile-pictures_1632045875-b.jpg" alt="" className="rounded-circle" />
                     <img src="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg" alt="" className="rounded-circle friend-img-pos" />
@@ -119,17 +121,15 @@ const ProfileScreen = () => {
                         <Card className='mt-2 py-2 mx-0' key={item._id}>
                           <CardHeader
                             avatar={
-                              <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-                                R
-                              </Avatar>
+                              <Avatar src={item.profile_pic} aria-label="recipe"/>
                             }
                             action={
                               <IconButton aria-label="settings">
                                 <MoreHorizIcon />
                               </IconButton>
                             }
-                            title="Shrimp and Chorizo Paella"
-                            subheader={item?.createdAt.slice(0, 16)}
+                            title={item.firstName + " " + item.lastName}
+                            subheader={item?<Moment fromNow>{item.createdAt}</Moment>:<></>}
                           />
                           <p className={item.description == 'null' ? 'd-none' : 'px-4'}>{item.description}</p>
                           <CardMedia

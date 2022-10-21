@@ -29,6 +29,7 @@ import { getUser } from "../../redux/features/auth/authService";
 import Loader from '../../components/loading/Loading';
 import { NavLink } from 'react-router-dom';
 import { getPosts } from '../../redux/features/post/postSlice';
+import Moment from 'react-moment';
 
 
 const MainPost = (prop) => {
@@ -36,19 +37,19 @@ const MainPost = (prop) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [chevronWidth, setChevronWidth] = useState(5);
   const [Screenwidth, ScreenHeight] = useWindowSize();
-  const { post, posts, isError, isSuccess, message } = useSelector(state => state.post)
+  const { post, posts,isLoading, isError, isSuccess, message } = useSelector(state => state.post)
 
   const dispatch = useDispatch();
   const [profile, setProfile] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     async function getUserData() {
       const data = await getUser();
 
       setProfile(data);
-      setIsLoading(false);
+      setLoading(false);
       dispatch(SET_USER(data));
       dispatch(SET_NAME(data.firstName));
       dispatch(getPosts());
@@ -179,6 +180,7 @@ const MainPost = (prop) => {
 
       
       {/* --------------psots---------------------- */}
+      {isLoading ? <Loader />:
       <LeftLazyshow>
         {posts && posts.map((item, key) => {
           return <Card className='mt-3 py-2' key={item._id}>
@@ -192,14 +194,14 @@ const MainPost = (prop) => {
                 </IconButton>
               }
               title={item.firstName + " " + item.lastName}
-              subheader={item?.createdAt.slice(0, 16)}
+              subheader={item?<Moment fromNow>{item.createdAt}</Moment>:<></>}
             />
             <p className={item.description == 'null' ? 'd-none':'px-4'}>{item.description}</p>
             <CardMedia
               component="img"
               height="auto"
               style={{ maxHeight: "350px" }}
-              image={item.image}
+              image={item?.image.filePath}
               className={item.image === 'null' ? 'd-none':'d-block'}
               alt={item.image === 'null' ? 'Paella dish':''}
             />
@@ -226,7 +228,7 @@ const MainPost = (prop) => {
         })}
 
       </LeftLazyshow>
-
+      }
     </>
   );
 }

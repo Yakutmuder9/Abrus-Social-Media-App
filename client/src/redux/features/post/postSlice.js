@@ -16,6 +16,7 @@ export const createPost = createAsyncThunk(
   "posts/create",
   async (formData, thunkAPI) => {
     try {
+      // console.log(formData)
       return await postService.createPost(formData);
     } catch (error) {
       const message =
@@ -119,7 +120,6 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        console.log(action.payload);
         state.posts.push(action.payload);
         toast.success("Post added successfully");
       })
@@ -136,7 +136,6 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        console.log(action.payload);
         state.posts = action.payload;
       })
       .addCase(getPosts.rejected, (state, action) => {

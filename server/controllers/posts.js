@@ -2,19 +2,20 @@ const asyncHandler = require("express-async-handler");
 const Post = require("../modals/Post");
 const User = require("../modals/User");
 const { fileSizeFormatter } = require("../utils/fileUpload");
-const cloudinary = require("cloudinary").v2;
+// const cloudinary = require("cloudinary").v2;
+const cloudinary = require("../utils/cloudinary");
 
 
 
 //Create post
 const createPost = asyncHandler(async (req, res) => {
   const { description, like, share, comments, image } = req.body;
-  
+ 
   //   Validation
-  if (!description) {
-    res.status(400);
-    throw new Error("Please fill in all fields");
-  }
+  // if (!description) {
+  //   res.status(400);
+  //   throw new Error("Please fill in all fields");
+  // }
 
   // Handle Image upload 
   let fileData = {};
@@ -51,7 +52,7 @@ const createPost = asyncHandler(async (req, res) => {
       comments,
       image: fileData
     });
-
+  console.log(post)
     res.status(201).json(post);
   } catch (error) {
     res.status(500);

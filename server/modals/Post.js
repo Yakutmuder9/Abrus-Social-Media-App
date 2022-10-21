@@ -17,8 +17,7 @@ const postSchema = mongoose.Schema(
             type: String
         },
         description: {
-            type: String,
-            required: [true, "Please add a description"]
+            type: String
         },
         image: {
             type: Object,
