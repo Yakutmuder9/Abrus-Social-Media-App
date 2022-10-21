@@ -13,7 +13,7 @@ const createPost = async (formData) => {
 
 // Featch all users posts
 const fetchAllUsersPosts = async () => {
-  const response = await axios.get(`${BACKEND_URL}/api/private/fetchallposts`);
+  const response = await axios.get(`${BACKEND_URL}api/private/fetchallposts`);
   
   return response.data;
 };

@@ -31,7 +31,7 @@ export const createPost = createAsyncThunk(
   }
 );
 
-// Get all posts
+// Get all users posts
 export const fetchAllUsersPosts = createAsyncThunk(
   "posts/fetchallposts",
   async (_, thunkAPI) => {
