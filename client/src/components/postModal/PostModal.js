@@ -42,12 +42,11 @@ const PostModal = (props) => {
 
     const savePost = async (e) => {
         e.preventDefault();
-        // console.log(e)
+        
         const formData = new FormData();
         formData.append("description", post);
         formData.append("image", postImage);
 
-        // console.log(postImage);
         console.log(...formData);
         dispatch(createPost(formData));
       
