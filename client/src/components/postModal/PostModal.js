@@ -53,7 +53,7 @@ const PostModal = (props) => {
     };
 
 
-
+  // Drag  and Drop handler
 
     const handleEnter = (e) => {
         e.preventDefault();
