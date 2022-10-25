@@ -15,7 +15,7 @@ export const validateEmail = (email) => {
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(
-      `/server/api/auth/register`, userData,
+      `${BACKEND_URL}/api/auth/register`, userData,
       { withCredentials: true });
 
     if (response.statusText === "OK") {
@@ -35,7 +35,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(
-      `/server/api/auth/login`,
+      `${BACKEND_URL}/api/auth/login`,
       userData
     );
     if (response.statusText === "OK") {
@@ -54,7 +54,7 @@ export const loginUser = async (userData) => {
 // Logout User
 export const logoutUser = async () => {
   try {
-    await axios.get(`/server/api/auth/logout`);
+    await axios.get(`${BACKEND_URL}/api/auth/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -101,7 +101,7 @@ export const resetPassword = async (userData, resetToken) => {
 // Get Login Status
 export const getLoginStatus = async () => {
   try {
-    const response = await axios.get(`/server/api/auth/loggedin`);
+    const response = await axios.get(`${BACKEND_URL}/api/auth/loggedin`);
     return response.data;
   } catch (error) {
     const message =

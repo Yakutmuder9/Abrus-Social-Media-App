@@ -29,13 +29,15 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-//access-control-allow-credentials
-const corsOptions ={
-  origin:['https://wina-app.netlify.app', "https://wina-social-app.herokuapp.com"], 
-  credentials:true,            
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: '*'
+}));
+// const corsOptions ={
+//   origin:["*", "http://localhost:3000",'https://wina-app.netlify.app', "https://wina-social-app.herokuapp.com"], 
+//   credentials:true,            
+//   optionSuccessStatus:200
+// }
+// app.use(cors(corsOptions));
 
 
 
