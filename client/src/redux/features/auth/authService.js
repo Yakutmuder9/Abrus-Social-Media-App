@@ -34,9 +34,17 @@ export const registerUser = async (userData) => {
 // Login User
 export const loginUser = async (userData) => {
   try {
-    const response = await axios.post(
+    const response = await fetch(
       `${BACKEND_URL}/api/auth/login`,
-      userData
+        {
+        Method: 'POST',
+        Headers: {
+          Accept: 'application.json',
+          'Content-Type': 'application/json'
+        },
+        Body: userData,
+        Cache: 'default'
+      }
     );
     if (response.statusText === "OK") {
       toast.success("Login Successful...");
