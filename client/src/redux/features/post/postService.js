@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const BACKEND_URL = 'http://localhost:5000'
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
-const API_URL = `${BACKEND_URL}/api/private/post`;
+const API_URL = `/server/api/private/post`;
 
 // Create New Post
 const createPost = async (formData) => {
@@ -13,7 +13,7 @@ const createPost = async (formData) => {
 
 // Featch all users posts
 const fetchAllUsersPosts = async () => {
-  const response = await axios.get(`${BACKEND_URL}/api/private/fetchallposts`);
+  const response = await axios.get(`/server/api/private/fetchallposts`);
   
   return response.data;
 };

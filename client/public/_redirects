@@ -1,2 +1,2 @@
-/api/* https://debaratishop.herokuapp.com/:splat 200!
+/server/* https://debaratishop.herokuapp.com/:splat 200!
 <!-- /*   /index.html   200 -->
