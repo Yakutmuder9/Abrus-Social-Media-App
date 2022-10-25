@@ -24,14 +24,12 @@ connect.then(() => console.log('Connected correctly to server'),
 
 
 var app = express();
-
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({
-  origin: '*'
-}));
+
 // const corsOptions ={
 //   origin:["*", "http://localhost:3000",'https://wina-app.netlify.app', "https://wina-social-app.herokuapp.com"], 
 //   credentials:true,            
