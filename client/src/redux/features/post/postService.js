@@ -13,14 +13,14 @@ const createPost = async (formData) => {
 
 // Featch all users posts
 const fetchAllUsersPosts = async () => {
-  const response = await fetch(`${BACKEND_URL}/api/private/fetchallposts`);
+  const response = await axios.get(`${BACKEND_URL}/api/private/fetchallposts`);
   
   return response.data;
 };
 
 // Get all posts
 const getPosts = async () => {
-  const response = await fetch(API_URL);
+  const response = await axios.get(API_URL);
   return response.data;
 };
 
@@ -31,7 +31,7 @@ const deletePost = async (id) => {
 };
 // Get a Post
 const getPost = async (id) => {
-  const response = await fetch(API_URL + id);
+  const response = await axios.get(API_URL + id);
   return response.data;
 };
 // Update Post

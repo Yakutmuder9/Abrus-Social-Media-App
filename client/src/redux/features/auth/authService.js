@@ -38,14 +38,10 @@ export const loginUser = async (userData) => {
       `${BACKEND_URL}/api/auth/login`,
         {
         Method: 'POST',
-        Headers: {
-          Accept: 'application.json',
-          'Content-Type': 'application/json'
-        },
-        Body: userData,
-        Cache: 'default'
+        Body: userData
       }
     );
+    console.log(userData)
     if (response.statusText === "OK") {
       toast.success("Login Successful...");
     }
