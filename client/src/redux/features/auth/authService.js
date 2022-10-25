@@ -10,7 +10,6 @@ export const validateEmail = (email) => {
   );
 };
 
-
 // Register User
 export const registerUser = async (userData) => {
   try {
@@ -34,16 +33,9 @@ export const registerUser = async (userData) => {
 // Login User
 export const loginUser = async (userData) => {
   try {
-    const response = await fetch(
+    const response = await axios.post(
       `${BACKEND_URL}/api/auth/login`,
-        {
-        Method: 'POST',
-        Headers: {
-          Accept: 'application.json',
-          'Content-Type': 'application/json'
-        },
-        Body: JSON.stringify(userData),
-      }
+      userData
     );
     if (response.statusText === "OK") {
       toast.success("Login Successful...");
@@ -61,7 +53,7 @@ export const loginUser = async (userData) => {
 // Logout User
 export const logoutUser = async () => {
   try {
-    await fetch(`${BACKEND_URL}/api/auth/logout`);
+    await axios.get(`${BACKEND_URL}/api/auth/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -108,7 +100,7 @@ export const resetPassword = async (userData, resetToken) => {
 // Get Login Status
 export const getLoginStatus = async () => {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/auth/loggedin`);
+    const response = await axios.get(`${BACKEND_URL}/api/auth/loggedin`);
     return response.data;
   } catch (error) {
     const message =
@@ -121,7 +113,7 @@ export const getLoginStatus = async () => {
 // Get User Profile
 export const getUser = async () => {
   try {
-    const response = await fetch(`/api/private/getuserdata`);
+    const response = await axios.get(`/api/private/getuserdata`);
     return response.data;
   } catch (error) {
     const message =
