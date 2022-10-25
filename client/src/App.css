@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/helvetica-neue-9');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap'); 
                 
 *{
   margin: 0;
@@ -6,12 +6,7 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: 'Helvetica Neue', sans-serif;
-  /* font-family: 'Helvetica 25 UltraLight', sans-serif;
-  font-family: 'Helvetica 35 Thin', sans-serif;
-  font-family: 'Helvetica 45 Light', sans-serif;
-  font-family: 'Helvetica 55 Roman', sans-serif;
-  font-family: 'Helvetica 65 Medium', sans-serif; */
+  font-family: 'Oswald', Verdana, Arial, sans-serif;
 
 
 }
