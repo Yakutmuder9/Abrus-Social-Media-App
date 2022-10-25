@@ -13,7 +13,7 @@ const HomeScreen = () => {
           <Leftnav />
         </div>
         <div className="middle-post-nav p-2  overflow-hidden">
-         {/* <Outlet />  */}
+         <Outlet /> 
         </div>
         <div className="right-active-nav d-none d-xl-block pt-2" >
           <Rightnav />
