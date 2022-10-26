@@ -31,7 +31,7 @@ app.set('view engine', 'jade');
 
 
 const corsOptions ={
-  origin:["*", "http://localhost:3000",'https://wina-app.netlify.app', "https://wina-social-app.herokuapp.com"], 
+  origin:['https://wina-app.netlify.app', "https://wina-social-app.herokuapp.com"], 
   credentials:true,            
   optionSuccessStatus:200
 }
