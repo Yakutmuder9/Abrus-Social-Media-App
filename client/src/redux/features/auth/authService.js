@@ -33,7 +33,7 @@ export const registerUser = async (userData) => {
 
 // Login User
 export const loginUser = async (userData) => {
-  console.log(userData)
+ 
   try {
     const response = await fetch(
       `${BACKEND_URL}/api/auth/login`, {
@@ -46,6 +46,8 @@ export const loginUser = async (userData) => {
     }
     );
     if (response.statusText === "OK") {
+      console.log(response.data)
+      localStorage.setItem("name", JSON.stringify(response.user.firstName));
       toast.success("Login Successful...");
     }
     return response.data;
