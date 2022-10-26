@@ -45,12 +45,16 @@ export const loginUser = async (userData) => {
       body: JSON.stringify(userData)
     }
     );
-    if (response.statusText === "OK") {
-      console.log(response.data)
-      localStorage.setItem("name", JSON.stringify('firstName'));
-      toast.success("Login Successful...");
+
+    if (response.status === 200) {
+      let data = await response.json();
+      return data
     }
-    return response.data;
+    // if (response.statusText === "OK") {
+    //   toast.success("Login Successful...");
+    //    console.log(response.data)
+    // }
+    // return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -124,7 +128,11 @@ export const getLoginStatus = async () => {
 export const getUser = async () => {
   try {
     const response = await fetch(`/api/private/getuserdata`);
-    return response.data;
+    if (response.status === 200) {
+      let data = await response.json();
+      return data
+    }
+    // return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
