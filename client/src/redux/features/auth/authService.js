@@ -48,6 +48,7 @@ export const loginUser = async (userData) => {
 
     if (response.status === 200) {
       let data = await response.json();
+      console.log(data)
       return data
     }
     // if (response.statusText === "OK") {
