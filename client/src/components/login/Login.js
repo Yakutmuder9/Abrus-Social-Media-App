@@ -45,7 +45,7 @@ const Login = () => {
             if (data) {
                 dispatch(SET_LOGIN(true));
                 dispatch(SET_NAME(data.firstName));
-                console.log("setUser" , data)
+                
                 dispatch(SET_USER(data));
                 setIsLoading(false);
                 navigate("/");
