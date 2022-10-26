@@ -47,7 +47,7 @@ export const loginUser = async (userData) => {
     );
     if (response.statusText === "OK") {
       console.log(response.data)
-      localStorage.setItem("name", JSON.stringify(response.user.firstName));
+      localStorage.setItem("name", JSON.stringify('firstName'));
       toast.success("Login Successful...");
     }
     return response.data;
