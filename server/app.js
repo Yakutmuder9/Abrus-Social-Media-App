@@ -1,4 +1,4 @@
-require("dotenv").config({path: './config.env'});
+// require("dotenv").config({path: './config.env'});
 var createError = require('http-errors');
 var express = require('express');
 var cors = require('cors')
@@ -10,7 +10,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose');
 
-const url = config.mongoUrl
+// const url = config.mongoUrl
+const url = 'mongodb+srv://wina:1536@wina.wunt3oa.mongodb.net/wina?retryWrites=true&w=majority'
 const connect = mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
