@@ -48,7 +48,7 @@ const MainPost = (prop) => {
     dispatch(fetchAllUsersPosts());
     async function getUserData() {
       const data = await getUser();
-      console.log(data)
+      
       setProfile(data);
       setLoading(false);
       dispatch(SET_USER(data));
