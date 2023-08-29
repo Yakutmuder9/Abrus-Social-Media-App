@@ -47,7 +47,6 @@ const App = () => {
         <Route path="resetpassword/:resetToken" element={<ResetPasswordScreen />} />
 
         <Route element={<PrivateRoute />}>
-
           <Route path="/" element={<HomeScreen />}>
             <Route path="" element={<MainPost />} />
             <Route path="/home" element={<MainPost />} />

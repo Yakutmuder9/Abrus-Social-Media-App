@@ -2,7 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 // const BACKEND_URL ='http://localhost:5000'
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
+const BACKEND_URL ='https://wina-social-app.herokuapp.com'
+// const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
 
 export const validateEmail = (email) => {
   return email.match(
@@ -34,35 +35,53 @@ export const registerUser = async (userData) => {
 // Login User
 export const loginUser = async (userData) => {
  
+  
   try {
-    const response = await fetch(
-      `${BACKEND_URL}/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userData)
-    }
+    const response = await axios.post(
+      `${BACKEND_URL}/api/auth/login`,
+      userData
     );
-
-    if (response.status === 200) {
-      let data = await response.json();
-     
-      return data
+    if (response.statusText === "OK") {
+      toast.success("Login Successful...");
     }
-    // if (response.statusText === "OK") {
-    //   toast.success("Login Successful...");
-    //    console.log(response.data)
-    // }
-    // return response.data;
+    return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    toast.error(message);
+    toast.error( message);
   }
+
+  // try {
+  //   const response = await fetch(
+  //     `${BACKEND_URL}/api/auth/login`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(userData)
+  //   }
+  //   );
+
+  //   if (response.status === 200) {
+  //     let data = await response.json();
+     
+  //     return data
+  //   }
+  //   // if (response.statusText === "OK") {
+  //   //   toast.success("Login Successful...");
+  //   //    console.log(response.data)
+  //   // }
+  //   // return response.data;
+  // } catch (error) {
+  //   const message =
+  //     (error.response && error.response.data && error.response.data.message) ||
+  //     error.message ||
+  //     error.toString();
+  //   toast.error(message);
+  // }
 };
 
 // Logout User

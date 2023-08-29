@@ -1,4 +1,4 @@
-// require("dotenv").config({path: './config.env'});
+require("dotenv").config({path: './config.env'});
 var createError = require('http-errors');
 var express = require('express');
 var cors = require('cors')
@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 
 const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose');
+
 
 // const url = config.mongoUrl
 const url = 'mongodb+srv://wina:1536@wina.wunt3oa.mongodb.net/wina?retryWrites=true&w=majority'
@@ -25,18 +26,26 @@ connect.then(() => console.log('Connected correctly to server'),
 
 
 var app = express();
-
+app.use(cors({
+  origin: "http://127.0.0.1:5500/Test/test.html"
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
-const corsOptions ={
-  origin:['https://wina-app.netlify.app', "https://wina-social-app.herokuapp.com"], 
-  credentials:true,            
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+// const corsOptions ={
+//   origin:'*', 
+//   credentials:true,            
+//   optionSuccessStatus:200
+// }
+
+// const corsOptions ={
+//   origin:['https://wina-app.netlify.app', 'http://localhost:3000', "https://wina-social-app.herokuapp.com"], 
+//   credentials:true,            
+//   optionSuccessStatus:200
+// }
+// app.use(cors(corsOptions));
 
 
 
