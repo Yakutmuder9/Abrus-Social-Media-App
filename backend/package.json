@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend server for web and mobile app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "server": "nodemon ./app.js",
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yakutmuder9/Wina-social-app.git"
+  },
+  "author": "Yakut Ahmedin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yakutmuder9/Wina-social-app/issues"
+  },
+  "homepage": "https://github.com/Yakutmuder9/Wina-social-app#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^2.0.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.0",
+    "session-file-store": "^1.5.0"
+  }
+}
