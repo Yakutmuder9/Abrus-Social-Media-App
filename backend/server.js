@@ -26,31 +26,35 @@ const port = process.env.PORT || 5000;
 // // connect mongoDB url
 connectDB();
 app.use(logger);
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// // Connecting Routes
-// // app.use("/api/auth", require("./routes/auth"));
-// // app.use("/api/private", require("./routes/private"));
+// Connecting Routes
+app.get("/", (req, res) => {
+  res.send("Hello, this is a sample backend!");
+});
+
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/private", require("./routes/privateRoutes"));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, net) {
-  // set locals, only provide error in devlopement
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "devlopment" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+// // error handler
+app.all("*", (req, res) => {
+  res.status(404);
+  if (req.accepts("html")) {
+    res.sendFile(path.join(__dirname, "views", "404.html"));
+  } else if (req.accepts("json")) {
+    res.json({ message: "404 Not Found" });
+  } else {
+    res.type("txt").send("404 Not Found");
+  }
 });
-
 app.use(errorHandler);
 
 mongoose.connection.once("open", () => {

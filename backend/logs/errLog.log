@@ -1,0 +1,28 @@
+20240331	02:13:10	0f61f054-f32c-4054-b57a-bdd59284a3fa	Error: No default engine was specified and no extension was provided.	GET	/	undefined
+20240331	15:54:21	c2fe1123-9167-450a-a7d8-1d17a5fa95ba	Error: No default engine was specified and no extension was provided.	POST	/login	undefined
+20240331	15:54:37	75e1082a-0293-42bb-bc67-dfff0fb8a2ba	Error: No default engine was specified and no extension was provided.	POST	/api/auth/login	undefined
+20240331	15:55:39	079665aa-e3bb-475d-b0aa-45d1ab6c56a2	Error: No default engine was specified and no extension was provided.	POST	/api/auth/login	undefined
+20240331	15:56:07	d1bedd0a-13e6-4981-9278-2c38f894e45d	Error: No default engine was specified and no extension was provided.	POST	/api/auth/login	undefined
+20240331	15:56:48	8cfe9110-fd7a-4b44-93f3-955aa60fbe8e	Error: No default engine was specified and no extension was provided.	GET	/	undefined
+20240331	15:56:49	98530e73-3165-4aca-8db7-5745eae96381	Error: No default engine was specified and no extension was provided.	GET	/	undefined
+20240331	15:56:54	8c9fa77e-cba1-4921-96ff-b4ff08e95001	Error: No default engine was specified and no extension was provided.	GET	/	undefined
+20240331	16:40:58	e8d81ef8-8a7d-4647-aa54-d22b82cfcd13	Error: No default engine was specified and no extension was provided.	POST	/api/auth/login	undefined
+20240331	16:47:03	732abdc9-5d61-492f-bb99-831ba327e959	TypeError: User.findOne(...).exex is not a function	POST	/api/auth/login	undefined
+20240331	16:48:28	31d0af5f-3cb9-4abf-9cb9-e990023daf6a	TypeError: User.findOne(...).exex is not a function	POST	/api/auth/login	undefined
+20240331	16:50:51	e661985b-ca20-4650-a8ce-7d39cf6cd377	TypeError: User.findOne(...).exex is not a function	POST	/api/auth/login	undefined
+20240331	16:54:47	8df3b02a-dc78-4d9a-8466-038ef7e51dfd	TypeError: Cannot read properties of null (reading 'active')	POST	/api/auth/login	undefined
+20240331	17:00:52	31676a8d-7368-47f2-abb4-150b49148b0f	Error: secretOrPrivateKey must have a value	POST	/api/auth/login	undefined
+20240331	17:01:12	c85c954e-65e8-4494-9e03-16bc5a4f7d18	Error: secretOrPrivateKey must have a value	POST	/api/auth/login	undefined
+20240331	17:26:59	991fc483-9cee-4ee5-bb22-def8bbe876c6	ReferenceError: createError is not defined	POST	/api/auth/logout	undefined
+20240331	17:49:05	673b9068-f1a4-4b7e-bb53-f19698e70f90	ReferenceError: createError is not defined	POST	/api/auth/loogin	undefined
+20240401	02:31:24	a4d772de-f534-4cc2-8c7a-0b66559743d0	ReferenceError: createError is not defined	POST	/api/auth/register	undefined
+20240401	02:31:29	948b5c3f-b756-46bf-a563-2180a55ec6e3	ReferenceError: createError is not defined	POST	/api/auth/register	undefined
+20240401	02:31:30	16885792-f301-4175-96a3-7d9f9ae66aa8	ReferenceError: createError is not defined	POST	/api/auth/register	undefined
+20240401	02:35:18	01a07de2-880f-41a7-bcce-908ea6de8111	TypeError: Cannot read properties of null (reading 'active')	POST	/api/auth/login	undefined
+20240401	02:35:24	7e4fbe5e-92b2-48d1-a97f-4f62fb4c83e2	TypeError: Cannot read properties of null (reading 'active')	POST	/api/auth/login	undefined
+20240401	12:33:54	cd23fe08-9502-49f4-a1aa-7d57efc239d7	TypeError: Cannot read properties of null (reading 'active')	POST	/api/auth/login	undefined
+20240401	12:34:02	3f68cfdd-b0c8-49af-9d03-8362ebdc8056	TypeError: Cannot read properties of null (reading 'active')	POST	/api/auth/login	undefined
+20240402	14:34:26	6d191817-3fbc-411b-803e-44365ab5aaf2	ReferenceError: createError is not defined	POST	/api/auth/logout	undefined
+20240402	14:52:20	ecaf9375-2e5a-4da5-bc15-083726c954cf	ReferenceError: createError is not defined	POST	/api/auth/logout	undefined
+20240402	15:23:27	9a4bebd3-94af-42ce-9c6d-39d6d0595ae0	ReferenceError: createError is not defined	POST	/api/auth/logout	undefined
+20240402	15:25:02	91c93b2e-fda7-4155-9566-ee1c662f4203	ReferenceError: createError is not defined	POST	/api/auth/logout	undefined

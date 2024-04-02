@@ -70,9 +70,10 @@ function App(): React.JSX.Element {
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}><Text>Wina Social Media</Text>
+        style={backgroundStyle}>
+        <Text>Wina Social Media</Text>
         <Header />
-        {/* <View
+        <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
@@ -90,7 +91,7 @@ function App(): React.JSX.Element {
             Read the docs to discover what to do next
           </Section>
           <LearnMoreLinks />
-        </View> */}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
