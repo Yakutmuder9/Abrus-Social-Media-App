@@ -5,11 +5,6 @@ const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
 const { isValidEmail, isValidPhoneNumber } = require("../utils/validations");
 
-// Generate Token
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-};
-
 // Register user
 const register = asyncHandler(async (req, res) => {
   const { userFullName, email, password, dateOfBirth, gender } = req.body;
@@ -43,17 +38,26 @@ const register = asyncHandler(async (req, res) => {
     throw new Error("Email has already been registered");
   }
 
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   // Create new user
   const user = await User.create({
     userFullName,
     email,
-    password,
+    password: hashedPassword, // Store hashed password
     dateOfBirth,
     gender,
   });
 
   //   Generate Token
-  const token = generateToken(user._id);
+  const token = jwt.sign(
+    { userId: user.userId },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "1d",
+    }
+  );
 
   // Send HTTP-only cookie
   res.cookie("token", token, {
@@ -64,13 +68,11 @@ const register = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    const { id, userFullName, email, password, gender, dateOfBirth } = user;
+    const { userId, userFullName, email, gender, dateOfBirth } = user;
     res.status(201).json({
-      id,
-      firstName,
-      lastName,
+      userId,
+      userFullName,
       email,
-      password,
       gender,
       dateOfBirth,
       token,
@@ -123,7 +125,7 @@ const login = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "None",
-    maxAge: 20 * 1000,
+    maxAge: 60 * 1000,
     // maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
@@ -189,13 +191,13 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }
 
   // Delete token if it exists in DB
-  let token = await Token.findOne({ userId: user._id });
+  let token = await Token.findOne({ userId: user.userId });
   if (token) {
     await token.deleteOne();
   }
 
   // Create Reste Token
-  let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
+  let resetToken = crypto.randomBytes(32).toString("hex") + user.userId;
   console.log(resetToken);
 
   // Hash token before saving to DB
@@ -206,7 +208,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   // Save Token to DB
   await new Token({
-    userId: user._id,
+    userId: user.userId,
     token: hashedToken,
     createdAt: Date.now(),
     expiresAt: Date.now() + 30 * (60 * 1000), // Thirty minutes
@@ -261,7 +263,7 @@ const resetPassword = asyncHandler(async (req, res) => {
   }
 
   // Find user
-  const user = await User.findOne({ _id: userToken.userId });
+  const user = await User.findOne({ userId: userToken.userId });
   user.password = password;
   await user.save();
   res.status(200).json({
@@ -279,9 +281,15 @@ const logout = asyncHandler(async (req, res) => {
 
 // Change Password
 const changePassword = asyncHandler(async (req, res) => {
-  const user = await User.findOne({ email: req.user.email }).select(
+  console.log("req.", req.user);
+
+  const user = await User.findOne({ email: req.user.userId }).select(
     "+password"
   );
+
+  console.log('user =', user);
+  console.log('old and new pass', req.body);
+
   const { oldPassword, password } = req.body;
 
   if (!user) {

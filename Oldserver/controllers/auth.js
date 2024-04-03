@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../modals/User");
 const sendEmail = require("../utils/sendEmail");
-const bcrypt = require('bcryptjs')
+const bcrypt = require("bcryptjs");
 const Token = require("../modals/tokenModel");
 
 // Generate Token
@@ -14,9 +14,8 @@ const generateToken = (id) => {
 
 //  Register user
 const register = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password, gender
-    , dateOfBirth } = req.body;
-
+  const { firstName, lastName, email, password, gender, dateOfBirth } =
+    req.body;
 
   // Check if user email already exists
   const userExists = await User.findOne({ email });
@@ -48,8 +47,7 @@ const register = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    const { _id, firstName, email, password, gender,
-      dateOfBirth } = user;
+    const { _id, firstName, email, password, gender, dateOfBirth } = user;
     res.status(201).json({
       _id,
       firstName,
@@ -97,7 +95,7 @@ const login = asyncHandler(async (req, res) => {
   });
 
   if (user && passwordIsCorrect) {
-    res.json({ ...user._doc, token })
+    res.json({ ...user._doc, token });
   } else {
     res.status(400);
     throw new Error("Invalid email or password");
@@ -120,10 +118,11 @@ const loginStatus = asyncHandler(async (req, res) => {
 
 //  Forgot Password Initialization
 const changePassword = asyncHandler(async (req, res) => {
-
-  const user = await User.findOne({ email: req.user.email }).select("+password");
+  const user = await User.findOne({ email: req.user.email }).select(
+    "+password"
+  );
   const { oldPassword, password } = req.body;
-  
+
   if (!user) {
     res.status(400);
     throw new Error("User not found, please signup");
@@ -245,10 +244,10 @@ const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", {
     path: "/",
     httpOnly: true,
-    expires: new Date(0)
+    expires: new Date(0),
   });
   return res.status(200).json({ message: "Successfully Logged Out" });
-})
+});
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedJwtToken();
@@ -262,5 +261,5 @@ module.exports = {
   changePassword,
   forgotPassword,
   resetPassword,
-  logout
-}
+  logout,
+};
