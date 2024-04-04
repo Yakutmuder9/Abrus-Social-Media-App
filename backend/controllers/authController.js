@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
 const { isValidEmail, isValidPhoneNumber } = require("../utils/validations");
-const crypto = require("crypto");
 
 // Register user
 const register = asyncHandler(async (req, res) => {
@@ -191,19 +190,17 @@ const forgotPassword = async (req, res) => {
     return res.status(404).json({ message: "User does not exist" });
   }
 
-  // Generate a reset token
-  const resetToken = crypto.randomBytes(32).toString("hex");
+  // Generate a reset token with user ID and expiry time
+  const resetToken = jwt.sign(
+    { userId: user._id, expireTime: Date.now() + 30 * 60 * 1000 }, // Expire token after 30 minutes
+    process.env.ACCESS_TOKEN_SECRET
+  );
 
-  // Hash the token before saving to DB
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
+  console.log("resetToken", resetToken);
 
-  // Save hashed token to the user document
-  user.resetPasswordToken = hashedToken;
+  // Save reset token to the user document
+  user.resetPasswordToken = resetToken;
   user.resetPasswordExpire = Date.now() + 30 * 60 * 1000; // 30 minutes expiry
-
   await user.save();
 
   // Construct the reset URL
@@ -219,14 +216,15 @@ const forgotPassword = async (req, res) => {
   `;
 
   try {
+    // Send the email using your email sending method
+    // Example: await sendEmail({ to: user.email, subject, html: message });
     await sendEmail({
       to: user.email,
       subject,
       html: message,
-      senderName: "Your App Name",
-      senderEmail: "noreply@example.com",
+      senderName: "Yakut",
+      senderEmail: "yakutmuder@example.com",
     });
-
     res.status(200).json({ message: "Reset email sent" });
   } catch (error) {
     console.error("Error sending email:", error);
@@ -234,15 +232,17 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-
 // Reset Password route handler
 const resetPassword = async (req, res) => {
   const { resetToken } = req.params;
   const { newPassword } = req.body;
 
   try {
-    // Decode and verify the reset token
-    const decodedToken = jwt.verify(resetToken, process.env.JWT_SECRET);
+    // Verify and decode the reset token
+    const decodedToken = jwt.verify(
+      resetToken,
+      process.env.ACCESS_TOKEN_SECRET
+    );
     const { userId, expireTime } = decodedToken;
 
     // Check if the token has expired
@@ -257,8 +257,11 @@ const resetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Set new password and remove reset token fields
-    user.password = newPassword; // Update password using your preferred method
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Set new password and clear reset token fields
+    user.password = hashedPassword; // Update password using your preferred method
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save();
@@ -269,9 +272,6 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ message: "Password reset failed" });
   }
 };
-
-
-
 
 // const resetPassword = async (req, res) => {
 //   const { resetToken } = req.params;

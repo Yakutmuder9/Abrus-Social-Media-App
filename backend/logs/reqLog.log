@@ -143,3 +143,15 @@
 20240404	15:06:05	50507620-43f1-4a2b-99e8-f4eac53301c8	PUT	/api/auth/resetpassword/fe2b4fe4c3d2af66f45151520e330d46f4494e3ea51a9ae58ea6c03bd28bfcfc	undefined
 20240404	15:07:34	f7d912e4-2495-4f1b-82bb-76ee6c579c75	PUT	/api/auth/resetpassword/fe2b4fe4c3d2af66f45151520e330d46f4494e3ea51a9ae58ea6c03bd28bfcfc	undefined
 20240404	15:12:49	102a5f1d-cc9a-4703-8d18-f1f7536d92cc	PUT	/api/auth/resetpassword/fe2b4fe4c3d2af66f45151520e330d46f4494e3ea51a9ae58ea6c03bd28bfcfc	undefined
+20240404	15:21:35	23810600-4b74-4fb0-a377-981bec9ba6eb	POST	/api/auth/forgotpassword	undefined
+20240404	15:28:12	4602fd86-a847-43bd-9ae6-002a3f9c72ae	POST	/api/auth/forgotpassword	undefined
+20240404	15:29:41	633e1110-af03-4f24-ac1e-37e3fc6d64da	POST	/api/auth/forgotpassword	undefined
+20240404	15:31:01	5a695e30-0972-43d7-abbf-3a4db600a89e	PUT	/api/auth/resetpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjBlODIxMDg0YWEwMzc3N2M1ODU4NDAiLCJleHBpcmVUaW1lIjoxNzEyMjM1NTgxOTYxLCJpYXQiOjE3MTIyMzM3ODF9.UAEkrZnHYKQnWDDA8FwLDFWUlvURVMaozESPwnjq3t8	undefined
+20240404	15:31:38	7eaa3f11-e0e6-4715-ad2a-3074b1600534	POST	/api/auth/login	undefined
+20240404	15:31:45	9de1fdae-f8a1-4ce3-907a-cb9aa0c9168e	POST	/api/auth/login	undefined
+20240404	15:32:05	585f4cf9-3901-4bd5-8e25-bdc2ba8da42b	POST	/api/auth/login	undefined
+20240404	15:34:24	210acd89-46f5-41f2-834b-25e6f9606984	POST	/api/auth/register	undefined
+20240404	15:35:12	af23227a-4586-42e6-84c9-e5c2717dae5f	POST	/api/auth/forgotpassword	undefined
+20240404	15:36:37	fbd39db1-10b9-4780-ae88-72b439228d91	PUT	/api/auth/resetpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjBlOWU1MGZkZDllZDU4NGUyOGIwOTAiLCJleHBpcmVUaW1lIjoxNzEyMjM1OTEyMDgyLCJpYXQiOjE3MTIyMzQxMTJ9.2xDLPJttWsXEITN9Mghuoi2gXcjCLZOEgHtV9bXUpIk	undefined
+20240404	15:36:50	9d57bf10-9156-4ddd-bddc-7649aa29135c	POST	/api/auth/login	undefined
+20240404	15:36:55	710a338d-cadc-477e-a5e5-72a71de33a2f	POST	/api/auth/login	undefined
