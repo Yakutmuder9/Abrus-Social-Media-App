@@ -28,3 +28,8 @@
 20240404	11:35:41	32f13731-35ba-4630-a466-0ece8dc38cca	ReferenceError: req is not defined	POST	/api/auth/forgotpassword	undefined
 20240404	11:36:07	cd63685f-4ace-4987-bc5f-32bf4a4b568c	TypeError: crypto.randomBytes is not a function	POST	/api/auth/forgotpassword	undefined
 20240404	11:37:47	76d46cfd-31f1-4d4e-b616-3ec217fbd76d	ReferenceError: Token is not defined	POST	/api/auth/forgotpassword	undefined
+20240404	13:32:43	859e2780-2a85-446a-868d-ede3434585dc	ValidationError: User validation failed: userFullName: Last name must be atleast 3 letter	POST	/api/auth/register	undefined
+20240404	14:45:57	94d9a579-f44a-472f-a8be-ce03239148c8	ReferenceError: createError is not defined	POST	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined
+20240404	14:52:42	60152187-00ee-4684-9fd7-f6f3505dd610	ReferenceError: createError is not defined	POST	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined
+20240404	14:53:27	43ce5bae-f441-41b3-b90a-19c28dd2ef40	ReferenceError: createError is not defined	POST	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined
+20240404	14:55:56	63a7de85-e89c-4971-a1bf-36a4112a804b	ReferenceError: createError is not defined	PUT	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined

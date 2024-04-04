@@ -135,6 +135,7 @@ const login = asyncHandler(async (req, res) => {
 });
 
 // Refresh Token
+
 const refresh = asyncHandler((req, res) => {
   const cookies = req.cookies;
 
@@ -181,137 +182,122 @@ const refresh = asyncHandler((req, res) => {
   );
 });
 
-// Forgot Password Initialization
-// const forgotPassword = asyncHandler(async (req, res) => {
-//   const { email } = req.body;
-//   const user = await User.findOne({ email });
-//   if (!user) {
-//     res.status(404);
-//     throw new Error("User does not exist");
-//   }
-//   // // Delete token if it exists in DB
-//   // let token = await User.findOne({ userId: user.userId });
-//   // if (token) {
-//   //   await token.deleteOne();
-//   // }
-//   // Create Reste Token
-//   let resetToken = crypto.randomBytes(32).toString("hex") + user.userId;
-//   console.log(resetToken);
-//   // Hash token before saving to DB
-//   const hashedToken = crypto
-//     .createHash("sha256")
-//     .update(resetToken)
-//     .digest("hex");
-//   // Save Token to DB
-//   await new Token({
-//     userId: user.userId,
-//     token: hashedToken,
-//     createdAt: Date.now(),
-//     expiresAt: Date.now() + 30 * (60 * 1000), // Thirty minutes
-//   }).save();
-//   // Construct Reset Url
-//   const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
-//   // Reset Email
-//   const message = `
-//       <h2>Hello ${user.name}</h2>
-//       <p>Please use the url below to reset your password</p>
-//       <p>This reset link is valid for only 30minutes.</p>
-//       <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
-//       <p>Regards...</p>
-//       <p>Pinvent Team</p>
-//     `;
-//   const subject = "Password Reset Req";
-//   const send_to = user.email;
-//   const sent_from = process.env.EMAIL_USER;
-//   try {
-//     await sendEmail(subject, message, send_to, sent_from);
-//     res.status(200).json({ success: true, message: "Reset Email Sent" });
-//   } catch (error) {
-//     res.status(500);
-//     throw new Error("Email not sent, please try again");
-//   }
-// });
-const forgotPassword = asyncHandler(async (req, res) => {
+// Forgot Password route handler
+const forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
 
   if (!user) {
-    res.status(404);
-    throw new Error("User does not exist");
+    return res.status(404).json({ message: "User does not exist" });
   }
 
-  // Generate and hash reset token
-  const resetToken =
-    crypto.randomBytes(32).toString("hex") + user._id.toString(); // Assuming user has _id property
+  // Generate a reset token
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  // Hash the token before saving to DB
   const hashedToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 
-  // Set/reset the user's reset token and expiration time
-  user.resetToken = hashedToken;
-  user.resetTokenExpires = Date.now() + 30 * (60 * 1000); // Thirty minutes
+  // Save hashed token to the user document
+  user.resetPasswordToken = hashedToken;
+  user.resetPasswordExpire = Date.now() + 30 * 60 * 1000; // 30 minutes expiry
 
-  // Save the updated user object
   await user.save();
 
-  // Construct Reset URL
+  // Construct the reset URL
   const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
 
-  // Reset Email
-  const message = `
-      <h2>Hello ${user.userFullName}</h2>
-      <p>Please use the URL below to reset your password:</p>  
-      <p>This reset link is valid for only 30 minutes.</p>
-
-      <a href="${resetUrl}" clicktracking="off">${resetUrl}</a>
-
-      <p>Regards...</p>
-      <p>Your App Team</p>
-    `;
+  // Send the reset email
   const subject = "Password Reset Request";
-  const send_to = user.email;
-  const sent_from = process.env.EMAIL_USER;
+  const message = `
+    <p>You have requested a password reset.</p>
+    <p>Please click the following link to reset your password:</p>
+    <a href="${resetUrl}" target="_blank">${resetUrl}</a>
+    <p>If you did not request this, please ignore this email.</p>
+  `;
 
   try {
-    await sendEmail(subject, message, send_to, sent_from);
-    res.status(200).json({ success: true, message: "Reset Email Sent" });
+    await sendEmail({
+      to: user.email,
+      subject,
+      html: message,
+      senderName: "Your App Name",
+      senderEmail: "noreply@example.com",
+    });
+
+    res.status(200).json({ message: "Reset email sent" });
   } catch (error) {
-    res.status(500);
-    throw new Error("Email not sent, please try again");
+    console.error("Error sending email:", error);
+    res.status(500).json({ message: "Email could not be sent" });
   }
-});
+};
 
-// Reset Password
-const resetPassword = asyncHandler(async (req, res) => {
-  const { password } = req.body;
+
+// Reset Password route handler
+const resetPassword = async (req, res) => {
   const { resetToken } = req.params;
+  const { newPassword } = req.body;
 
-  // Hash token, then compare to Token in DB
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
+  try {
+    // Decode and verify the reset token
+    const decodedToken = jwt.verify(resetToken, process.env.JWT_SECRET);
+    const { userId, expireTime } = decodedToken;
 
-  // fIND tOKEN in DB
-  const userToken = await Token.findOne({
-    token: hashedToken,
-    expiresAt: { $gt: Date.now() },
-  });
+    // Check if the token has expired
+    if (Date.now() > expireTime) {
+      return res.status(400).json({ message: "Reset token has expired" });
+    }
 
-  if (!userToken) {
-    res.status(404);
-    throw new Error("Invalid or Expired Token");
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Set new password and remove reset token fields
+    user.password = newPassword; // Update password using your preferred method
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save();
+
+    res.status(200).json({ message: "Password reset successful" });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({ message: "Password reset failed" });
   }
+};
 
-  // Find user
-  const user = await User.findOne({ userId: userToken.userId });
-  user.password = password;
-  await user.save();
-  res.status(200).json({
-    message: "Password Reset Successful, Please Login",
-  });
-});
+
+
+
+// const resetPassword = async (req, res) => {
+//   const { resetToken } = req.params;
+//   const { newPassword } = req.body;
+
+//   // Hash the reset token to compare with the stored hashed token
+//   const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
+//   // Find the user with the matching reset token and not expired
+//   const user = await User.findOne({
+//     resetPasswordToken: hashedToken,
+//     resetPasswordExpire: { $gt: Date.now() },
+//   });
+
+//   if (!user) {
+//     return res.status(400).json({ message: "Invalid or expired reset token" });
+//   }
+
+//   // Set new password and remove reset token fields
+//   user.password = await bcrypt.hash(newPassword, 10);
+//   user.resetPasswordToken = undefined;
+//   user.resetPasswordExpire = undefined;
+//   await user.save();
+
+//   res.status(200).json({ message: "Password reset successful" });
+// };
 
 // Logout User
 const logout = asyncHandler(async (req, res) => {
