@@ -134,7 +134,6 @@ const login = asyncHandler(async (req, res) => {
 });
 
 // Refresh Token
-
 const refresh = asyncHandler((req, res) => {
   const cookies = req.cookies;
 
@@ -211,13 +210,12 @@ const forgotPassword = async (req, res) => {
   const message = `
     <p>You have requested a password reset.</p>
     <p>Please click the following link to reset your password:</p>
-    <a href="${resetUrl}" target="_blank">${resetUrl}</a>
+    <a href="${resetUrl}" target="_blank"><button>Reset your passowrd</button></a>
     <p>If you did not request this, please ignore this email.</p>
   `;
 
   try {
     // Send the email using your email sending method
-    // Example: await sendEmail({ to: user.email, subject, html: message });
     await sendEmail({
       to: user.email,
       subject,
