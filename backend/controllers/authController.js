@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
 const { isValidEmail, isValidPhoneNumber } = require("../utils/validations");
+const crypto = require("crypto");
 
 // Register user
 const register = asyncHandler(async (req, res) => {
@@ -104,8 +105,8 @@ const login = asyncHandler(async (req, res) => {
   const accessToken = jwt.sign(
     {
       UserInfo: {
-        email: foundUser.email,
-        roles: foundUser.roles,
+        userId: foundUser.userId,
+        active: foundUser.active,
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
@@ -113,7 +114,7 @@ const login = asyncHandler(async (req, res) => {
   );
 
   const refreshToken = jwt.sign(
-    { email: foundUser.email },
+    { userId: foundUser.userId },
     process.env.REFRESH_TOKEN_SECRET,
     {
       expiresIn: "7d",
@@ -125,7 +126,7 @@ const login = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "None",
-    maxAge: 60 * 1000,
+    maxAge: 60 * 60 * 1000,
     // maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
@@ -158,7 +159,7 @@ const refresh = asyncHandler((req, res) => {
       }
 
       const foundUser = await User.findOne({
-        email: decoded.email,
+        userId: decoded.userId,
       }).exec();
 
       console.log("Found User:", foundUser);
@@ -168,8 +169,8 @@ const refresh = asyncHandler((req, res) => {
       const accessToken = jwt.sign(
         {
           UserInfo: {
-            email: foundUser.email,
-            roles: foundUser.roles,
+            userId: foundUser.userId,
+            active: foundUser.active,
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -181,6 +182,55 @@ const refresh = asyncHandler((req, res) => {
 });
 
 // Forgot Password Initialization
+// const forgotPassword = asyncHandler(async (req, res) => {
+//   const { email } = req.body;
+//   const user = await User.findOne({ email });
+//   if (!user) {
+//     res.status(404);
+//     throw new Error("User does not exist");
+//   }
+//   // // Delete token if it exists in DB
+//   // let token = await User.findOne({ userId: user.userId });
+//   // if (token) {
+//   //   await token.deleteOne();
+//   // }
+//   // Create Reste Token
+//   let resetToken = crypto.randomBytes(32).toString("hex") + user.userId;
+//   console.log(resetToken);
+//   // Hash token before saving to DB
+//   const hashedToken = crypto
+//     .createHash("sha256")
+//     .update(resetToken)
+//     .digest("hex");
+//   // Save Token to DB
+//   await new Token({
+//     userId: user.userId,
+//     token: hashedToken,
+//     createdAt: Date.now(),
+//     expiresAt: Date.now() + 30 * (60 * 1000), // Thirty minutes
+//   }).save();
+//   // Construct Reset Url
+//   const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
+//   // Reset Email
+//   const message = `
+//       <h2>Hello ${user.name}</h2>
+//       <p>Please use the url below to reset your password</p>
+//       <p>This reset link is valid for only 30minutes.</p>
+//       <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+//       <p>Regards...</p>
+//       <p>Pinvent Team</p>
+//     `;
+//   const subject = "Password Reset Req";
+//   const send_to = user.email;
+//   const sent_from = process.env.EMAIL_USER;
+//   try {
+//     await sendEmail(subject, message, send_to, sent_from);
+//     res.status(200).json({ success: true, message: "Reset Email Sent" });
+//   } catch (error) {
+//     res.status(500);
+//     throw new Error("Email not sent, please try again");
+//   }
+// });
 const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
@@ -190,45 +240,36 @@ const forgotPassword = asyncHandler(async (req, res) => {
     throw new Error("User does not exist");
   }
 
-  // Delete token if it exists in DB
-  let token = await Token.findOne({ userId: user.userId });
-  if (token) {
-    await token.deleteOne();
-  }
-
-  // Create Reste Token
-  let resetToken = crypto.randomBytes(32).toString("hex") + user.userId;
-  console.log(resetToken);
-
-  // Hash token before saving to DB
+  // Generate and hash reset token
+  const resetToken =
+    crypto.randomBytes(32).toString("hex") + user._id.toString(); // Assuming user has _id property
   const hashedToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 
-  // Save Token to DB
-  await new Token({
-    userId: user.userId,
-    token: hashedToken,
-    createdAt: Date.now(),
-    expiresAt: Date.now() + 30 * (60 * 1000), // Thirty minutes
-  }).save();
+  // Set/reset the user's reset token and expiration time
+  user.resetToken = hashedToken;
+  user.resetTokenExpires = Date.now() + 30 * (60 * 1000); // Thirty minutes
 
-  // Construct Reset Url
+  // Save the updated user object
+  await user.save();
+
+  // Construct Reset URL
   const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
 
   // Reset Email
   const message = `
-      <h2>Hello ${user.name}</h2>
-      <p>Please use the url below to reset your password</p>  
-      <p>This reset link is valid for only 30minutes.</p>
+      <h2>Hello ${user.userFullName}</h2>
+      <p>Please use the URL below to reset your password:</p>  
+      <p>This reset link is valid for only 30 minutes.</p>
 
-      <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+      <a href="${resetUrl}" clicktracking="off">${resetUrl}</a>
 
       <p>Regards...</p>
-      <p>Pinvent Team</p>
+      <p>Your App Team</p>
     `;
-  const subject = "Password Reset Req";
+  const subject = "Password Reset Request";
   const send_to = user.email;
   const sent_from = process.env.EMAIL_USER;
 
@@ -240,6 +281,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     throw new Error("Email not sent, please try again");
   }
 });
+
 // Reset Password
 const resetPassword = asyncHandler(async (req, res) => {
   const { password } = req.body;
@@ -274,40 +316,52 @@ const resetPassword = asyncHandler(async (req, res) => {
 // Logout User
 const logout = asyncHandler(async (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); //No content
-  res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
+  if (!cookies?.jwt) return res.json({ message: "Cookie not found" }); //No content
+
+  // Set cookie options for clearing the cookie
+  const cookieOptions = {
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
+    expires: new Date(0), // Set expiration
+    path: "/", // Specify the path w
+    domain: process.env.COOKIE_DOMAIN,
+  };
+
+  res.clearCookie("jwt", cookieOptions);
   res.json({ message: "Cookie cleared" });
 });
 
 // Change Password
 const changePassword = asyncHandler(async (req, res) => {
-  console.log("req.", req.user);
+  const user = await User.findOne({ userId: req.user }).select("+password");
 
-  const user = await User.findOne({ email: req.user.userId }).select(
-    "+password"
-  );
-
-  console.log('user =', user);
-  console.log('old and new pass', req.body);
-
-  const { oldPassword, password } = req.body;
+  const { oldPassword, newPassword } = req.body;
 
   if (!user) {
     res.status(400);
     throw new Error("User not found, please signup");
   }
   //Validate
-  if (!oldPassword || !password) {
+  if (!oldPassword || !newPassword) {
     res.status(400);
     throw new Error("Please add old and new password");
   }
 
   // check if old password matches password in DB
-  const passwordIsCorrect = await user.matchPassword(oldPassword);
+  const passwordIsCorrect = await bcrypt.compare(oldPassword, user.password);
+
+  if (!passwordIsCorrect)
+    return res
+      .status(401)
+      .json({ message: "Unauthorized: Old Password is not correct!" });
+
+  // Hash the password
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
   // Save new password
   if (user && passwordIsCorrect) {
-    user.password = password;
+    user.password = hashedNewPassword;
     await user.save();
     res.status(200).send("Password change successful");
   } else {

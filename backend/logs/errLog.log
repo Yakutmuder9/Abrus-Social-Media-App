@@ -12,3 +12,19 @@
 20240403	15:38:12	732eb44a-4c66-4af2-90b2-5cd6baaff7e7	ValidationError: User validation failed: gender: `F` is not a valid enum value for path `gender`.	POST	/api/auth/register	undefined
 20240403	15:41:57	4d6c85a8-0f26-4e00-8bb4-636ea33810dd	TypeError: Cannot read properties of undefined (reading 'email')	PATCH	/api/auth/changepassword	undefined
 20240403	15:42:42	e1c924b8-b1cc-4e33-8197-d9b71afe01f6	TypeError: Cannot read properties of undefined (reading 'userId')	PATCH	/api/auth/changepassword	undefined
+20240403	15:47:13	2e3d0c15-854c-41f3-8956-99e8758985c3	Error: User not found, please signup	PATCH	/api/auth/changepassword	undefined
+20240403	15:56:19	8b15bd42-9eed-4280-87b7-ebb1a2dc63c5	Error: User not found, please signup	PATCH	/api/auth/changepassword	undefined
+20240403	15:57:53	b4f572fe-568d-45ad-8b67-1baf80ec7163	Error: User not found, please signup	PATCH	/api/auth/changepassword	undefined
+20240403	15:58:34	52c36146-864d-429f-8797-4ed4c33757e0	Error: User not found, please signup	PATCH	/api/auth/changepassword	undefined
+20240403	15:59:02	e954c52b-5b3a-440f-af4f-4a2cb5fa6c33	Error: User not found, please signup	PATCH	/api/auth/changepassword	undefined
+20240403	15:59:16	5193b93d-7ca8-4af2-b284-505f4a20cff0	Error: User not found, please signup	PATCH	/api/auth/changepassword	undefined
+20240403	15:59:44	bf1ca259-b9c1-40cc-b090-22dd6e0d02f1	TypeError: user.matchPassword is not a function	PATCH	/api/auth/changepassword	undefined
+20240403	16:14:45	a31602b7-c545-4e3c-a712-f0f461f9a4c0	TypeError: user.matchPassword is not a function	PATCH	/api/auth/changepassword	undefined
+20240404	10:49:40	eaaf2d72-7124-4f88-bc1c-b6c02b1d2488	TypeError: user.matchPassword is not a function	PATCH	/api/auth/changepassword	undefined
+20240404	11:04:04	3bbaad44-dcef-490a-8ab8-d945cb6e4dff	ReferenceError: passwordIsCorrect is not defined	PATCH	/api/auth/changepassword	undefined
+20240404	11:23:46	5be9c30b-3eee-49e2-82b1-7b128bb3767d	ReferenceError: Token is not defined	POST	/api/auth/forgotpassword	undefined
+20240404	11:24:43	49502e31-58d6-417b-aab9-b4e127d13196	Error: User does not exist	POST	/api/auth/forgotpassword	undefined
+20240404	11:25:08	c882a5a0-9d0d-4a56-af59-392ace097fbb	ReferenceError: Token is not defined	POST	/api/auth/forgotpassword	undefined
+20240404	11:35:41	32f13731-35ba-4630-a466-0ece8dc38cca	ReferenceError: req is not defined	POST	/api/auth/forgotpassword	undefined
+20240404	11:36:07	cd63685f-4ace-4987-bc5f-32bf4a4b568c	TypeError: crypto.randomBytes is not a function	POST	/api/auth/forgotpassword	undefined
+20240404	11:37:47	76d46cfd-31f1-4d4e-b616-3ec217fbd76d	ReferenceError: Token is not defined	POST	/api/auth/forgotpassword	undefined
