@@ -55,4 +55,5 @@ Welcome to Wina, a social media platform where you can connect, share, and engag
 
 ## License
     This project is licensed under the [MIT License](LICENSE).
-    Feel free to copy and paste this markdown content into your README.md file on GitHub. You can further customize it based on your project's specifics.
+
+Feel free to copy and paste this markdown content into your README.md file on GitHub. You can further customize it based on your project's specifics.
