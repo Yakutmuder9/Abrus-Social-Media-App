@@ -1,9 +1,13 @@
 const asyncHandler = require("express-async-handler");
 const { Post } = require("../models/Post");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("../utils/cloudinary");
+const { fileSizeFormatter } = require("../utils/fileUpload");
 
 const createPost = asyncHandler(async (req, res) => {
   const { content } = req.body;
+
+  console.log("req.file", req.file, content);
 
   // Validation
   if (!content && !req.file) {
@@ -12,26 +16,25 @@ const createPost = asyncHandler(async (req, res) => {
   }
 
   // Handle Image upload
-  let fileData = {};
+  let fileData = null;
   if (req.file) {
-    // Save image to cloudinary
-    let uploadedFile;
     try {
-      uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+      // Save image to cloudinary
+      const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
         folder: "Pinvent App",
         resource_type: "image",
       });
+
+      fileData = {
+        fileName: req.file.originalname,
+        filePath: uploadedFile.secure_url,
+        fileType: req.file.mimetype,
+        fileSize: fileSizeFormatter(req.file.size, 2),
+      };
     } catch (error) {
       res.status(500);
       throw new Error("Image could not be uploaded");
     }
-
-    fileData = {
-      fileName: req.file.originalname,
-      filePath: uploadedFile.secure_url,
-      fileType: req.file.mimetype,
-      fileSize: fileSizeFormatter(req.file.size, 2),
-    };
   }
 
   try {
@@ -44,19 +47,35 @@ const createPost = asyncHandler(async (req, res) => {
     const post = await Post.create({
       userId,
       content,
-      image: fileData || null,
+      image: fileData,
     });
 
     console.log(post);
     res.status(201).json(post);
   } catch (error) {
-    res.status(500);
-    throw new Error("Dupplicate Error");
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-const getPost = asyncHandler(async (req, res) => {});
-const getPosts = asyncHandler(async (req, res) => {});
+const getPost = asyncHandler(async (req, res) => {
+  const post = await Post.findOne(req.params.postId);
+  // if post doesnt exist
+  if (!post) {
+    res.status(404);
+    throw new Error("post not found");
+  }
+  // Match post to its user
+  if (post.user.toString() !== req.user.postId) {
+    res.status(401);
+    throw new Error("User not authorized");
+  }
+  res.status(200).json(post);
+});
+
+const getPosts = asyncHandler(async (req, res) => {
+  const post = await Post.find({ user: req.user.userId }).sort("-createdAt");
+  res.status(200).json(post);
+});
 const updatePost = asyncHandler(async (req, res) => {});
 const deletePost = asyncHandler(async (req, res) => {});
 

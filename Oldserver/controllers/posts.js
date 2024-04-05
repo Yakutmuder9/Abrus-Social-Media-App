@@ -44,6 +44,7 @@ const createPost = asyncHandler(async (req, res) => {
       fileSize: fileSizeFormatter(req.file.size, 2),
     };
   }
+  
   try {
     // Create post
     const post = await Post.create({

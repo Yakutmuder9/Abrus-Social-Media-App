@@ -99,7 +99,7 @@ const login = asyncHandler(async (req, res) => {
 
   const match = await bcrypt.compare(password, foundUser.password);
 
-  if (!match) return res.status(401).json({ message: "Unauthorized" });
+  if (!match) return res.status(401).json({ message: "Em Unauthorized" });
 
   const accessToken = jwt.sign(
     {
@@ -210,7 +210,7 @@ const forgotPassword = async (req, res) => {
   const message = `
     <p>You have requested a password reset.</p>
     <p>Please click the following link to reset your password:</p>
-    <a href="${resetUrl}" target="_blank"><button>Reset your passowrd</button></a>
+    <a href="${resetUrl}" target="_blank">${resetUrl}</a>
     <p>If you did not request this, please ignore this email.</p>
   `;
 

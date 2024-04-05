@@ -48,3 +48,31 @@
 20240405	02:23:00	7dc2d91d-508b-4825-8053-9697e9de32d5	MulterError: Unexpected field	POST	/api/private/create-post	undefined
 20240405	09:43:44	c142889a-0e0e-4cba-9267-f4f5533420d6	MulterError: Unexpected field	POST	/api/private/create-post	undefined
 20240405	09:44:57	7f57bc97-00b5-4d6d-bb40-eb16147b047b	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	10:08:02	1d0e40b8-8599-4d17-93a5-5eb26e4e2869	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	10:16:39	ef05fbe9-d337-45ed-b714-24237e463c05	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	10:17:48	47383ad4-e898-4f12-8ec7-62c498e20274	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	10:18:45	61a41cc7-dc3e-4a26-b4a3-9706b931c2ee	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	11:03:15	d2cabed7-71d5-44f3-bebc-2c2778ae979d	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	11:05:21	bc3b801a-3311-430f-ac54-4bc9a48fc0a3	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	11:16:08	db0d702f-b58c-4f9b-8e9b-6ab3032b728c	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240405	11:19:54	e3a5d873-93ca-41e6-8465-049dbe19c24a	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240405	11:20:19	a7f5fae3-74a2-4795-87a6-ffe88630faa9	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240405	11:20:38	c3b741e1-8761-4be5-9d81-c5362e48965e	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240405	11:22:22	0d446335-aa6e-4f65-9cd9-252ab01d08b2	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240405	11:22:29	efedf64e-fdab-4d09-8dbc-f2213b69cc5d	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240405	11:23:22	d87cd4db-d5f1-48ec-9e7a-dee357bad565	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	11:25:40	4a1dc5e4-ccb5-452e-8338-60de181deeb5	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	11:35:42	b129e7e7-3bc9-494e-8f4f-f848ba0e1050	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	11:37:52	5c653fe3-8eaa-4a42-8be1-db7ec4545223	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	11:41:06	190aa351-f8c5-4654-ad3c-06dee948771e	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	11:46:22	25595874-71b4-4569-acf2-012e97d96077	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	11:48:36	f2c2ff35-2072-4d52-94be-7f92c89b8b87	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	11:49:06	5d7dea5a-6c0e-42cf-bef2-369c4ece9033	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	11:49:20	ad6263b0-5ef6-4279-aa45-cbcec5bc5cc9	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	11:52:52	a6a7224e-75d8-495b-93b7-11a960b63fbd	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	14:47:56	773795ae-6cb8-4b0f-91a9-e257bbcf3de6	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	14:50:01	26398a31-bb00-4034-8d5e-3ad2b78019ba	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	14:59:22	9ff69dfc-44c2-4038-919b-e2c726279c62	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	15:10:19	0f8310b7-9ffc-4140-9113-2cdb6c780f52	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	15:19:58	ff89b211-c669-4d4e-ba87-ad72d6369128	Error: post not found	GET	/api/private/get-post	undefined
+20240405	23:06:41	c3d68c4f-d77a-497d-a201-6cc59dee6f48	ValidationError: User validation failed: userFullName: Last name must be atleast 3 letter	POST	/api/auth/register	undefined

@@ -39,7 +39,7 @@ const { getNotification } = require("../controllers/notificationContr");
 const { getPhotos } = require("../controllers/photoContr");
 
 // Post Routes
-router.post("/create-post", verifyJWT, upload.single("image"), createPost);
+router.post("/create-post", verifyJWT,  createPost);
 router.get("/get-post", verifyJWT, getPost);
 router.get("/get-posts", verifyJWT, getPosts);
 router.patch("/update-post", verifyJWT, updatePost);
