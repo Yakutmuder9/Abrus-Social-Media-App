@@ -38,7 +38,7 @@ Welcome to Wina, a social media platform where you can connect, share, and engag
 4. Set up environment variables:
     - Create a `.env` file in the root directory and add the following:
     - PORT=3000
-    - MONGODB_URI=mongodb://localhost:27017/wina_db
+    - MONGODB_URI=mongodb://localhost:27017/wina
     - JWT_SECRET=your_jwt_secret
     - CLOUDINARY_NAME=your_cloudinary_name
     - CLOUDINARY_API_KEY=your_cloudinary_api_key
