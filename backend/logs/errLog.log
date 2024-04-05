@@ -33,3 +33,18 @@
 20240404	14:52:42	60152187-00ee-4684-9fd7-f6f3505dd610	ReferenceError: createError is not defined	POST	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined
 20240404	14:53:27	43ce5bae-f441-41b3-b90a-19c28dd2ef40	ReferenceError: createError is not defined	POST	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined
 20240404	14:55:56	63a7de85-e89c-4971-a1bf-36a4112a804b	ReferenceError: createError is not defined	PUT	/api/auth/reset/86dd6c9a09208284415d9a9366999bf92bb56c58a6c81367a93dde25fcaa938f	undefined
+20240405	02:05:16	93049ca0-026a-4a0d-a9c8-38f85cd92ddc	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240405	02:06:01	3dab0067-8caa-494c-9ce8-e8a5f1033749	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:07:26	f4d64fc2-4a77-4a1c-8059-ed6237a3f6cf	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:09:41	770e07e4-15b8-4b5f-a020-33cd8aa87577	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:10:34	b9f0551c-b3a0-40e2-9479-ee3e5bfd4b08	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:10:55	40dcd803-db7c-4a64-aa08-8ee89630fdb1	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:11:24	2d82c343-d9cf-41c1-9f80-e8b68d5e8e24	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:13:42	c84a6c6a-94b2-471e-902f-74ee014774d5	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:14:51	f9c6fa5e-c850-4551-899a-82becae65a29	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:16:47	6fdee101-a85d-4eed-b70a-541a669d0a75	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:19:31	06fa8f7a-887b-4a94-8cc0-f7ff0e065a53	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:20:15	a40e2cbc-1600-4dae-a69b-f370d3416f8d	Error: Dupplicate Error	POST	/api/private/create-post	undefined
+20240405	02:23:00	7dc2d91d-508b-4825-8053-9697e9de32d5	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	09:43:44	c142889a-0e0e-4cba-9267-f4f5533420d6	MulterError: Unexpected field	POST	/api/private/create-post	undefined
+20240405	09:44:57	7f57bc97-00b5-4d6d-bb40-eb16147b047b	MulterError: Unexpected field	POST	/api/private/create-post	undefined

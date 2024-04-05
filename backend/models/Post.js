@@ -36,8 +36,36 @@ const postSchema = new mongoose.Schema(
   }
 );
 
-// Add the auto-incrementing ID field
-userSchema.plugin(AutoIncrement, { inc_field: "postId", start_seq: 100 });
-userSchema.plugin(AutoIncrement, { inc_field: "commentId", start_seq: 100 });
+const storieSchema = new mongoose.Schema(
+  {
+    storieId: {
+      type: Number,
+      unique: true,
+    },
+    userId: {
+      type: Number,
+      unique: true,
+    },
+    image: [
+      {
+        storieImgId: Number,
+        url: String,
+        viewed: Boolean,
+        createdAt: String,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model("Post", postSchema);
+// Add the auto-incrementing ID field
+postSchema.plugin(AutoIncrement, { inc_field: "postId", start_seq: 100 });
+// postSchema.plugin(AutoIncrement, { inc_field: "commentId", start_seq: 100 });
+storieSchema.plugin(AutoIncrement, { inc_field: "storieId", start_seq: 100 });
+
+const Storie = mongoose.model("Storie", storieSchema);
+const Post = mongoose.model("Post", postSchema);
+
+module.exports = { Storie, Post };

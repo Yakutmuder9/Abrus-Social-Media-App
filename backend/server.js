@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/private", require("./routes/privateRoutes"));
+app.use("/api/private",require("./routes/privateRoutes"));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

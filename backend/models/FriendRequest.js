@@ -1,62 +1,34 @@
 const mongoose = require("mongoose");
-const AutoIncrement = require("mongoose-sequence")(mongoose);
 
-const watchVideoSchema = new mongoose.Schema(
-  {
-    watchVideoId: {
-      type: Number,
-      unique: true,
-    },
-    pageId: Number,
-    watchThreadId: Number,
-    isFollowed: Boolean,
-    seeCount: Number,
-    isSean: Boolean,
-    isPopular: Boolean,
-    title: String,
-    video: {
-      coverUrl: String,
-      videoUrl: String,
-    },
-
-    createAt: String,
-    content: String,
-    reactions: {
-      love: Number,
-      like: Number,
-      haha: Number,
-    },
-    permission: Number,
-    comments: [
-      {
-        id: Number,
-        name: String,
-        avatarUrl: String,
-        image: String,
-        content: String,
-        createAt: String,
-      },
-    ],
+// Define schema for recommend_friends array
+const recommendFriendSchema = new mongoose.Schema({
+  userId: {
+    type: Number, // Assuming userId is of type Number
+    required: true,
   },
-  {
-    timestamps: true,
-  }
-);
-
-userSchema.plugin(AutoIncrement, {
-  inc_field: "watchVideoId",
-  start_seq: 100,
+  mutualCount: {
+    type: Number,
+    required: true,
+  },
 });
 
-// Define Schema for Watch Thread
-const recommendedFriendSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
+// Define schema for friend_requests array
+const friendRequestSchema = new mongoose.Schema({
+  userId: {
+    type: Number, // Assuming userId is of type Number
+    required: true,
+  },
+  mutualCount: {
+    type: Number,
+    required: true,
+  },
 });
 
-const RarecommendedFriend = mongoose.model(
-  "RarecommendedFriend",
-  recommendedFriendSchema
+// Create Mongoose models for both arrays
+const RecommendFriend = mongoose.model(
+  "RecommendFriend",
+  recommendFriendSchema
 );
-const WatchVideo = mongoose.model("WatchVideo", watchVideoSchema);
-module.exports = { RarecommendedFriend, WatchVideo };
+const FriendRequest = mongoose.model("FriendRequest", friendRequestSchema);
+
+module.exports = { RecommendFriend, FriendRequest };

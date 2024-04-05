@@ -8,7 +8,7 @@ const {
   resetPassword,
   logout,
   changePassword,
-} = require("../controllers/authController");
+} = require("../controllers/authContr");
 const loginLimiter = require("../middleware/loginLimiter");
 const verifyJWT = require("../middleware/verifyJWT");
 
