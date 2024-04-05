@@ -51,9 +51,9 @@ Welcome to Wina, a social media platform where you can connect, share, and engag
     - Visit `http://localhost:3000` to access the app.
 
 ## Contributing
-    Contributions are welcome! Please fork the repository and create a pull request for any improvements or features.
+Contributions are welcome! Please fork the repository and create a pull request for any improvements or features.
 
 ## License
-    This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 Feel free to copy and paste this markdown content into your README.md file on GitHub. You can further customize it based on your project's specifics.
