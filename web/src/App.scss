@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Oswald", Verdana, Arial, sans-serif;
+}
+:root {
+  --white: #ffffff;
+  --green: #7b8f22;
+  --light-blue: #f0f2f5;
+  /*-------------fb-color-pallets----------*/
+  --fds-black: #000000;
+  --fds-white: #ffffff;
+
+  --purple: #001f61;
+  --light: #fff;
+
+  --fds-blue-05: #ecf3ff;
+  --fds-blue-30: #aac9ff;
+  --fds-blue-40: #77a7ff;
+  --fds-blue-60: #1877f2;
+  --fds-blue-70: #2851a3;
+  --fds-blue-80: #1d3c78;
+  --fds-button-text: #444950;
+  --fds-comment-background: #f2f3f5;
+  --fds-dark-mode-gray-35: #cccccc;
+  --fds-dark-mode-gray-50: #828282;
+  --fds-dark-mode-gray-70: #4a4a4a;
+  --base-blue: #1877f2;
+
+  --nav-bar-background-gradient: linear-gradient(
+    to top,
+    #ffffff,
+    rgba(255, 255, 255.9),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0)
+  );
+  --nav-bar-background-gradient-wash: linear-gradient(
+    to top,
+    #f0f2f5,
+    rgba(240, 242, 245.9),
+    rgba(240, 242, 245, 0.7),
+    rgba(240, 242, 245, 0.4),
+    rgba(240, 242, 245, 0)
+  );
+
+  --font-family-apple: system-ui, -apple-system, BlinkMacSystemFont,
+    ".SFNSText-Regular", sans-serif;
+  --font-family-code: ui-monospace, Menlo, Consolas, Monaco, monospace;
+  --font-family-default: Helvetica, Arial, sans-serif;
+  --font-family-segoe: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #010101;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbcaca;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(7, 17, 78);
+}
+.html {
+  overflow-y: scroll;
+  background: var(--light-blue);
+}
+body {
+  background: var(--light-blue);
+}
+.App {
+  background: var(--light-blue);
+}

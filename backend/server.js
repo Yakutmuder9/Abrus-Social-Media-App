@@ -31,13 +31,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 // Connecting Routes
 app.get("/", (req, res) => {
   res.send("Hello, this is a sample backend!");
 });
 
 app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/private",require("./routes/privateRoutes"));
+app.use("/api/private", require("./routes/privateRoutes"));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

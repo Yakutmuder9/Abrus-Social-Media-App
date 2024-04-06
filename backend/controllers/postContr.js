@@ -14,48 +14,80 @@ const createPost = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please fill in all fields");
   }
-
   // Handle Image upload
   let fileData = null;
   if (req.file) {
     try {
-      // Save image to cloudinary
-      const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-        folder: "Pinvent App",
-        resource_type: "image",
-      });
-
+  
       fileData = {
         fileName: req.file.originalname,
-        filePath: uploadedFile.secure_url,
+        filePath: req.file.path,
         fileType: req.file.mimetype,
-        fileSize: fileSizeFormatter(req.file.size, 2),
+        fileSize: req.file.size,
       };
+
+      res.status(201).json(fileData)
+
     } catch (error) {
       res.status(500);
       throw new Error("Image could not be uploaded");
     }
   }
 
-  try {
-    // Get user ID from the decoded JWT token
-    const token = req.cookies.jwt;
-    const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
-    const userId = decoded.userId;
-
-    // Create post
-    const post = await Post.create({
-      userId,
-      content,
-      image: fileData,
-    });
-
-    console.log(post);
-    res.status(201).json(post);
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
 });
+
+// const createPost = asyncHandler(async (req, res) => {
+//   const { content } = req.body;
+
+//   console.log("req.file", req.file, content);
+
+//   // Validation
+//   if (!content && !req.file) {
+//     res.status(400);
+//     throw new Error("Please fill in all fields");
+//   }
+
+//   // Handle Image upload
+//   let fileData = null;
+//   if (req.file) {
+//     try {
+//       // Save image to cloudinary
+//       const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+//         folder: "Pinvent App",
+//         resource_type: "image",
+//       });
+
+//       fileData = {
+//         fileName: req.file.originalname,
+//         filePath: uploadedFile.secure_url,
+//         fileType: req.file.mimetype,
+//         fileSize: fileSizeFormatter(req.file.size, 2),
+//       };
+//     } catch (error) {
+//       res.status(500);
+//       throw new Error("Image could not be uploaded");
+//     }
+//   }
+
+//   try {
+//     // Get user ID from the decoded JWT token
+//     const token = req.cookies.jwt;
+//     const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
+//     const userId = decoded.userId;
+
+//     // Create post
+//     const post = await Post.create({
+//       userId,
+//       content,
+//       image: fileData,
+//     });
+
+//     console.log(post);
+//     res.status(201).json(post);
+//   } catch (error) {
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 const getPost = asyncHandler(async (req, res) => {
   const post = await Post.findOne(req.params.postId);

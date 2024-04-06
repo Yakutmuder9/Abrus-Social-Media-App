@@ -39,16 +39,16 @@ const { getNotification } = require("../controllers/notificationContr");
 const { getPhotos } = require("../controllers/photoContr");
 
 // Post Routes
-router.post("/create-post", verifyJWT,  createPost);
+router.post("/create-post",  upload.single("file"), createPost);
 router.get("/get-post", verifyJWT, getPost);
 router.get("/get-posts", verifyJWT, getPosts);
 router.patch("/update-post", verifyJWT, updatePost);
-router.delete("/delete-post", verifyJWT, upload.single("image"), deletePost);
+router.delete("/delete-post", verifyJWT, upload.single("file"), deletePost);
 
 // Stories Routes
 router.get("/get-stories", verifyJWT, getStories);
-router.post("/create-storie", verifyJWT, upload.single("image"), createStorie);
-router.patch("/update-storie", verifyJWT, upload.single("image"), updateStorie);
+router.post("/create-storie", verifyJWT, upload.single("file"), createStorie);
+router.patch("/update-storie", verifyJWT, upload.single("file"), updateStorie);
 router.delete("/delete-storie", verifyJWT, deleteStorie);
 
 // Friend Request and Recommended Friend Routes

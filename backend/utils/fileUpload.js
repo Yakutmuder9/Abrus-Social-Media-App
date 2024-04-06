@@ -3,12 +3,12 @@ const multer = require("multer");
 
 // Multer configuration
 const storage = multer.diskStorage({
-  // destination: function (req, file, cb) {
-  //   cb(null, "./uploads"); // Set the destination folder for uploaded files
-  // },
-  // filename: function (req, file, cb) {
-  //   cb(null, file.originalname);
-  // },
+  destination: function (req, file, cb) {
+    cb(null, "./uploads"); // Set the destination folder for uploaded files
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
 });
 
 // File size formatter function
@@ -36,7 +36,7 @@ const fileFilter = asyncHandler((req, file, cb) => {
 // Multer upload instance
 const upload = multer({
   storage: storage,
-  // fileFilter: fileFilter,
+  fileFilter: fileFilter,
   // limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
 });
 

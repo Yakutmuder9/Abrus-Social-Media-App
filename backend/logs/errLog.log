@@ -76,3 +76,20 @@
 20240405	15:10:19	0f8310b7-9ffc-4140-9113-2cdb6c780f52	Error: Please fill in all fields	POST	/api/private/create-post	undefined
 20240405	15:19:58	ff89b211-c669-4d4e-ba87-ad72d6369128	Error: post not found	GET	/api/private/get-post	undefined
 20240405	23:06:41	c3d68c4f-d77a-497d-a201-6cc59dee6f48	ValidationError: User validation failed: userFullName: Last name must be atleast 3 letter	POST	/api/auth/register	undefined
+20240406	11:45:24	c0f5b7f0-140f-42ee-8e68-872918d079a9	TypeError: Cannot read properties of undefined (reading 'path')	POST	/api/private/create-post	undefined
+20240406	11:52:09	10f1ca1e-17ef-4734-94d1-aa0bbb8c594f	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240406	11:52:21	507a2689-7f03-458c-8646-9b6b1188394a	Error: Please fill in all fields	POST	/api/private/create-post	undefined
+20240406	14:08:29	4735cd21-bc0a-4b4a-b80a-fb954c7137f0	MulterError: Unexpected field	POST	/api/private/post	undefined
+20240406	14:20:34	131b969b-fc15-4a10-818a-6d04e9fffc21	ReferenceError: createError is not defined	GET	/api/private/create-post	undefined
+20240406	14:28:06	da22ebcc-be0e-451b-b41a-a9fbf9203ba2	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:29:10	8bed62d6-75e8-4a9b-8b22-b94497f5afa6	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:30:47	0fce1b93-e4f4-4148-8a41-567014e4f0c5	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:32:03	4f7f4a80-e9d1-4bb9-88ca-40770565a8f9	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:34:58	f4289056-8f1d-48ba-82b7-c0a313a64fa3	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:35:46	02758d7f-a707-40ba-a848-c7b12f340ac0	ReferenceError: path is not defined	POST	/api/private/create-post	undefined
+20240406	14:36:32	91861812-2063-4bff-9672-091158f36ed9	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:38:09	2cba9c99-e472-451a-8a46-2e20105deb7b	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:39:42	50516b0d-e02d-4e32-ab01-7f3c45d31996	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:40:22	288ac2fc-8aa1-4ae1-a479-cfed0a86f79f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:41:11	b7366804-d024-41ca-9386-341c27cd12e9	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	14:42:10	08140cd0-1e0b-45d5-b560-888dcf80d41b	Error: Cannot set headers after they are sent to the client	POST	/api/private/create-post	undefined
