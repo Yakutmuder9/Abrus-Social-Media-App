@@ -7,8 +7,6 @@ const { fileSizeFormatter } = require("../utils/fileUpload");
 const createPost = asyncHandler(async (req, res) => {
   const { content } = req.body;
 
-  console.log("req.file", req.file, content);
-
   // Validation
   if (!content && !req.file) {
     res.status(400);
@@ -18,22 +16,26 @@ const createPost = asyncHandler(async (req, res) => {
   let fileData = null;
   if (req.file) {
     try {
-  
+      // Save image to cloudinary
+      const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+        folder: "Wina",
+        resource_type: "image",
+      });
+
+      console.log("upload", uploadedFile);
       fileData = {
         fileName: req.file.originalname,
-        filePath: req.file.path,
+        filePath: uploadedFile.secure_url,
         fileType: req.file.mimetype,
-        fileSize: req.file.size,
+        fileSize: fileSizeFormatter(req.file.size, 2),
       };
 
-      res.status(201).json(fileData)
-
+      res.status(200).json({ message: "Image uploaded Succesfully!" });
     } catch (error) {
       res.status(500);
       throw new Error("Image could not be uploaded");
     }
   }
-
 });
 
 // const createPost = asyncHandler(async (req, res) => {
@@ -89,6 +91,34 @@ const createPost = asyncHandler(async (req, res) => {
 //   }
 // });
 
+// const createPost = asyncHandler(async (req, res) => {
+//   const { content } = req.body;
+
+//   console.log("req.file", req.file, content);
+
+//   // Validation
+//   if (!content && !req.file) {
+//     res.status(400);
+//     throw new Error("Please fill in all fields");
+//   }
+//   // Handle Image upload
+//   let fileData = null;
+//   if (req.file) {
+//     try {
+//       fileData = {
+//         fileName: req.file.originalname,
+//         filePath: req.file.path,
+//         fileType: req.file.mimetype,
+//         fileSize: req.file.size,
+//       };
+
+//       res.status(201).json(fileData);
+//     } catch (error) {
+//       res.status(500);
+//       throw new Error("Image could not be uploaded");
+//     }
+//   }
+// });
 const getPost = asyncHandler(async (req, res) => {
   const post = await Post.findOne(req.params.postId);
   // if post doesnt exist

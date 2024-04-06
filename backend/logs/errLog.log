@@ -93,3 +93,14 @@
 20240406	14:40:22	288ac2fc-8aa1-4ae1-a479-cfed0a86f79f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
 20240406	14:41:11	b7366804-d024-41ca-9386-341c27cd12e9	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
 20240406	14:42:10	08140cd0-1e0b-45d5-b560-888dcf80d41b	Error: Cannot set headers after they are sent to the client	POST	/api/private/create-post	undefined
+20240406	15:38:40	b394f9f8-eead-4ee8-b7a1-28a2222c2467	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	15:40:14	a9a69b20-c5b8-4ea4-b0d0-465e97f85998	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	15:42:03	eeb7fb96-2a9c-40e5-9d10-d24ce5af5d21	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	15:47:21	1bd0fea6-27d9-4d93-aa10-6036b00d58cb	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	15:54:04	0e1c0dec-af74-4254-a6e6-f54dff6b7857	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:02:27	ad2d495b-80be-4a21-afdc-502ab51dfb96	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:09:17	fa3b8e05-6fb0-4627-b38c-33c672a3d862	MulterError: File too large	POST	/api/private/create-post	undefined
+20240406	16:20:46	1e2fc5ff-d13a-4f9e-b85d-e6f4da33a219	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:21:05	ad454a4a-9e0b-4313-8dd3-469e06a7fb8f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:22:53	7cd5b12d-2db0-41bc-ae95-a13cd487e876	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:23:23	fa94ed66-a31c-4b11-b543-657ceb002cd5	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
