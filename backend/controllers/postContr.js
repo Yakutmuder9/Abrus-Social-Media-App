@@ -1,11 +1,12 @@
 const asyncHandler = require("express-async-handler");
-const { Post } = require("../models/Post");
-const jwt = require("jsonwebtoken");
+const { Post, Storie } = require("../models/Post");
 const cloudinary = require("../utils/cloudinary");
 const { fileSizeFormatter } = require("../utils/fileUpload");
 
+// ----------Post function start here------------
 const createPost = asyncHandler(async (req, res) => {
   const { content } = req.body;
+  const userId = req.user;
 
   // Validation
   if (!content && !req.file) {
@@ -14,7 +15,7 @@ const createPost = asyncHandler(async (req, res) => {
   }
   // Handle Image upload
   let fileData = null;
-  if (req.file) {
+  if (req.file && req.user) {
     try {
       // Save image to cloudinary
       const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
@@ -22,129 +23,242 @@ const createPost = asyncHandler(async (req, res) => {
         resource_type: "image",
       });
 
-      console.log("upload", uploadedFile);
       fileData = {
         fileName: req.file.originalname,
         filePath: uploadedFile.secure_url,
         fileType: req.file.mimetype,
-        fileSize: fileSizeFormatter(req.file.size, 2),
+        fileSize: await fileSizeFormatter(req.file.size, 2),
       };
 
-      res.status(200).json({ message: "Image uploaded Succesfully!" });
+      // Create post
+      const post = await Post.create({
+        userId,
+        content,
+        image: [fileData],
+      });
+
+      res.status(200).json({ message: "post successfull!" });
     } catch (error) {
       res.status(500);
       throw new Error("Image could not be uploaded");
     }
+  } else {
+    res.status(500);
+    throw new Error("User not authorized");
   }
 });
 
-// const createPost = asyncHandler(async (req, res) => {
-//   const { content } = req.body;
-
-//   console.log("req.file", req.file, content);
-
-//   // Validation
-//   if (!content && !req.file) {
-//     res.status(400);
-//     throw new Error("Please fill in all fields");
-//   }
-
-//   // Handle Image upload
-//   let fileData = null;
-//   if (req.file) {
-//     try {
-//       // Save image to cloudinary
-//       const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-//         folder: "Pinvent App",
-//         resource_type: "image",
-//       });
-
-//       fileData = {
-//         fileName: req.file.originalname,
-//         filePath: uploadedFile.secure_url,
-//         fileType: req.file.mimetype,
-//         fileSize: fileSizeFormatter(req.file.size, 2),
-//       };
-//     } catch (error) {
-//       res.status(500);
-//       throw new Error("Image could not be uploaded");
-//     }
-//   }
-
-//   try {
-//     // Get user ID from the decoded JWT token
-//     const token = req.cookies.jwt;
-//     const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
-//     const userId = decoded.userId;
-
-//     // Create post
-//     const post = await Post.create({
-//       userId,
-//       content,
-//       image: fileData,
-//     });
-
-//     console.log(post);
-//     res.status(201).json(post);
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
-// const createPost = asyncHandler(async (req, res) => {
-//   const { content } = req.body;
-
-//   console.log("req.file", req.file, content);
-
-//   // Validation
-//   if (!content && !req.file) {
-//     res.status(400);
-//     throw new Error("Please fill in all fields");
-//   }
-//   // Handle Image upload
-//   let fileData = null;
-//   if (req.file) {
-//     try {
-//       fileData = {
-//         fileName: req.file.originalname,
-//         filePath: req.file.path,
-//         fileType: req.file.mimetype,
-//         fileSize: req.file.size,
-//       };
-
-//       res.status(201).json(fileData);
-//     } catch (error) {
-//       res.status(500);
-//       throw new Error("Image could not be uploaded");
-//     }
-//   }
-// });
 const getPost = asyncHandler(async (req, res) => {
-  const post = await Post.findOne(req.params.postId);
-  // if post doesnt exist
-  if (!post) {
-    res.status(404);
-    throw new Error("post not found");
+  try {
+    const { id } = req.params;
+    const post = await Post.findOne({ userId: req.user, postId: id });
+
+    // if post doesnt exist
+    if (!post) {
+      res.status(404);
+      throw new Error("post not found");
+    }
+
+    res.status(200).json(post);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
   }
-  // Match post to its user
-  if (post.user.toString() !== req.user.postId) {
-    res.status(401);
-    throw new Error("User not authorized");
-  }
-  res.status(200).json(post);
 });
 
 const getPosts = asyncHandler(async (req, res) => {
-  const post = await Post.find({ user: req.user.userId }).sort("-createdAt");
-  res.status(200).json(post);
+  try {
+    const post = await Post.find({ userId: req.user }).sort("-createdAt");
+    res.status(200).json(post);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
 });
-const updatePost = asyncHandler(async (req, res) => {});
-const deletePost = asyncHandler(async (req, res) => {});
 
-const getStories = asyncHandler(async (res, req) => {});
-const createStorie = asyncHandler(async (res, req) => {});
-const updateStorie = asyncHandler(async (res, req) => {});
-const deleteStorie = asyncHandler(async (res, req) => {});
+const updatePost = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.findOne({ userId: req.user, postId: id });
+
+    // if post doesn't exist
+    if (!post) {
+      res.status(404);
+      throw new Error("Post not found");
+    }
+
+    let updatedFields = {}; // Initialize an empty object to store updated fields
+
+    if (req.body.content) {
+      updatedFields.content = req.body.content;
+    }
+
+    if (req.file) {
+      // Save image to Cloudinary
+      const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+        folder: "Wina",
+        resource_type: "image",
+      });
+
+      const fileData = {
+        fileName: req.file.originalname,
+        filePath: uploadedFile.secure_url,
+        fileType: req.file.mimetype,
+        fileSize: await fileSizeFormatter(req.file.size, 2),
+      };
+
+      updatedFields.image = [fileData]; // Update image field in the post
+    }
+
+    // Update post
+    const updatedPost = await Post.findOneAndUpdate(
+      { userId: req.user, postId: id },
+      updatedFields, // Apply the updated fields
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Run validation checks on the update
+      }
+    );
+
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
+
+const deletePost = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.deleteOne({ userId: req.user, postId: id });
+
+    // if post doesnt exist
+    if (!post) {
+      res.status(404);
+      throw new Error("post not found");
+    }
+
+    res.status(200).json({ message: "Post deleted." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
+
+// ----------Stories function start here------------
+const getStorie = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const storie = await Storie.findOne({ userId: req.user, storieId: id });
+
+    // if post doesnt exist
+    if (!storie) {
+      res.status(404);
+      throw new Error("post not found");
+    }
+    res.status(200).json("storie");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
+const createStorie = asyncHandler(async (req, res) => {
+  try {
+    const userId = req.user;
+
+    // Validation
+    if (!req.file) {
+      res.status(400);
+      throw new Error("Please fill in all fields");
+    }
+
+    // Handle Image upload
+    let fileData = null;
+    if (req.file && req.user) {
+      // Save image to cloudinary
+      const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+        folder: "Wina",
+        resource_type: "image",
+      });
+
+      fileData = {
+        url: uploadedFile.secure_url,
+        fileSize: await fileSizeFormatter(req.file.size, 2),
+      };
+
+      // Create storie
+      const storie = await Storie.create({
+        userId,
+        image: fileData,
+      });
+
+      res.status(200).json({ message: "storie created successfull!" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
+const updateStorie = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const storie = await Storie.findOne({ userId: req.user, storieId: id });
+
+    // if post doesn't exist
+    if (!storie) {
+      res.status(404);
+      throw new Error("storie not found");
+    }
+
+    let updatedFields = {}; // Initialize an empty object to store updated fields
+    if (req.file) {
+      // Save image to Cloudinary
+      const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+        folder: "Wina",
+        resource_type: "image",
+      });
+
+      fileData = {
+        url: uploadedFile.secure_url,
+        fileSize: await fileSizeFormatter(req.file.size, 2),
+      };
+
+      updatedFields.image = fileData; // Update image field in the post
+
+      // Update post
+      const updatedStorie = await Storie.findOneAndUpdate(
+        { userId: req.user, storieId: id },
+        updatedFields, // Apply the updated fields
+        {
+          new: true, // Return the updated document
+          runValidators: true, // Run validation checks on the update
+        }
+      );
+
+      res.status(200).json(updatedStorie);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
+const deleteStorie = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const stoire = await Stoire.deleteOne({ userId: req.user, stoireId: id });
+
+    // if post doesnt exist
+    if (!stoire) {
+      res.status(404);
+      throw new Error("stoire not found");
+    }
+
+    res.status(200).json({ message: "stoire deleted." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
 
 module.exports = {
   createPost,
@@ -152,7 +266,7 @@ module.exports = {
   getPosts,
   updatePost,
   deletePost,
-  getStories,
+  getStorie,
   createStorie,
   updateStorie,
   deleteStorie,

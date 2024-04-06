@@ -94,12 +94,12 @@ const login = asyncHandler(async (req, res) => {
   const foundUser = await User.findOne({ email }).exec();
 
   if (!foundUser || !foundUser.active) {
-    return res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).json({ message: "User Not Found" });
   }
 
   const match = await bcrypt.compare(password, foundUser.password);
 
-  if (!match) return res.status(401).json({ message: "Em Unauthorized" });
+  if (!match) return res.status(401).json({ message: "Unauthorized" });
 
   const accessToken = jwt.sign(
     {
@@ -270,32 +270,6 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ message: "Password reset failed" });
   }
 };
-
-// const resetPassword = async (req, res) => {
-//   const { resetToken } = req.params;
-//   const { newPassword } = req.body;
-
-//   // Hash the reset token to compare with the stored hashed token
-//   const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-
-//   // Find the user with the matching reset token and not expired
-//   const user = await User.findOne({
-//     resetPasswordToken: hashedToken,
-//     resetPasswordExpire: { $gt: Date.now() },
-//   });
-
-//   if (!user) {
-//     return res.status(400).json({ message: "Invalid or expired reset token" });
-//   }
-
-//   // Set new password and remove reset token fields
-//   user.password = await bcrypt.hash(newPassword, 10);
-//   user.resetPasswordToken = undefined;
-//   user.resetPasswordExpire = undefined;
-//   await user.save();
-
-//   res.status(200).json({ message: "Password reset successful" });
-// };
 
 // Logout User
 const logout = asyncHandler(async (req, res) => {

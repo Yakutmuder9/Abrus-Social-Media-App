@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Yakutmuder9/Wina-social-app#readme",
   "dependencies": {
+    "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cloudinary": "^2.1.0",

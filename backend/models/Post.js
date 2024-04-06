@@ -1,16 +1,32 @@
 const mongoose = require("mongoose");
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
+const imageSchema = new mongoose.Schema({
+  fileName: String,
+  filePath: String,
+  fileType: String,
+  fileSize: String,
+});
+const storieImgSchema = new mongoose.Schema({
+  storieImgId: Number,
+  url: String,
+  fileSize: String,
+  viewCount: {
+    type: Number,
+    default: 0, 
+  },
+  viewedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // Assuming User model exists
+  createdAt: Date,
+});
+
 const postSchema = new mongoose.Schema(
   {
     postId: {
       type: Number,
       unique: true,
     },
-    image: [String],
-    createdAt: {
-      type: String,
-    },
+    image: [imageSchema],
+    createdAt: String,
     content: String,
     userId: Number,
     reactions: {
@@ -46,14 +62,7 @@ const storieSchema = new mongoose.Schema(
       type: Number,
       unique: true,
     },
-    image: [
-      {
-        storieImgId: Number,
-        url: String,
-        viewed: Boolean,
-        createdAt: String,
-      },
-    ],
+    image: storieImgSchema,
   },
   {
     timestamps: true,

@@ -8,7 +8,7 @@ const {
   getPosts,
   updatePost,
   deletePost,
-  getStories,
+  getStorie,
   createStorie,
   updateStorie,
   deleteStorie,
@@ -39,17 +39,17 @@ const { getNotification } = require("../controllers/notificationContr");
 const { getPhotos } = require("../controllers/photoContr");
 
 // Post Routes
-router.post("/create-post",  upload.single("file"), createPost);
-router.get("/get-post", verifyJWT, getPost);
-router.get("/get-posts", verifyJWT, getPosts);
-router.patch("/update-post", verifyJWT, updatePost);
-router.delete("/delete-post", verifyJWT, upload.single("file"), deletePost);
+router.post("/post", verifyJWT, upload.single("file"), createPost);
+router.get("/post/:id", verifyJWT, getPost);
+router.get("/post", verifyJWT, getPosts);
+router.patch("/post/:id", verifyJWT, upload.single("file"), updatePost);
+router.delete("/post/:id", verifyJWT, deletePost);
 
 // Stories Routes
-router.get("/get-stories", verifyJWT, getStories);
-router.post("/create-storie", verifyJWT, upload.single("file"), createStorie);
-router.patch("/update-storie", verifyJWT, upload.single("file"), updateStorie);
-router.delete("/delete-storie", verifyJWT, deleteStorie);
+router.get("/storie/:id", verifyJWT, getStorie);
+router.post("/storie", verifyJWT, upload.single("file"), createStorie);
+router.patch("/storie/:id", verifyJWT, upload.single("file"), updateStorie);
+router.delete("/storie/:id", verifyJWT, deleteStorie);
 
 // Friend Request and Recommended Friend Routes
 router.get("/friend-request", verifyJWT, getFriendRequest);

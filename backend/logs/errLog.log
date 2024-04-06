@@ -104,3 +104,69 @@
 20240406	16:21:05	ad454a4a-9e0b-4313-8dd3-469e06a7fb8f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
 20240406	16:22:53	7cd5b12d-2db0-41bc-ae95-a13cd487e876	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
 20240406	16:23:23	fa94ed66-a31c-4b11-b543-657ceb002cd5	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:35:03	fcddb896-e80a-4fb0-a03a-120607868015	ReferenceError: createError is not defined	POST	/api/private/login	undefined
+20240406	16:36:58	7e1c0eb3-10a5-4b00-9db4-a9464322ac9f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:38:38	08c20c34-0bd2-43a5-b6f1-ce533d9f6f05	ReferenceError: re is not defined	POST	/api/private/create-post	undefined
+20240406	16:39:06	a52bbf18-e378-41fa-9b69-dd0dde8da5ef	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:39:58	ab767989-506c-4e49-bda6-2eb9a559a9ec	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:43:25	db348998-0146-47e3-9168-a8e072133041	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:44:59	f7f8c088-0799-4985-89b2-4b25b4115df0	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:47:06	35954220-11ab-4731-818c-9ece26f3ab9f	ReferenceError: userId is not defined	POST	/api/private/create-post	undefined
+20240406	16:50:56	7f9877f1-8ff9-4c11-8b2f-14c5251a9085	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	16:51:57	b14535cb-f345-4ff8-8db9-caa6191da013	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:24:15	e87109f6-dba5-42df-8626-c3fbfa16d6b1	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:24:19	cf1e8b5d-502f-4337-8a69-0d969ba7ccbf	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:25:10	df6c7f2b-e06c-43ad-a13e-0460cb3f472a	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:28:31	914c1660-f5ee-41bf-bba2-4409d133279a	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:29:52	843ac316-9bfb-4849-8bfe-33c39b360d35	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:33:12	574a7565-4348-49ce-9678-684f0a686ea0	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:35:15	f6385e9d-f088-4d24-818d-6c220be8e321	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:40:21	1936aca1-7342-437c-a186-ff22c3470d3e	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:41:13	833a9243-e335-40b3-bd61-bcd78b9fdae9	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:42:24	bd0b9bac-1a1f-44d1-a8e0-a8743ef8f777	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:46:26	a3d774dd-3a87-4e26-b28f-09727c84e2b8	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:49:37	a940451e-62e4-4496-8a91-ea8839856088	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:52:11	d1e59afb-9d72-4268-936b-1aebb0607fc1	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:53:10	747938b2-efd3-441a-8c8a-cead937f7a71	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:58:43	73df44d7-0726-4500-ae06-842aea42850f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	17:59:39	c8da373b-2464-497b-8dbe-76e1e5f1d424	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:00:34	4ed57267-707e-4038-bded-669aced20b7f	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:03:05	107b9d21-6ec6-4568-9957-24d7421d0c86	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:07:22	a00a3837-f5d3-4188-a500-7bd9bf0f4338	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:07:57	94f843c8-3c85-4414-9e7c-9ebc493ef0b9	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:08:52	6e6ccc3a-cb84-485d-8ce3-3a08b6c8b13b	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:10:15	1eae0c49-7a99-481d-b832-c6e071485b33	Error: Image could not be uploaded	POST	/api/private/create-post	undefined
+20240406	18:30:27	800fa1ea-7191-4135-84e0-d956a61bd6c7	ReferenceError: createError is not defined	GET	/api/private/post	undefined
+20240406	23:03:15	558a5bbd-7bd7-4129-bbab-063c74869d79	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/123	undefined
+20240406	23:06:23	553a8cc6-9f88-4b9b-9093-9584346effae	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/123	undefined
+20240406	23:08:37	b2c501e5-9b36-433b-93ad-ee02afce3488	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/123	undefined
+20240406	23:08:53	0e656237-754c-43af-aa16-89a95352a3fe	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/123	undefined
+20240406	23:14:31	d9d83664-df80-4074-9759-613aae52d1dd	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/123	undefined
+20240406	23:19:23	4e904121-f748-4adc-aacd-b4048a39426d	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/123	undefined
+20240406	23:19:51	365c975e-6db5-49b4-9995-c7e3ba24ae63	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/122	undefined
+20240406	23:21:24	921283c2-7dbb-44aa-bcdc-4225bf177a86	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/122	undefined
+20240406	23:23:16	5c97830a-a777-4365-b77a-5920f7bc3b79	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/122	undefined
+20240406	23:25:10	7e5b2d28-9dde-4003-9a39-b99637346df2	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/122	undefined
+20240406	23:32:18	dacabe38-d818-4b99-bbbd-4ddc5c116777	ReferenceError: createError is not defined	GET	/api/private/create-post	undefined
+20240406	23:32:27	8876f092-a6f3-4a83-98c6-eee6ac6d47b3	ReferenceError: createError is not defined	POST	/api/private/create-post	undefined
+20240406	23:33:46	9dc9b7c7-d0d3-496b-b772-f76777f05b9c	MulterError: File too large	POST	/api/private/post	undefined
+20240406	23:35:03	d1ddfee7-bdbc-4611-af47-b96180abd0db	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/122	undefined
+20240406	23:36:20	ed64d8fd-26ef-4633-83ec-ba6ad1d4c3ea	Error: post not found	GET	/api/private/post/122	undefined
+20240406	23:38:42	e47bd0d7-be5f-4f65-92d6-187dc3606606	Error: post not found	GET	/api/private/post/123	undefined
+20240406	23:38:47	b108ac23-0f02-4f0c-8265-baa1567669de	TypeError: Cannot read properties of undefined (reading 'toString')	GET	/api/private/post/125	undefined
+20240407	00:24:42	5cb2fd6f-2949-4489-aeb1-708ea7740a16	ReferenceError: createError is not defined	PATCH	/api/private/post	undefined
+20240407	00:28:29	a2af2590-e208-442a-b5b5-0acc549afb72	ReferenceError: createError is not defined	PATCH	/api/private/post	undefined
+20240407	01:04:47	5e1cc99a-cf16-4e24-8edc-b631c87763f7	ReferenceError: createError is not defined	GET	/api/private/storie/123	undefined
+20240407	01:04:55	3f1b2f77-3ac6-4205-82eb-732251df188d	TypeError: res.status is not a function	GET	/api/private/storie	undefined
+20240407	01:05:28	34619eb9-b297-46d6-97f7-a1481cc068a0	TypeError: res.status is not a function	GET	/api/private/storie	undefined
+20240407	01:06:28	537069db-a2ac-4498-9b5c-3c2bbff83c32	TypeError: res.status is not a function	GET	/api/private/storie	undefined
+20240407	01:07:25	f16c5c4a-4ff2-4df4-9258-7d8cff8e543f	ReferenceError: createError is not defined	GET	/api/private/storie/123	undefined
+20240407	01:07:55	9f2bdbcd-da66-48bd-8af3-d2f9cb5ba608	TypeError: res.status is not a function	GET	/api/private/storie/123	undefined
+20240407	01:08:36	1edf3b55-e1be-4717-8828-5953b2746456	TypeError: res.status is not a function	GET	/api/private/storie/123	undefined
+20240407	01:10:10	29ebc6f4-848c-4250-82fd-de7e383adbd0	TypeError: res.status is not a function	GET	/api/private/storie/123	undefined
+20240407	01:10:51	68e6bee8-127a-4dd7-af39-6ed5b954646b	TypeError: res.status is not a function	GET	/api/private/storie/123	undefined
+20240407	01:11:14	ef97c6e4-c71b-41b4-a421-de09088aef39	TypeError: res.status is not a function	GET	/api/private/storie/123	undefined
+20240407	01:12:50	c219f135-3487-48f9-b98a-c9f6f580f469	TypeError: res.status is not a function	GET	/api/private/storie/123	undefined
+20240407	01:13:23	af4e2ca1-b615-4921-a73b-b5a1fed9ec61	TypeError: res.send is not a function	GET	/api/private/storie/123	undefined
+20240407	01:16:15	3e20fff8-dc06-4af8-ace2-c2a971fcd08d	Error: Cannot set headers after they are sent to the client	GET	/api/private/storie/123	undefined
+20240407	01:24:35	65164a24-af9c-4525-9830-1a04b54f4ba1	TypeError: res.status is not a function	POST	/api/private/storie	undefined
