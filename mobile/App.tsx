@@ -9,11 +9,11 @@ import Loading from './components/LoadingComponent';
 const App = (): React.JSX.Element => {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={<Loading />} persistor={persistor}> */}
-      <NavigationContainer>
-        <MainComponent />
-      </NavigationContainer>
-      {/* </PersistGate> */}
+      <PersistGate loading={<Loading />} persistor={persistor}>
+        <NavigationContainer>
+          <MainComponent />
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };
