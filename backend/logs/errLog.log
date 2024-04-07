@@ -170,3 +170,9 @@
 20240407	01:13:23	af4e2ca1-b615-4921-a73b-b5a1fed9ec61	TypeError: res.send is not a function	GET	/api/private/storie/123	undefined
 20240407	01:16:15	3e20fff8-dc06-4af8-ace2-c2a971fcd08d	Error: Cannot set headers after they are sent to the client	GET	/api/private/storie/123	undefined
 20240407	01:24:35	65164a24-af9c-4525-9830-1a04b54f4ba1	TypeError: res.status is not a function	POST	/api/private/storie	undefined
+20240407	13:15:19	ccc894ad-4931-4cec-a826-db639ac4508d	ReferenceError: createError is not defined	PATCH	/api/private/group/109	undefined
+20240407	13:36:12	e783ba3f-bf8a-467b-b7a1-0ba59939b07a	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
+20240407	14:41:55	15ba991e-8586-4ee6-9590-d3b9a9527ece	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
+20240407	14:55:05	da15f0e8-5588-4e8c-ba2d-5565813c8805	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
+20240407	14:56:04	f8cf2cca-91f3-4126-afec-0dae8b13cdaa	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
+20240407	15:25:44	a3fef27c-ac8e-4ca6-9b33-38286719e818	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined

@@ -10,8 +10,9 @@ const createPost = asyncHandler(async (req, res) => {
 
   // Validation
   if (!content && !req.file) {
-    res.status(400);
-    throw new Error("Please fill in all fields");
+    res
+      .status(404)
+      .json({ success: false, error: "Please fill in all fields!" });
   }
   // Handle Image upload
   let fileData = null;
@@ -55,8 +56,7 @@ const getPost = asyncHandler(async (req, res) => {
 
     // if post doesnt exist
     if (!post) {
-      res.status(404);
-      throw new Error("post not found");
+      res.status(404).json({ success: false, error: "Post Not Found!" });
     }
 
     res.status(200).json(post);
@@ -69,6 +69,11 @@ const getPost = asyncHandler(async (req, res) => {
 const getPosts = asyncHandler(async (req, res) => {
   try {
     const post = await Post.find({ userId: req.user }).sort("-createdAt");
+    // if post doesnt exist
+    if (!post) {
+      res.status(404).json({ success: false, error: "Post Not Found!" });
+    }
+
     res.status(200).json(post);
   } catch (error) {
     console.error(error);
@@ -81,10 +86,9 @@ const updatePost = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findOne({ userId: req.user, postId: id });
 
-    // if post doesn't exist
+    // if post doesnt exist
     if (!post) {
-      res.status(404);
-      throw new Error("Post not found");
+      res.status(404).json({ success: false, error: "Post Not Found!" });
     }
 
     let updatedFields = {}; // Initialize an empty object to store updated fields
@@ -134,8 +138,7 @@ const deletePost = asyncHandler(async (req, res) => {
 
     // if post doesnt exist
     if (!post) {
-      res.status(404);
-      throw new Error("post not found");
+      res.status(404).json({ success: false, error: "Post Not Found!" });
     }
 
     res.status(200).json({ message: "Post deleted." });
@@ -151,25 +154,27 @@ const getStorie = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const storie = await Storie.findOne({ userId: req.user, storieId: id });
 
-    // if post doesnt exist
+    // if storie doesnt exist
     if (!storie) {
-      res.status(404);
-      throw new Error("post not found");
+      res.status(404).json({ success: false, error: "Storie Not Found!" });
     }
+
     res.status(200).json("storie");
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
   }
 });
+
 const createStorie = asyncHandler(async (req, res) => {
   try {
     const userId = req.user;
 
     // Validation
     if (!req.file) {
-      res.status(400);
-      throw new Error("Please fill in all fields");
+      res
+        .status(400)
+        .json({ success: false, error: "Please fill in all fields" });
     }
 
     // Handle Image upload
@@ -199,6 +204,7 @@ const createStorie = asyncHandler(async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 });
+
 const updateStorie = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -206,8 +212,7 @@ const updateStorie = asyncHandler(async (req, res) => {
 
     // if post doesn't exist
     if (!storie) {
-      res.status(404);
-      throw new Error("storie not found");
+      res.status(404).json({ success: false, error: "Storie Not Found!" });
     }
 
     let updatedFields = {}; // Initialize an empty object to store updated fields
@@ -242,6 +247,7 @@ const updateStorie = asyncHandler(async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 });
+
 const deleteStorie = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -249,8 +255,7 @@ const deleteStorie = asyncHandler(async (req, res) => {
 
     // if post doesnt exist
     if (!stoire) {
-      res.status(404);
-      throw new Error("stoire not found");
+      res.status(404).json({ success: false, error: "Storie Not Found!" });
     }
 
     res.status(200).json({ message: "stoire deleted." });

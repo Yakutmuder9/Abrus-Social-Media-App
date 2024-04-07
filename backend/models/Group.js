@@ -4,13 +4,14 @@ const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 // Define the Schema for Groups
 const groupSchema = new mongoose.Schema({
-  groupId: Number,
-  name: String,
+  groupId: { type: Number, unique: true },
+  groupName: String,
   isPublic: Boolean,
   isJoined: Boolean,
   member: Number,
   coverUrl: String,
   postPerDay: Number,
+  userId: Number,
   friendsInGroup: [
     {
       userId: Number,
@@ -22,7 +23,7 @@ const groupSchema = new mongoose.Schema({
 
 // Define the Schema for Group Posts
 const groupPostSchema = new mongoose.Schema({
-  groupPostId: Number,
+  groupPostId: { type: Number, unique: true },
   image: String,
   create_at: String,
   content: String,
@@ -51,7 +52,7 @@ const groupPostSchema = new mongoose.Schema({
 
 // Define the Schema for Group Categories
 const groupCategorySchema = new mongoose.Schema({
-  groupCategoryId: Number,
+  groupCategoryId: { type: Number, unique: true },
   name: String,
   tags: [String],
   isPopular: Boolean,
@@ -63,19 +64,18 @@ const groupCategorySchema = new mongoose.Schema({
   ],
 });
 
-userSchema.plugin(AutoIncrement, {
-  inc_field: "group",
+groupSchema.plugin(AutoIncrement, {
+  inc_field: "groupId",
   start_seq: 100,
 });
-userSchema.plugin(AutoIncrement, {
-  inc_field: "groupPost",
+groupPostSchema.plugin(AutoIncrement, {
+  inc_field: "groupPostId",
   start_seq: 100,
 });
-userSchema.plugin(AutoIncrement, {
-  inc_field: "groupCategory",
+groupCategorySchema.plugin(AutoIncrement, {
+  inc_field: "groupCategoryId",
   start_seq: 100,
 });
-
 
 // Create Models based on the Schemas
 const Group = mongoose.model("Group", groupSchema);

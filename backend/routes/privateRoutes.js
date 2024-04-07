@@ -19,7 +19,11 @@ const {
 } = require("../controllers/friendRequestContr");
 const { getPage, getPagePosts } = require("../controllers/pageContr");
 const {
+  getGroups,
   getGroup,
+  createGroup,
+  updateGroup,
+  deleteGroup,
   getGroupPost,
   getGroupPostCategories,
 } = require("../controllers/groupContr");
@@ -60,7 +64,20 @@ router.get("/page", verifyJWT, getPage);
 router.get("/page-posts", verifyJWT, getPagePosts);
 
 // Groups, Group Posts and Group Categories Routes
-router.get("/group", verifyJWT, getGroup);
+router.get("/group", verifyJWT, getGroups);
+router.get("/group/:id", verifyJWT, getGroup);
+router.post("/group", verifyJWT, upload.single("file"), createGroup);
+router.patch(
+  "/group/:id",
+  verifyJWT,
+  upload.fields([
+    { name: "coverUrl", maxCount: 4 },
+    { name: "avatarUrl", maxCount: 4 },
+  ]),
+  updateGroup
+);
+
+router.post("/group/:id", verifyJWT, deleteGroup);
 router.get("/group-post", verifyJWT, getGroupPost);
 router.get("/group-post-categories", verifyJWT, getGroupPostCategories);
 
