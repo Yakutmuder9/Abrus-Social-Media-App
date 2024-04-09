@@ -1,19 +1,6 @@
-import { ScrollView, Text, View } from "react-native";
+import {Text} from 'react-native';
 
 const MainComponent = () => {
-  return (
-    <View>
-      <ScrollView>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-        <Text>Abrus Socail Media App</Text>
-      </ScrollView>
-    </View>
-  );
+  return <Text>Wina Social Media App</Text>;
 };
 export default MainComponent;
