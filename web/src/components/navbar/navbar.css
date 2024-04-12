@@ -1,0 +1,100 @@
+.top-nav-bar {
+    background: var(--white);
+    height: 55px;
+    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.24);
+}
+.logo-name h2{
+    color: var(--purple)!important;
+    font-weight: 900;
+}
+.nav-search input{
+    width: 380px;
+    border: 2px solid silver;
+    border-radius: 25px;
+}
+.top-nav-bar h4 {
+    color: var(--green);
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.left-nav-container {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.left-open-menu {
+    width: 280px;
+}
+
+#nav-collaps-con {
+    text-align: center;
+    width: 55px;
+}
+
+#nav-collaps-con ul li {
+    text-align: center;
+    margin: 8px;
+    width: 100% !important;
+
+}
+.profile-name::first-letter {
+    text-transform:capitalize;
+}
+.mobile-size-nav span svg{
+    color: #7c7d7d!important;
+    font-size: x-large;
+}
+.mobile-size-nav .mobile_ava .active .moblie-avator{
+    border:2px solid var(--purple)!important;
+}
+.mobile-size-nav .active svg{
+    color: var(--purple)!important;
+}
+.moblie-avator{
+    width: 32px!important;
+    height: 32px!important;
+}
+
+.menu-aside a {
+    display: block;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+
+
+.menu-aside svg{
+    margin-right: 5px;
+    color: var(--purple);
+}
+.menu-aside .active svg{
+    color: var(--purple);
+    margin-right: 5px;
+}
+.menu-aside .menu-item:hover , .right-item:hover {
+    background:  #e3e3e3;
+    cursor: pointer;
+
+}
+.menu-aside .active {
+    border-left: 6px solid var(--purple);
+}
+
+.menu-aside .menu-link {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: var(--purple);
+    border-radius: 0.3rem;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+

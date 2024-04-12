@@ -5,3 +5,4 @@ export const HomeScreen = () => {
    <Text>Wina Social Media App</Text>
   )
 }
+
