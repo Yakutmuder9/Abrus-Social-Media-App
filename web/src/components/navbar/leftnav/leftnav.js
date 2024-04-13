@@ -5,7 +5,7 @@ import { MdGroups } from 'react-icons/md'
 import { FaUserAlt, FaVideo } from 'react-icons/fa'
 import { CgMenuGridO } from 'react-icons/cg'
 import '../navbar.css';
-import "react-pro-sidebar/dist/css/styles.css";
+// import "react-pro-sidebar/dist/css/styles.css";
 import {  NavLink,Link } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useDispatch} from "react-redux";
