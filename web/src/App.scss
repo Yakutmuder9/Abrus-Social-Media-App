@@ -11,7 +11,8 @@
 :root {
   --white: #ffffff;
   --green: #7b8f22;
-  --light-blue: #f0f2f5;
+  --light-blue: linear-gradient(to top, #140888, #593be9);
+  // --light-blue: #f0f2f5;
   /*-------------fb-color-pallets----------*/
   --fds-black: #000000;
   --fds-white: #ffffff;
@@ -71,11 +72,14 @@
 }
 .html {
   overflow-y: scroll;
-  background: var(--light-blue);
+  // background: var(--light-blue);
 }
 body {
   background: var(--light-blue);
 }
 .App {
-  background: var(--light-blue);
+  // background: var(--light-blue);
+  // background: var(--light-blue);
+  // background: linear-gradient(#140888, #593be9);
+  // background: linear-gradient(to top, #140888, #593be9)!important;
 }

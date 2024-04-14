@@ -1,7 +1,5 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import ProfilePage from "./pages/profile/profilePage";
 import HomePage from "./pages/home/homePage";
 import MainPost from "./pages/home/mainPost";
@@ -16,24 +14,10 @@ import RegisterPage from "./components/login/Register";
 import ForgotPasswordPage from "./components/login/ForgotPassword";
 import ResetPasswordPage from "./components/login/ResetPassword";
 
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { SET_LOGIN } from "./redux/features/auth/authSlice";
-import { getLoginStatus } from "./redux/features/auth/authService";
-
-axios.defaults.withCredentials = true;
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    async function loginStatus() {
-      const status = await getLoginStatus();
-      dispatch(SET_LOGIN(status));
-    }
-    loginStatus();
-  }, [dispatch]);
 
   return (
     <div className="App">

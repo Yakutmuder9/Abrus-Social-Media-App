@@ -58,7 +58,7 @@
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(7, 17, 78);
+  background: #07114e;
 }
 .html{
   overflow-y: scroll;

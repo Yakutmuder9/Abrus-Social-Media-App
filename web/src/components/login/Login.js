@@ -1,119 +1,160 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import { userLogin } from '../../redux/features/auth/authSlice'
-import { SET_LOGIN, SET_NAME, SET_USER } from "../../redux/features/auth/authSlice";
-import Loader from "../loading/Loading"
-import {validateEmail, loginUser} from '../../redux/features/auth/authService' 
+import { setCredentials } from "../../redux/features/auth/authSlice";
+import { useLoginMutation } from "../../api/ApiSlice";
+import Loader from "../loading/Loading";
+import { Hand } from "../../assets/index";
 
 const Login = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
-    const [formData, setformData] = useState({
-        email: "",
-        password: ""
-    });
+  const emailRef = useRef();
+  const errRef = useRef();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
-    const { email, password } = formData;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setformData({ ...formData, [name]: value });
-    };
+  const [login, { isLoading }] = useLoginMutation();
 
-    const onSubmmitHandler = async (e) => {
-        e.preventDefault();
-    
-        if (!email || !password) {
-          return toast.error("All fields are required");
-        }
-    
-        if (!validateEmail(email)) {
-          return toast.error("Please enter a valid email");
-        }
-    
-        const userData = {
-          email,
-          password,
-        };
-        setIsLoading(true);
-        try {
-            const data = await loginUser(userData);
-            if (data) {
-                dispatch(SET_LOGIN(true));
-                dispatch(SET_NAME(data.firstName));
-                
-                dispatch(SET_USER(data));
-                setIsLoading(false);
-                navigate("/");
-            } else {
-                setIsLoading(false);
-                navigate("/login");
-            }
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
-        } catch (error) {
-            setIsLoading(false);
-        }
-    };
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, password]);
+  const onSubmmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const { accessToken } = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ accessToken }));
+      setEmail("");
+      setPassword("");
+      navigate("/dash");
+    } catch (err) {
+      if (!err.status) {
+        setErrMsg("No Server Response");
+      } else if (err.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg(err.data?.message);
+      }
+      errRef.current.focus();
+    }
+  };
 
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePwdChange = (e) => setPassword(e.target.value);
 
-    return (
-        <div className="login-screen">
-            {isLoading && <Loader />}
-            
-                <div className="row ">
-                    <div className="login-txt col-12 col-md-6">
-                        <div className='' >
-                            <h1 className='text-success'>Wina-Social-app</h1>
-                            <h4>Share your feeling with friends and the world through Wina-app</h4>
-                        </div>
-                    </div>
-                    <div className="login-form col-12 col-md-6 bg-light rounded p-4 shadow-lg ">
-                        <div className='
-                        className="login-form-formik"'>
-                            <form onSubmit={onSubmmitHandler}
-                                className="login-form-formik">
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    required
-                                    name="email"
-                                    value={email}
-                                    onChange={handleInputChange}
-                                    className="w-100 py-2 px-3 mb-3"
-                                />
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    required
-                                    name="password"
-                                    value={password}
-                                    onChange={handleInputChange}
-                                    className="w-100 py-2 px-3 mb-3"
-                                />
-                                <button type="submit"
-                                    className="w-100 py-2 px-3 mb-3 btn btn-primary" disabled={isLoading}>
-                                    {isLoading && (
-                                        <span className="spinner-border spinner-border-sm"></span>
-                                    )}
-                                    <span>Login</span></button>
-                                <a type="submit"
-                                    className="w-100 py-2 px-3 mb-3 btn text-dark">Forget password?<hr></hr></a>
+  const errClass = errMsg ? "errmsg" : "offscreen";
 
-                                <Link to="/register"
-                                    className="w-100 py-2 px-3 mb-3 btn btn-success" >Create new account</Link>
-                            </form>
-                            <p></p>
-                        </div>
-                    </div>
+  if (isLoading) return <Loader color={"#FFF"} />;
 
-               
-            </div>
+  return (
+    <div className="login-screen-page">
+      {isLoading && <Loader />}
+
+      <div className="row bg-dark py-3 px-2">
+        <div className="login-txt col-12 col-md-6 text-center ">
+          <div className="">
+            <h1 className="text-light ">
+              <span style={{ color: "#E5FC54", fontSize: "48px" }}>Abrus</span>{" "}
+              <i>Social Media</i>
+            </h1>
+            <p className="mb-5 text-light text-break">
+              Share your feeling with friends and the world through abrus app
+            </p>
+            <img
+              src={Hand}
+              style={{ height: "auto", width: "100%", marginLeft: "-20px" }}
+              className="d-none d-md-block"
+            />
+          </div>
         </div>
-    );
-}
 
-export default Login
+        <div className="login-form col-12 col-md-6  p-4 shadow-lg ">
+          <div
+            className='
+                        className="login-form-formik"'
+          >
+            <h2 className="text-center my-3 fw-bold text-secondary">
+              Login Here
+            </h2>
+            <br />
+            <br />
+            <p ref={errRef} className={errClass} aria-live="assertive">
+              {errMsg}
+            </p>
+            <br />
+
+            <form onSubmit={onSubmmitHandler} className="login-form-formik">
+              <div class="email">
+                <label htmlFor="email">Email Address</label>
+                <div class="sec-2">
+                  <ion-icon name="mail-outline"></ion-icon>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Username@example.com"
+                    ref={emailRef}
+                    value={email}
+                    onChange={handleEmail}
+                    autoComplete="off"
+                    required
+                  />
+                </div>
+              </div>
+
+              <br />
+              <div class="password mb-2">
+                <label htmlFor="password">Password</label>
+                <div class="sec-2">
+                  <ion-icon name="lock-closed-outline"></ion-icon>
+                  <input
+                    class="pas"
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="············"
+                    className="text-primary"
+                    onChange={handlePwdChange}
+                    value={password}
+                  />
+                  <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between px-2">
+                <a type="submit" className="text-decoration-none">
+                  Forget password?<hr></hr>
+                </a>
+
+                <Link to="/register" className="text-decoration-none">
+                  Create new account
+                </Link>
+              </div>
+              <button
+                type="submit"
+                className="w-100 py-2 px-3 mb-3 btn btn-dark mt-3"
+                style={{ color: "#E5FC54" }}
+                disabled={isLoading}
+              >
+                {isLoading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Login</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
