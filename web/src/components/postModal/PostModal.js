@@ -2,10 +2,10 @@ import Modal from "react-bootstrap/Modal";
 import Avator from "@mui/material/Avatar";
 import "../../pages/home/home.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/features/auth/authService";
+import { getUser } from "../../features/auth/authService";
 import Loader from "../loading/Loading";
 import { useEffect, useState } from "react";
-import { createPost, selectPost } from "../../redux/features/post/postSlice";
+import { createPost, selectPost } from "../../features/post/postSlice";
 
 const PostModal = (props) => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials } from "../redux/features/auth/authSlice";
+import { setCredentials } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: "https://abrus-api.onrender.com",

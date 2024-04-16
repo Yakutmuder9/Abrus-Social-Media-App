@@ -1,7 +1,7 @@
 import { useState } from "react";
-import './Register.css'
+import '../../styles/components/Register.css';
 import { toast } from "react-toastify";
-import Loader from "../loading/Loading";
+import Loader from "../../components/loading/Loading";
 
 const initialState = {
   firstName: "",

@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.css";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
-import { store } from "./redux/store";
+import { store } from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 
 const container = document.getElementById("root");

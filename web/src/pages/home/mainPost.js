@@ -1,42 +1,43 @@
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import { useState, useEffect, useLayoutEffect } from 'react';
-import Card from '@mui/material/Card';
-import Avatar from '@mui/material/Avatar';
-import './home.css'
-import VideoCallIcon from '@mui/icons-material/VideoCall';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import { AiOutlineLeft, AiOutlineRight, AiFillLike } from 'react-icons/ai';
-import { FaShare, FaRegCommentAlt } from 'react-icons/fa';
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import { useState, useEffect, useLayoutEffect } from "react";
+import Card from "@mui/material/Card";
+import Avatar from "@mui/material/Avatar";
+import "./home.css";
+import VideoCallIcon from "@mui/icons-material/VideoCall";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import { AiOutlineLeft, AiOutlineRight, AiFillLike } from "react-icons/ai";
+import { FaShare, FaRegCommentAlt } from "react-icons/fa";
 import ItemsCarousel from "react-items-carousel";
-import IconButton from '@mui/material/IconButton';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LeftLazyshow from '../../components/LazyShow/LeftLazyshow';
-import RightLazyshow from '../../components/LazyShow/RightLazyshow';
-import PostModal from "../../components/postModal/PostModal"
+import IconButton from "@mui/material/IconButton";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LeftLazyshow from "../../components/LazyShow/LeftLazyshow";
+import RightLazyshow from "../../components/LazyShow/RightLazyshow";
+import PostModal from "../../components/postModal/PostModal";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from "../../redux/features/auth/authService";
-import Loader from '../../components/loading/Loading';
-import { NavLink } from 'react-router-dom';
-import { fetchAllUsersPosts } from '../../redux/features/post/postSlice';
-import Moment from 'react-moment';
-
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../features/auth/authService";
+import Loader from "../../components/loading/Loading";
+import { NavLink } from "react-router-dom";
+import { fetchAllUsersPosts } from "../../features/post/postSlice";
+import Moment from "react-moment";
 
 const MainPost = (prop) => {
   const [modalShow, setModalShow] = useState(false);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [chevronWidth, setChevronWidth] = useState(5);
   const [Screenwidth, ScreenHeight] = useWindowSize();
-  const { post, posts,isLoading, isError, isSuccess, message } = useSelector(state => state.post)
+  // const { post, posts, isLoading, isError, isSuccess, message } = useSelector(
+  //   (state) => state.post
+  // );
 
   const dispatch = useDispatch();
   const [profile, setProfile] = useState(null);
@@ -44,18 +45,15 @@ const MainPost = (prop) => {
 
   useEffect(() => {
     setLoading(true);
-    dispatch(fetchAllUsersPosts());
+    // dispatch(fetchAllUsersPosts());
     async function getUserData() {
       const data = await getUser();
 
       setProfile(data);
       setLoading(false);
-      // dispatch(SET_USER(data));
-      // dispatch(SET_NAME(data.firstName));
     }
     getUserData();
   }, [dispatch]);
-
 
   const images = [
     "/assets/FbCreateStory.png",
@@ -69,22 +67,19 @@ const MainPost = (prop) => {
     "https://images.unsplash.com/photo-1549737328-8b9f3252b927?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
     "https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
     "https://images.unsplash.com/photo-1549985908-597a09ef0a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+    "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
   ];
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
-
-
   return (
     <>
-      <LeftLazyshow>
-        <Card>
-          <Box sx={{ width: '100%', typography: 'body1' }} className='mt-1 p-3'>
+      {/* <LeftLazyshow>
+       <Card>
+           <Box sx={{ width: '100%', typography: 'body1' }} className='mt-1 p-3'>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example" >
@@ -173,13 +168,12 @@ const MainPost = (prop) => {
 
             </div>
           </div>
-          <div></div>
+          <div></div>/
         </Card>
-      </RightLazyshow>
+      </RightLazyshow>  */}
 
-      
       {/* --------------psots---------------------- */}
-      {isLoading ? <Loader />:
+      {/* {isLoading ? <Loader />:
       <LeftLazyshow>
         {posts && posts.map((item, key) => {
           return <Card className='mt-3 py-2' key={item._id}>
@@ -227,13 +221,12 @@ const MainPost = (prop) => {
         })}
 
       </LeftLazyshow>
-      }
+      } */}
     </>
   );
-}
+};
 
-export default MainPost
-
+export default MainPost;
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -241,10 +234,9 @@ function useWindowSize() {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
     }
-    window.addEventListener('resize', updateSize);
+    window.addEventListener("resize", updateSize);
     updateSize();
-    return () => window.removeEventListener('resize', updateSize);
+    return () => window.removeEventListener("resize", updateSize);
   }, []);
   return size;
 }
-

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import "../../styles/components/Login.css";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../redux/features/auth/authSlice";
-import { useLoginMutation } from "../../redux/features/auth/authApiSlice";
-import Loader from "../loading/Loading";
+import { setCredentials } from "../../features/auth/authSlice";
+import { useLoginMutation } from "../../features/auth/authApiSlice";
+import Loader from "../../components/loading/Loading";
 import { Hand } from "../../assets/index";
 
 const Login = () => {
@@ -36,8 +36,8 @@ const Login = () => {
       dispatch(setCredentials({ accessToken }));
       setEmail("");
       setPassword("");
-      
-      navigate("/home");
+
+      navigate("/");
     } catch (err) {
       if (!err.status) {
         setErrMsg("No Server Response");

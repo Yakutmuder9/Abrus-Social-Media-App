@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./ForgotPassword.css";
+import "../../styles/components/ForgotPassword.css";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { validateEmail, forgotPassword } from "../../redux/features/auth/authService";
+import { validateEmail, forgotPassword } from "../../features/auth/authService";
 
 
 const ForgotPasswordScreen = () => {
