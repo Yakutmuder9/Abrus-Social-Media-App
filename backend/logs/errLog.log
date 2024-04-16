@@ -176,3 +176,21 @@
 20240407	14:55:05	da15f0e8-5588-4e8c-ba2d-5565813c8805	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
 20240407	14:56:04	f8cf2cca-91f3-4126-afec-0dae8b13cdaa	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
 20240407	15:25:44	a3fef27c-ac8e-4ca6-9b33-38286719e818	MulterError: Unexpected field	PATCH	/api/private/group/108	undefined
+20240414	14:48:50	515292dc-c2d0-412b-865b-1a40fa18c413	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:51:14	06ed8cb2-f4b9-41d4-bc2e-5fffa991098f	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:52:39	8d4ba710-1e4b-4866-a639-ad384dc3a623	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:53:12	ff7835b6-315a-4077-b5b1-ab1c0c479895	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:54:51	87b6cf48-6b75-4d48-b883-eed1f7df1eb7	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:56:23	c20f6dcd-89f6-4d8d-88ec-91d8151fb199	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:56:53	5eff7d94-e0c7-4f47-a899-b770d77b4e77	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:58:51	60b3dcf0-6ea8-44eb-a055-780634887ec9	ReferenceError: createError is not defined	POST	/auth	http://localhost:3000
+20240414	14:59:34	e44a9d55-4ee7-480c-9c76-082c065edd9a	ReferenceError: createError is not defined	POST	/auth/login	http://localhost:3000
+20240414	15:00:06	8674d1d8-ed4b-4ea1-8068-c8ec19e0ba4d	ReferenceError: createError is not defined	POST	/auth/login	http://localhost:3000
+20240414	15:01:07	4e8848be-213a-4781-a575-c2c91034ca5c	ReferenceError: createError is not defined	POST	/auth/login	http://localhost:3000
+20240414	15:17:03	09ca9f92-84dd-4f3b-b399-15f4d8acc906	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+20240414	23:30:43	74d79a3c-b48f-44c5-a5b8-53ec2f9f95b2	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+20240414	23:35:37	59ae24e7-142b-401b-8301-85c88f4fdf1c	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+20240414	23:35:37	bfcfc26c-ff13-41d1-9ae1-508906d15067	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+20240414	23:35:38	69e43758-374b-4e06-8d17-dbd30450e406	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+20240414	23:35:38	4e4a7966-5424-4119-937a-29e9e18d09ad	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000
+20240414	23:35:38	4b646a21-81a6-43cd-903f-193ea9068570	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/login	http://localhost:3000

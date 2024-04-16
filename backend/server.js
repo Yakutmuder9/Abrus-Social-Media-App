@@ -31,7 +31,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
 // Connecting Routes
 app.get("/", (req, res) => {
   res.send("Hello, this is a sample backend!");

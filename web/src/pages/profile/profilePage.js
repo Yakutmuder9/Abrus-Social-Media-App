@@ -11,7 +11,6 @@ import ItemsCarousel from "react-items-carousel";
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../components/loading/Loading';
 import { getUser } from '../../redux/features/auth/authService';
-import { SET_NAME, SET_USER } from '../../redux/features/auth/authSlice';
 import { getPosts } from '../../redux/features/post/postSlice';
 import './profile.css';
 import Avatar from '@mui/material/Avatar';
@@ -39,8 +38,8 @@ const ProfilePage = () => {
 
       setProfile(data);
       setIsLoading(false);
-      await dispatch(SET_USER(data));
-      await dispatch(SET_NAME(data.firstName));
+      // await dispatch(SET_USER(data));
+      // await dispatch(SET_NAME(data.firstName));
       dispatch(getPosts());
     }
     getUserData();

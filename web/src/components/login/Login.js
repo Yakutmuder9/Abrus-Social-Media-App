@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-import { useLoginMutation } from "../../api/ApiSlice";
+import { useLoginMutation } from "../../redux/features/auth/authApiSlice";
 import Loader from "../loading/Loading";
 import { Hand } from "../../assets/index";
 
@@ -26,14 +26,18 @@ const Login = () => {
   useEffect(() => {
     setErrMsg("");
   }, [email, password]);
+
+  // handle submmit
   const onSubmmitHandler = async (e) => {
     e.preventDefault();
     try {
       const { accessToken } = await login({ email, password }).unwrap();
+
       dispatch(setCredentials({ accessToken }));
       setEmail("");
       setPassword("");
-      navigate("/dash");
+      
+      navigate("/home");
     } catch (err) {
       if (!err.status) {
         setErrMsg("No Server Response");
@@ -66,6 +70,7 @@ const Login = () => {
               <span style={{ color: "#E5FC54", fontSize: "48px" }}>Abrus</span>{" "}
               <i>Social Media</i>
             </h1>
+
             <p className="mb-5 text-light text-break">
               Share your feeling with friends and the world through abrus app
             </p>
@@ -78,24 +83,25 @@ const Login = () => {
         </div>
 
         <div className="login-form col-12 col-md-6  p-4 shadow-lg ">
-          <div
-            className='
-                        className="login-form-formik"'
-          >
+          <div className="login-form-formik">
             <h2 className="text-center my-3 fw-bold text-secondary">
               Login Here
             </h2>
-            <br />
-            <br />
-            <p ref={errRef} className={errClass} aria-live="assertive">
+            <p
+              ref={errRef}
+              className={errClass + "alert alert-danger"}
+              role="alert"
+              aria-live="assertive"
+            >
               {errMsg}
             </p>
             <br />
+            <br />
 
             <form onSubmit={onSubmmitHandler} className="login-form-formik">
-              <div class="email">
+              <div className="email">
                 <label htmlFor="email">Email Address</label>
-                <div class="sec-2">
+                <div className="sec-2">
                   <ion-icon name="mail-outline"></ion-icon>
                   <input
                     type="email"
@@ -112,21 +118,21 @@ const Login = () => {
               </div>
 
               <br />
-              <div class="password mb-2">
+              <div className="password mb-2">
                 <label htmlFor="password">Password</label>
-                <div class="sec-2">
+                <div className="sec-2">
                   <ion-icon name="lock-closed-outline"></ion-icon>
                   <input
-                    class="pas"
+                    className="pas text-primary"
                     type="password"
                     name="password"
                     id="password"
                     placeholder="············"
-                    className="text-primary"
                     onChange={handlePwdChange}
                     value={password}
+                    autoComplete="off"
                   />
-                  <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+                  <ion-icon className="show-hide" name="eye-outline"></ion-icon>
                 </div>
               </div>
               <div className="d-flex justify-content-between px-2">
@@ -138,6 +144,7 @@ const Login = () => {
                   Create new account
                 </Link>
               </div>
+
               <button
                 type="submit"
                 className="w-100 py-2 px-3 mb-3 btn btn-dark mt-3"

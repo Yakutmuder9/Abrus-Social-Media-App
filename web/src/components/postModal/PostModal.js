@@ -2,7 +2,6 @@ import Modal from "react-bootstrap/Modal";
 import Avator from "@mui/material/Avatar";
 import "../../pages/home/home.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_USER } from "../../redux/features/auth/authSlice";
 import { getUser } from "../../redux/features/auth/authService";
 import Loader from "../loading/Loading";
 import { useEffect, useState } from "react";
@@ -26,7 +25,7 @@ const PostModal = (props) => {
       const data = await getUser();
       setProfile(data);
       setIsLoading(false);
-      dispatch(SET_USER(data));
+      // dispatch(SET_USER(data));
     }
     getUserData();
   }, [dispatch]);

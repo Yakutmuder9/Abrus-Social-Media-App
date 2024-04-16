@@ -24,7 +24,6 @@ import RightLazyshow from '../../components/LazyShow/RightLazyshow';
 import PostModal from "../../components/postModal/PostModal"
 
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_USER, SET_NAME } from "../../redux/features/auth/authSlice";
 import { getUser } from "../../redux/features/auth/authService";
 import Loader from '../../components/loading/Loading';
 import { NavLink } from 'react-router-dom';
@@ -51,8 +50,8 @@ const MainPost = (prop) => {
 
       setProfile(data);
       setLoading(false);
-      dispatch(SET_USER(data));
-      dispatch(SET_NAME(data.firstName));
+      // dispatch(SET_USER(data));
+      // dispatch(SET_NAME(data.firstName));
     }
     getUserData();
   }, [dispatch]);

@@ -9,9 +9,7 @@ import '../navbar.css';
 import {  NavLink,Link } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useDispatch} from "react-redux";
-import { SET_LOGIN } from '../../../redux/features/auth/authSlice';
 import { logoutUser } from '../../../redux/features/auth/authService';
-import { SET_USER, SET_NAME } from "../../../redux/features/auth/authSlice";
 import { getUser } from "../../../redux/features/auth/authService";
 import Loader from '../../loading/Loading';
 
@@ -22,26 +20,26 @@ const Leftnav = () => {
   
     const logOut = async () => {
       await logoutUser()
-      dispatch(SET_LOGIN(false));
+    //   dispatch(SET_LOGIN(false));
       localStorage.removeItem("name")
       navigate("/login");
     };
     const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
   
-    useEffect(() => {
-      setIsLoading(true);
-      async function getUserData() {
-        const data = await getUser();
-        // console.log(data);
+    // useEffect(() => {
+    //   setIsLoading(true);
+    //   async function getUserData() {
+    //     const data = await getUser();
+    //     // console.log(data);
   
-        setProfile(data);
-        setIsLoading(false);
-        await dispatch(SET_USER(data));
-        await dispatch(SET_NAME(data.name));
-      }
-      getUserData();
-    }, [dispatch]);
+    //     setProfile(data);
+    //     setIsLoading(false);
+    //     await dispatch(SET_USER(data));
+    //     await dispatch(SET_NAME(data.name));
+    //   }
+    //   getUserData();
+    // }, [dispatch]);
   
     return (
         <div className="left-nav-bar">

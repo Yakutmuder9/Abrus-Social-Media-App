@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { FaFacebookMessenger, FaBell, FaVideo } from "react-icons/fa";
 import Avatar from '@mui/material/Avatar';
 import {  useDispatch } from 'react-redux';
-import { SET_USER, SET_NAME } from "../../../redux/features/auth/authSlice";
 import { getUser } from "../../../redux/features/auth/authService";
 import Loader from '../../loading/Loading';
 import { AiFillHome, AiTwotoneFlag, AiTwotoneShop } from 'react-icons/ai';
@@ -23,8 +22,8 @@ const Navbar = () => {
 
       setProfile(data);
       setIsLoading(false);
-      await dispatch(SET_USER(data));
-      await dispatch(SET_NAME(data.firstName));
+      // await dispatch(SET_USER(data));
+      // await dispatch(SET_NAME(data.firstName));
     }
     getUserData();
   }, [dispatch]);

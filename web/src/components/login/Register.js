@@ -1,10 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import './Register.css'
 import { toast } from "react-toastify";
-import { SET_LOGIN, SET_NAME, SET_USER } from "../../redux/features/auth/authSlice";
-import { registerUser, validateEmail } from "../../redux/features/auth/authService";
 import Loader from "../loading/Loading";
 
 const initialState = {
@@ -18,8 +14,6 @@ const initialState = {
 };
 
 const Register = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
   const { firstName, lastName, email, password, password2, dateOfBirth, gender } = formData;
@@ -32,18 +26,18 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !password || !dateOfBirth || !gender) {
-      return toast.error("All fields are required");
-    }
-    if (password.length < 6) {
-      return toast.error("Passwords must be up to 6 characters");
-    }
-    if (!validateEmail(email)) {
-      return toast.error("Please enter a valid email");
-    }
-    if (password !== password2) {
-      return toast.error("Passwords do not match");
-    }
+    // if (!firstName || !lastName || !email || !password || !dateOfBirth || !gender) {
+    //   return toast.error("All fields are required");
+    // }
+    // if (password.length < 6) {
+    //   return toast.error("Passwords must be up to 6 characters");
+    // }
+    // if (!validateEmail(email)) {
+    //   return toast.error("Please enter a valid email");
+    // }
+    // if (password !== password2) {
+    //   return toast.error("Passwords do not match");
+    // }
 
     const userData = {
       firstName,
@@ -54,21 +48,7 @@ const Register = () => {
       gender
     };
     setIsLoading(true);
-    try {
-      const data = await registerUser(userData);
-      if (data) {
-        dispatch(SET_LOGIN(true));
-        dispatch(SET_NAME(data.firstName));
-        dispatch(SET_USER(data));
-        setIsLoading(false);
-        navigate("/");
-      } else {
-        setIsLoading(false);
-        navigate("/login");
-      }
-    } catch (error) {
-      setIsLoading(false);
-    }
+   
   };
 
   return (
