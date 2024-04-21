@@ -967,3 +967,17 @@
 20240419	08:25:45	6582e3a3-711c-4824-a783-7fa31550eafa	GET	/api/auth/refresh	http://localhost:3000
 20240419	08:25:49	f6b0d8a7-d695-4f7d-983e-3451c82a56d8	GET	/api/auth/refresh	http://localhost:3000
 20240419	08:27:21	8eaa5b59-b440-4f95-862e-61ee60a4cdfb	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:45:46	4f47bf4f-e51c-46b1-bce3-fb1f3273115c	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:45:48	087a4a49-d7ed-47ca-a2a0-119758dd9cef	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:45:51	5298d2db-4e2e-4166-9a54-e82815e4250b	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:46:02	bac3c2ed-aed5-4b93-b9a3-2fab613bbf1a	OPTIONS	/api/auth/login	http://localhost:3000
+20240421	10:46:02	759a33eb-4d0e-4f8e-9e46-0af704de1fdb	POST	/api/auth/login	http://localhost:3000
+20240421	10:48:10	1240683b-e36f-42cc-af4f-b3202c9a2b67	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:51:22	85cb15ac-341c-45d4-a790-83d537d9fbb7	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:53:35	10486f3a-9f01-4565-987e-ed83d9e6f3b9	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:55:29	d1d633d9-8d48-40c8-800d-9deb650a3096	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:55:39	b691c6d9-7343-4bbf-b2f3-df480e796365	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:55:50	e2b5233b-cfce-418a-86b4-2689a5200e49	GET	/api/auth/refresh	http://localhost:3000
+20240421	10:55:51	64e6e9be-a498-43c4-9d6f-78540fed463c	GET	/api/auth/refresh	http://localhost:3000
+20240421	11:00:18	56630bb2-b1ff-45e3-864c-af1df5c39cda	GET	/api/auth/refresh	http://localhost:3000
+20240421	11:00:20	159a33dd-ee32-4c50-97a9-4891c0324bae	GET	/api/auth/refresh	http://localhost:3000

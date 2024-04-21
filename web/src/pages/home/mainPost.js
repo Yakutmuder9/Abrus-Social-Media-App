@@ -55,6 +55,7 @@ const MainPost = (prop) => {
     getUserData();
   }, [dispatch]);
 
+  
   const images = [
     // "/assets/FbCreateStory.png",
     "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RmIlMjBDcmVhdGUlMjBTdG9yeXxlbnwwfHwwfHx8MA%3D%3D",
@@ -78,7 +79,8 @@ const MainPost = (prop) => {
 
   return (
     <>
-      <LeftLazyshow>
+      
+      {/* <LeftLazyshow>
         <Card>
           <Box sx={{ width: "100%", typography: "body1" }} className="mt-1 p-3">
             <TabContext value={value}>
@@ -164,8 +166,8 @@ const MainPost = (prop) => {
             </TabContext>
           </Box>
         </Card>
-      </LeftLazyshow>
-      <RightLazyshow>
+      </LeftLazyshow> */}
+      {/* <RightLazyshow>
         <Card className="mt-3 p-3">
           <div className="">
             <div className="d-flex">
@@ -216,10 +218,9 @@ const MainPost = (prop) => {
           </div>
           <div></div>/
         </Card>
-      </RightLazyshow>
+      </RightLazyshow> */}
 
-      {/* --------------psots---------------------- */}
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loader />
       ) : (
         <LeftLazyshow>
@@ -282,7 +283,7 @@ const MainPost = (prop) => {
               );
             })}
         </LeftLazyshow>
-      )}
+      )} */}
     </>
   );
 };
