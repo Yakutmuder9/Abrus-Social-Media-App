@@ -39,7 +39,7 @@ const App = () => {
             <Route element={<Prefetch />}>
               <Route path="/" element={<DashLayout />}>
                 <Route index element={<MainPost />} />
-                <Route path="profile/:id" element={<ProfilePage />} />
+                {/* <Route path="profile/:id" element={<ProfilePage />} />
                 <Route path="menu" element={<ProfilePage />} />
                 <Route path="watch" element={<Watch />} />
                 <Route path="marketplace" element={<Marketplace />} />
@@ -47,7 +47,7 @@ const App = () => {
                 <Route path="group/:id" element={<Group />} />
                 <Route path="shortcuts" element={<ProfilePage />} />
                 <Route path="notification" element={<Notification />} />
-                <Route path="pages" element={<Pages />} />
+                <Route path="pages" element={<Pages />} /> */}
               </Route>
             </Route>
           </Route>

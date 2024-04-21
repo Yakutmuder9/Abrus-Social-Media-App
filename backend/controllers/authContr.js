@@ -129,7 +129,7 @@ const login = asyncHandler(async (req, res) => {
     // maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
-  console.log("logged in susscessfull")
+  console.log("logged in susscessfull");
   // Send accessToken containing email and roles
   res.json({ accessToken });
 });
@@ -174,7 +174,7 @@ const refresh = asyncHandler((req, res) => {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m" }
+        { expiresIn: "10m" }
       );
       res.json({ accessToken });
     }

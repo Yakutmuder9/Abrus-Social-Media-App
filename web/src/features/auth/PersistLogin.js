@@ -1,7 +1,7 @@
-import { Outlet, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { useRefreshMutation } from "./authApiSlice";
 import { useSelector } from "react-redux";
+import { Outlet, Link } from "react-router-dom";
+import { useRefreshMutation } from "./authApiSlice";
 import { selectCurrentToken } from "./authSlice";
 import PulseLoader from "react-spinners/PulseLoader";
 import usePersist from "../../hooks/usePersist";
@@ -19,7 +19,6 @@ const PersistLogin = () => {
   useEffect(() => {
     if (effectRan.current === true || process.env.NODE_ENV !== "development") {
       // React 18 Strict Mode
-
       const verifyRefreshToken = async () => {
         console.log("verifying refresh token");
         try {
@@ -31,7 +30,6 @@ const PersistLogin = () => {
           console.error(err);
         }
       };
-
       if (!token && persist) verifyRefreshToken();
     }
 

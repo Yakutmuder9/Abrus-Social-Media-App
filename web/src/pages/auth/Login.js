@@ -6,6 +6,7 @@ import { setCredentials } from "../../features/auth/authSlice";
 import { useLoginMutation } from "../../features/auth/authApiSlice";
 import Loader from "../../components/loading/Loading";
 import { Hand } from "../../assets/index";
+import usePersist from "../../hooks/usePersist";
 
 const Login = () => {
   const emailRef = useRef();
@@ -13,6 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [persist, setPersist] = usePersist();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,6 +36,7 @@ const Login = () => {
       const { accessToken } = await login({ email, password }).unwrap();
 
       dispatch(setCredentials({ accessToken }));
+      localStorage.setItem("persist", true);
       setEmail("");
       setPassword("");
 
