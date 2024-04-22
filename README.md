@@ -27,7 +27,7 @@ Welcome to Wina, a social media platform where you can connect, share, and engag
 
 1. Clone the repository:
 
-    - git clone https://github.com/yourusername/wina-social-media-app.git
+    - git clone https://github.com/yourusername/Abrus-Social-Media-App.git
 
 2. Navigate to the project directory:
     - cd wina-social-media-app
